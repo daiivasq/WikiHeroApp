@@ -17,7 +17,7 @@
             <RefreshView Command="{Binding RefreshCommand}" 
                          IsRefreshing="{Binding IsBusy}" >
 
-                <controlsviews:CollectionViewHorizontal ItemsSource="{Binding Characters}"/>
+                <controlsviews:ControlListView ItemsSource="{Binding Characters}"/>
 
             </RefreshView>
         </StackLayout>

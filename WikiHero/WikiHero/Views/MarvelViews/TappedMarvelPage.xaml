@@ -27,7 +27,7 @@
     </NavigationPage>
     <NavigationPage Title="Comics" IconImageSource="comic.png" BarBackgroundColor="{StaticResource MarvelPrincipalColor}">
         <x:Arguments>
-            <local:MarvelComicsPage Title="Comics"/>
+            <local:MarvelVolumePage Title="Comics"/>
         </x:Arguments>
     </NavigationPage>
     <NavigationPage Title="Characters" IconImageSource="MarvelCharacter.png" BarBackgroundColor="{StaticResource MarvelPrincipalColor}">
