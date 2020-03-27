@@ -26,7 +26,16 @@ namespace WikiHeroApp.Services
 
         [Get("/api/volumes?format=json&filter=name:{name}&api_key={api_key}")]
         Task<ResultVolume> FindVolume(string name, string api_key, int offset);
-        
-       
+
+        [Get("/api/series_list?format=json&filter=name:{name}&api_key={api_key}")]
+        Task<ResultSeries> FindSeries(string name, string api_key, int offset);
+
+        [Get("/api/episodes?format=json&api_key={api_key}&filter=series:{id}")]
+        Task<ResultEpisode> FindEpisode(string api_key, int id);
+
+        [Get("/api/issues?format=json&api_key={api_key}&limit=100&filter=volume:{id}")]
+        Task<ResultComics> FindComics(string api_key, int id);
+
+
     }
 }

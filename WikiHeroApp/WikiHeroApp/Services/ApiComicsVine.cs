@@ -118,5 +118,28 @@ namespace WikiHeroApp.Services
             return notNull.ToList();
         }
 
+        public async Task<List<Serie>> FindSeries(string name, int offset)
+        {
+
+            var getRequest = RestService.For<IApiComicsVine>(Config.UrlApiComicsVine);
+            var series = await getRequest.FindSeries(name, Config.Apikey, offset);
+            var notNull = from item in series.Series where item.Publisher != null select item;
+            return notNull.ToList();
+        }
+        public async Task<List<Episode>> GetEpisode(int idseries)
+        {
+
+            var getRequest = RestService.For<IApiComicsVine>(Config.UrlApiComicsVine);
+            var episode = await getRequest.FindEpisode(Config.Apikey, idseries);
+            return episode.Results.ToList();
+        }
+        public async Task<List<Comic>> GetComics(int idcomics)
+        {
+
+            var getRequest = RestService.For<IApiComicsVine>(Config.UrlApiComicsVine);
+            var comics = await getRequest.FindComics(Config.Apikey, idcomics);
+            return comics.Results.ToList();
+        }
+
     }
 }
