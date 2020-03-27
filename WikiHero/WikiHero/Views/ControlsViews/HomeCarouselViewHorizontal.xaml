@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:pancakeview="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             mc:Ignorable="d"
+             x:Class="WikiHero.Views.ControlsViews.HomeCarouselViewHorizontal"
+             x:Name="this">
+  <ContentView.Content>
+
+        <CollectionView ItemsSource="{Binding ItemsSource} "
+                        x:Name="CharactersList"
+                        BindingContext="{x:Reference this}">
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout    Orientation="Horizontal"
+              SnapPointsType="Mandatory"
+              SnapPointsAlignment="Start"
+              ItemSpacing="10"/>
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+
+                    <pancakeview:PancakeView CornerRadius="40,0,0,30"
+                                             HasShadow="True"
+                                             BackgroundColor="White"
+                                             AbsoluteLayout.LayoutBounds="0,200"
+                                             >
+                        <Frame BackgroundColor="White" CornerRadius="10" >
+                            <Image Source="{Binding Image.MediumUrl}"/> 
+                        </Frame>
+                    </pancakeview:PancakeView>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+      
+  </ContentView.Content>
+</ContentView>

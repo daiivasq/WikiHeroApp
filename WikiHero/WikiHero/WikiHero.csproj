@@ -66,6 +66,9 @@
     <EmbeddedResource Update="Views\ControlsViews\DetailView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Views\ControlsViews\HomeCarouselViewHorizontal.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Views\DcComicsViews\DcCharactersPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>

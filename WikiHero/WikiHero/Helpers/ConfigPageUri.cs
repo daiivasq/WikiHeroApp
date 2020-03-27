@@ -15,8 +15,9 @@ namespace WikiHero.Helpers
         public const string DcVolumePage = "/DcVolumePage";
         public const string MarvelVolumePage = "/MarvelVolumePage";
 
-        public const string DcComicsHomePage = "/DcComicsPage";
-        public const string MarvelHomePage = "/MarvelComicsPage";
+        public const string DcHomePage = "/DcHomePage";
+        public const string MarvelHomePage = "/MarvelHomePage";
+     
 
         public const string DcSeriesPage = "/DcSeriesPage";
         public const string MarvelSeriesPage = "/MarvelSeriesPage";

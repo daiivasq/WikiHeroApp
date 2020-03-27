@@ -4,7 +4,97 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:controlsviews="clr-namespace:WikiHero.Views.ControlsViews"
+             xmlns:control="clr-namespace:WikiHero.Controls"
+             xmlns:pancakeview="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              mc:Ignorable="d"
              x:Class="WikiHero.Views.MarvelViews.MarvelHomePage">
+
    
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+        <ScrollView Grid.Row="0">
+            <StackLayout >
+
+                <CarouselView ItemsSource="{Binding ListTeam}" WidthRequest="500" HeightRequest="230">
+                    <CarouselView.ItemTemplate>
+                        <DataTemplate>
+                            <pancakeview:PancakeView  
+                                             >
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="40"/>
+                                    </Grid.RowDefinitions>        
+                                        <Image Aspect="AspectFill" Source="{Binding Image.ScreenUrl}"/>
+                                    <Label Text="{Binding Name}"
+                                           Grid.Row="1"/>
+                                </Grid>
+                            </pancakeview:PancakeView>
+                          
+                        </DataTemplate>
+                    </CarouselView.ItemTemplate>
+                </CarouselView>
+                <Label Text="Recent Series" TextColor="Black" FontSize="22" HorizontalTextAlignment="Center"
+                       />
+                <controlsviews:HomeCarouselViewHorizontal   HeightRequest="200" WidthRequest="200" ItemsSource="{Binding SeriesRecent}"/>
+                <Label Text="Recent Characters" TextColor="Black" FontSize="22" HorizontalTextAlignment="Center" />
+                <controlsviews:HomeCarouselViewHorizontal   HeightRequest="200" WidthRequest="200" />
+                <Label Text="Recent Volume" TextColor="Black" FontSize="22" HorizontalTextAlignment="Center" />
+                <controlsviews:HomeCarouselViewHorizontal  HeightRequest="200" WidthRequest="200" />
+              
+            </StackLayout>
+        </ScrollView>
+        <control:SegmentedControl  x:Name="segment"
+                                    HeightRequest="40" 
+                                    BackgroundColor="White"
+                                    ItemsSource="{Binding TabOptions}"
+                                    SelectionIndicator="IsSelected"
+                                    VerticalOptions="EndAndExpand"
+                                    Grid.Row="0"
+                                   
+                                    >
+                
+                <control:SegmentedControl.ItemTemplate >
+                    <DataTemplate>
+                        <StackLayout VerticalOptions="FillAndExpand" 
+                                                 HorizontalOptions="FillAndExpand"
+                                                 Spacing="5">
+
+                            <Label Margin="20,10" 
+                                                   Text="{Binding Name}" 
+                                                   TextColor="Gray"
+                                                   HorizontalOptions="CenterAndExpand">
+                                <Label.Triggers>
+                                    <DataTrigger TargetType="Label"
+                                                                        Binding="{Binding IsSelected}"
+                                                                        Value="True">
+                                        <Setter Property="FontAttributes" Value="Bold" />
+                                        <Setter Property="TextColor" Value="{StaticResource MarvelPrincipalColor}" />
+                                    </DataTrigger>
+                                </Label.Triggers>
+                            </Label>
+
+                            <BoxView HeightRequest="5" 
+                                             BackgroundColor="Blue"
+                                             HorizontalOptions="FillAndExpand">
+                                <BoxView.Triggers>
+                                    <DataTrigger TargetType="BoxView"
+                                                            Binding="{Binding IsSelected}"
+                                                            Value="False">
+                                        <Setter Property="BackgroundColor" Value="Transparent" />
+                                    </DataTrigger>
+                                </BoxView.Triggers>
+                            </BoxView>
+                        </StackLayout>
+                    </DataTemplate>
+                </control:SegmentedControl.ItemTemplate>
+            </control:SegmentedControl>
+
+        </Grid>
+ 
+   
+
 </ContentPage>

@@ -84,7 +84,7 @@ namespace WikiHero.Services
             var notNull = from item in series.Series where item.Publisher != null select item;
             var marvelOrDc = notNull.Where(e => e.Publisher.Name.Contains(StudioName) || e.Publisher.Name.Contains(ExtraStudioName));
             Barrel.Current.Add(key: $"{nameof(GetAllSeries)}/{StudioName}", marvelOrDc, expireIn: TimeSpan.FromDays(1));
-            return notNull.ToList();
+            return marvelOrDc.ToList();
         }
         public async Task<List<Serie>> GetAllSeries(int offset,string StudioName,string ExtraStudioName)
         {
@@ -138,6 +138,15 @@ namespace WikiHero.Services
             var getRequest = RestService.For<IApiComicsVine>(Config.UrlApiComicsVine);
             var comics = await getRequest.FindComics(Config.Apikey, idcomics);
             return comics.Results.ToList();
+        }
+        public async Task<List<Serie>> GetRecentSeries(string studioName,string extraStudioName)
+        {
+
+            var getRequest = RestService.For<IApiComicsVine>(Config.UrlApiComicsVine);
+            var recentSeries = await getRequest.GetRecentSeries(Config.Apikey, 20);
+            var notNull = from item in recentSeries.Series where item.Publisher != null select item;
+            var marvelOrDc = notNull.Where(e => e.Publisher.Name == studioName || e.Publisher.Name == extraStudioName);
+            return marvelOrDc.ToList();
         }
     }
 }

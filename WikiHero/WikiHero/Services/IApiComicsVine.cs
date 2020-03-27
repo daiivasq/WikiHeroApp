@@ -36,6 +36,8 @@ namespace WikiHero.Services
         [Get("/api/issues?format=json&api_key={api_key}&limit=100&filter=volume:{id}")]
         Task<ResultComics> FindComics(string api_key, int id);
 
+        [Get("/api/series_list?format=json&sort=date_last_updated:desc&api_key={api_key}&offset={offset}")]
+        Task<ResultSeries> GetRecentSeries(string api_key, int offset);
 
 
     }
