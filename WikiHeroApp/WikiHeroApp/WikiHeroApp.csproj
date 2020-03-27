@@ -35,6 +35,12 @@
     <EmbeddedResource Update="Views\ControlsViews\CollectionStats.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Views\ControlsViews\CollectionViewHorizontal.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\ControlsViews\ControlListView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Views\ControlsViews\StatsView.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
