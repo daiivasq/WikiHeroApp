@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:pancakeview="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             mc:Ignorable="d"
+             x:Class="WikiHero.Views.ControlsViews.CollectionStats"
+             x:Name="this">
+  <ContentView.Content>
+        <Grid>
+            <CollectionView  ItemsSource="{Binding ItemsSource}"
+                      x:Name="CharactersList"
+                         SelectedItem="{Binding SelectItem}"
+                         SelectionMode="Single"
+                         BindingContext="{x:Reference this}">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Horizontal"
+                                   ItemSpacing="10"
+                                   />
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <pancakeview:PancakeView CornerRadius="10"
+                                             BackgroundColor="White"
+                                             Padding="10"
+                                             HasShadow="True">
+                            <StackLayout>
+                                <Image Source="{Binding Images.Sm}" 
+                                   HeightRequest="100"
+                                   WidthRequest="100"/>
+                                <Label Text="{Binding Name}"
+                                   HorizontalOptions="CenterAndExpand"
+                                   HeightRequest="40"/>
+                            </StackLayout>
+                        </pancakeview:PancakeView>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            <ActivityIndicator IsRunning="{Binding IsBusy}"
+                               HorizontalOptions="CenterAndExpand"
+                               IsVisible="{Binding IsBusy}" />
+        </Grid>
+    </ContentView.Content>
+</ContentView>

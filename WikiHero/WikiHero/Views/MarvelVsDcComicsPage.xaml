@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:PrincipalPancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+              xmlns:SecondPancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             x:Class="WikiHero.Views.MarvelVsDcComicsPage"
+             BackgroundImageSource="versusPrincipal"
+             NavigationPage.HasNavigationBar="False"
+             >
+
+    <ContentPage.Content>
+        <ScrollView>
+            <AbsoluteLayout>
+                <PrincipalPancake:PancakeView CornerRadius="0,0,0,500"   AbsoluteLayout.LayoutBounds="0,0">
+
+                    <Image Source="Marvel.jpg" Grid.Row="0" HeightRequest="400" Aspect="AspectFill" />
+
+                    <PrincipalPancake:PancakeView.GestureRecognizers >
+                        <TapGestureRecognizer  NumberOfTapsRequired="1" Command="{Binding MarvelCommand}"/>
+                    </PrincipalPancake:PancakeView.GestureRecognizers>
+
+
+                </PrincipalPancake:PancakeView>
+                <PrincipalPancake:PancakeView CornerRadius="500,0,0,0" AbsoluteLayout.LayoutBounds="0,350">
+                    <Image Source="DcComics.jpg" Grid.Row="2" HeightRequest="480"  Aspect="AspectFill" />
+                    <PrincipalPancake:PancakeView.GestureRecognizers >
+                        <TapGestureRecognizer  NumberOfTapsRequired="1" Command="{Binding DcUniverseCommand}"/>
+                    </PrincipalPancake:PancakeView.GestureRecognizers>
+
+                </PrincipalPancake:PancakeView>
+                <Image Source="VS3.png" AbsoluteLayout.LayoutBounds="50,220,300,300"/>
+
+            </AbsoluteLayout>
+        </ScrollView>
+    </ContentPage.Content>
+
+
+</ContentPage>
