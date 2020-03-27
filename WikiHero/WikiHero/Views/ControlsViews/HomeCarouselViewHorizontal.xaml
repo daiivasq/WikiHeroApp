@@ -7,28 +7,46 @@
              mc:Ignorable="d"
              x:Class="WikiHero.Views.ControlsViews.HomeCarouselViewHorizontal"
              x:Name="this">
-  <ContentView.Content>
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label">
+                <Setter Property="Opacity" Value="0.7"/>
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+            </Style>
+            <Style TargetType="pancakeview:PancakeView">
+                <Setter Property="CornerRadius" Value="60,0,0,60"/>
+                <Setter Property="BackgroundColor" Value="White"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <ContentView.Content>
+        
 
-        <CollectionView ItemsSource="{Binding ItemsSource} "
+            <CollectionView ItemsSource="{Binding ItemsSource} "
                         x:Name="CharactersList"
                         BindingContext="{x:Reference this}">
             <CollectionView.ItemsLayout>
-                <LinearItemsLayout    Orientation="Horizontal"
-              SnapPointsType="Mandatory"
-              SnapPointsAlignment="Start"
-              ItemSpacing="10"/>
+                <LinearItemsLayout    Orientation="Horizontal"/>
             </CollectionView.ItemsLayout>
             <CollectionView.ItemTemplate>
                 <DataTemplate>
 
-                    <pancakeview:PancakeView CornerRadius="40,0,0,30"
-                                             HasShadow="True"
-                                             BackgroundColor="White"
-                                             AbsoluteLayout.LayoutBounds="0,200"
-                                             >
-                        <Frame BackgroundColor="White" CornerRadius="10" >
-                            <Image Source="{Binding Image.MediumUrl}"/> 
-                        </Frame>
+                    <pancakeview:PancakeView Padding="10">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="150"/>
+                            </Grid.ColumnDefinitions>
+                            <Image Source="{Binding Image.MediumUrl}"
+                                   HeightRequest="200" WidthRequest="150"
+                                   Aspect="AspectFill"/>
+                            <Label Text="{Binding Name}"
+                                   BackgroundColor="Black"
+                                   VerticalOptions="EndAndExpand"/>
+                        </Grid>
                     </pancakeview:PancakeView>
                 </DataTemplate>
             </CollectionView.ItemTemplate>

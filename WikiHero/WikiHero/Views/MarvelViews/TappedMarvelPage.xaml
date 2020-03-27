@@ -39,7 +39,7 @@
     </NavigationPage>
     <NavigationPage Title="Vs" BarBackgroundColor="{StaticResource MarvelPrincipalColor}" IconImageSource="swordImage.png">
         <x:Arguments>
-            <local:MarvelCompareCharacterPage Title="Vse"/>
+            <local:MarvelCompareCharacterPage/>
         </x:Arguments>
     </NavigationPage>
 </TabbedPage>

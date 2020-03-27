@@ -9,45 +9,67 @@
              mc:Ignorable="d"
              x:Class="WikiHero.Views.MarvelViews.MarvelHomePage">
 
-   
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label" x:Key="LabelKeY">
+                <Setter Property="FontSize" Value="20" />
+                <Setter Property="HorizontalOptions" Value="CenterAndExpand"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-        <ScrollView Grid.Row="0">
-            <StackLayout >
+            <ScrollView Grid.Row="0">
+                <StackLayout >
 
-                <CarouselView ItemsSource="{Binding ListTeam}" WidthRequest="500" HeightRequest="230">
-                    <CarouselView.ItemTemplate>
-                        <DataTemplate>
-                            <pancakeview:PancakeView  
+                    <CarouselView ItemsSource="{Binding  Teams}" WidthRequest="500" HeightRequest="230"
+                              HorizontalScrollBarVisibility="Always"
+                              >
+                        <CarouselView.ItemTemplate>
+                            <DataTemplate>
+                                <pancakeview:PancakeView  
                                              >
-                                <Grid>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="*"/>
-                                        <RowDefinition Height="40"/>
-                                    </Grid.RowDefinitions>        
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="40"/>
+                                        </Grid.RowDefinitions>
                                         <Image Aspect="AspectFill" Source="{Binding Image.ScreenUrl}"/>
-                                    <Label Text="{Binding Name}"
+                                        <Label Text="{Binding Name}"
+                                           FontSize="20"
+                                           HorizontalOptions="CenterAndExpand"
                                            Grid.Row="1"/>
-                                </Grid>
-                            </pancakeview:PancakeView>
-                          
-                        </DataTemplate>
-                    </CarouselView.ItemTemplate>
-                </CarouselView>
-                <Label Text="Recent Series" TextColor="Black" FontSize="22" HorizontalTextAlignment="Center"
+                                    </Grid>
+                                </pancakeview:PancakeView>
+
+                            </DataTemplate>
+                        </CarouselView.ItemTemplate>
+                    </CarouselView>
+                    <Label HeightRequest="1" BackgroundColor="Black"/>
+                    <Label Text="Recent Series"
+                           FontSize="22" 
+                           Style="{StaticResource LabelKeY}"
                        />
-                <controlsviews:HomeCarouselViewHorizontal   HeightRequest="200" WidthRequest="200" ItemsSource="{Binding SeriesRecent}"/>
-                <Label Text="Recent Characters" TextColor="Black" FontSize="22" HorizontalTextAlignment="Center" />
-                <controlsviews:HomeCarouselViewHorizontal   HeightRequest="200" WidthRequest="200" />
-                <Label Text="Recent Volume" TextColor="Black" FontSize="22" HorizontalTextAlignment="Center" />
-                <controlsviews:HomeCarouselViewHorizontal  HeightRequest="200" WidthRequest="200" />
-              
-            </StackLayout>
-        </ScrollView>
-        <control:SegmentedControl  x:Name="segment"
+                    <controlsviews:HomeCarouselViewHorizontal   HeightRequest="200" 
+                                                            WidthRequest="200" 
+                                                            ItemsSource="{Binding SeriesRecent}"/>
+                    <Label Text="Recent Characters" TextColor="Black" FontSize="22" HorizontalTextAlignment="Center"  Style="{StaticResource LabelKeY}" />
+                    <controlsviews:HomeCarouselViewHorizontal   HeightRequest="200"
+                                                            WidthRequest="200" 
+                                                            ItemsSource="{Binding RecentCharacters}"
+                                                            />
+                    <Label Text="Recent Volume" TextColor="Black" FontSize="22" HorizontalTextAlignment="Center"  Style="{StaticResource LabelKeY}" />
+                    <controlsviews:HomeCarouselViewHorizontal  HeightRequest="200"
+                                                           WidthRequest="200" 
+                                                           ItemsSource="{Binding VolumesRecent}"/>
+
+                </StackLayout>
+            </ScrollView>
+            <control:SegmentedControl  x:Name="segment"
                                     HeightRequest="40" 
                                     BackgroundColor="White"
                                     ItemsSource="{Binding TabOptions}"
@@ -56,7 +78,7 @@
                                     Grid.Row="0"
                                    
                                     >
-                
+
                 <control:SegmentedControl.ItemTemplate >
                     <DataTemplate>
                         <StackLayout VerticalOptions="FillAndExpand" 
@@ -94,7 +116,5 @@
             </control:SegmentedControl>
 
         </Grid>
- 
-   
-
+    </ContentPage.Content>
 </ContentPage>

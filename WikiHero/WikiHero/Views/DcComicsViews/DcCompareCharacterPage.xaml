@@ -9,7 +9,28 @@
              sharedTransitions:SharedTransitionNavigationPage.TransitionDuration="3"
              mc:Ignorable="d"
              x:Class="WikiHero.Views.DcComicsViews.DcCompareCharacterPage">
+    <NavigationPage.TitleView>
+        <Grid ColumnSpacing="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="30"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Label Text="Vs"
+                   VerticalOptions="CenterAndExpand"
+                   FontSize="20"
+                   TextColor="White"/>
+            <SearchBar Grid.Column="1"
+                       TextColor="White"
+                       CancelButtonColor="White"
+                       BackgroundColor="Transparent"/>
+        </Grid>
+    </NavigationPage.TitleView>
     <ContentPage.Resources>
+        <Style TargetType="Button">
+            <Setter Property="FontFamily" Value="40"/>
+            <Setter Property="BackgroundColor" Value="{StaticResource DCPrincipalColor}"/>
+            <Setter Property="TextColor" Value="White"/>
+        </Style>
         <Style TargetType="controlsviews:CardCharacterView" x:Key="HeoresCharacterView">
             <Setter Property="IsEnabled" Value="{Binding IsHeroesEnabled}"/>
             <Style.Triggers>
@@ -50,11 +71,11 @@
     </ContentPage.Resources>
     <ContentPage.Content>
         <ScrollView>
-            <Grid RowSpacing="10" Padding="0,10,0,10">
+            <Grid RowSpacing="0" Padding="0,10,0,10">
                 <Grid.RowDefinitions >
-                    <RowDefinition Height="160"/>
-                    <RowDefinition Height="210"/>
-                    <RowDefinition Height="160"/>
+                    <RowDefinition Height="0.2*"/>
+                    <RowDefinition Height="0.3*"/>
+                    <RowDefinition Height="0.2*"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*"/>
@@ -64,11 +85,11 @@
                 <controlsviews:CollectionStats ItemsSource="{Binding HeroesCharacters}"
                                                     VerticalOptions="StartAndExpand"
                                                     SelectItem="{Binding SelectHeroes,Mode=TwoWay}"
-                                                    Grid.ColumnSpan="3"/>
-                <ImageButton Source="VS3.png"
+                                                    Grid.ColumnSpan="3"
+                                                    HeightRequest="150"/>
+                <Button Text="Vs"
                     x:Name="CompareButton"
                    Grid.Row="1" 
-                   BackgroundColor="Transparent"
                    VerticalOptions="CenterAndExpand"
                    HorizontalOptions="CenterAndExpand"
                    Grid.Column="1"
@@ -100,6 +121,7 @@
                                              Combat="{Binding SelectVillain.Powerstats.Combat}"
                                              Average="{Binding SelectVillain.Powerstats.Average}"
                                              Style="{StaticResource VillainCharacterView}"
+                                              
                 />
 
                 <controlsviews:CollectionStats ItemsSource="{Binding VillainCharacters}"
@@ -107,6 +129,7 @@
                                                     SelectItem="{Binding SelectVillain,Mode=TwoWay}"
                                                     Grid.Row="2"
                                                      Grid.ColumnSpan="3"
+                                                        HeightRequest="150"
                                                     />
             </Grid>
         </ScrollView>

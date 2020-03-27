@@ -9,7 +9,10 @@ namespace WikiHero.ViewModels.DCViewModels
 {
     public class DcHomePageViewModel : HomePageViewModel
     {
-        public DcHomePageViewModel(INavigationService navigationService, IPageDialogService dialogService, ApiComicsVine apiComicsVine) : base(navigationService, dialogService, apiComicsVine)
+        private const string DcUniverse = "DC Comics";
+        private const string WarnerBrothers = "Warner Brothers";
+        private const string DynamiteEntertainment = "Dynamite Entertainment";
+        public DcHomePageViewModel(INavigationService navigationService, IPageDialogService dialogService, ApiComicsVine apiComicsVine) : base(navigationService, dialogService, apiComicsVine, DcUniverse, WarnerBrothers, DynamiteEntertainment,null)
         {
 
         }

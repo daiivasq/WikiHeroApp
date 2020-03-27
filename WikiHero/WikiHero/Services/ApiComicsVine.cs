@@ -24,6 +24,7 @@ namespace WikiHero.Services
         {
 
             Barrel.ApplicationId = Config.CacheKey;
+           
 
         }
         const string MkeyCharacter = "GetAllCharacter/Marvel";
@@ -63,41 +64,41 @@ namespace WikiHero.Services
             Barrel.Current.Add(key: $"{nameof(GetAllVolumes)}/{PublisherPrincipal}", marvelOrDc, expireIn: TimeSpan.FromDays(1));
             return marvelOrDc.ToList(); ;
         }
-        public async Task<List<Volume>> GetAllVolumes(int offset,string PublisherPrincipal,string PublisherSecond,string PublisherThird)
+        public async Task<List<Volume>> GetAllVolumes(int offset,string publisherPrincipal,string publisherSecond,string publisherThird)
         {
-            if (!NetworkAvalible($"{nameof(GetAllVolumes)}/{PublisherPrincipal}"))
+            if (!NetworkAvalible($"{nameof(GetAllVolumes)}/{publisherPrincipal}"))
             {
                 await Task.Yield();
-                return Barrel.Current.Get<List<Volume>>(key: $"{nameof(GetAllVolumes)}/{PublisherPrincipal}");
+                return Barrel.Current.Get<List<Volume>>(key: $"{nameof(GetAllVolumes)}/{publisherPrincipal}");
             }
             var getRequest = RestService.For<IApiComicsVine>(Config.UrlApiComicsVine);
             var volumes = await getRequest.GetAllVolumes(Config.Apikey,offset);
             var notNull = from item in volumes.Volumes where item.Publisher != null select item;
-            var marvelOrDc = notNull.Where(e => e.Publisher.Name.Contains(PublisherPrincipal) || e.Publisher.Name.Contains(PublisherSecond) || e.Publisher.Name.Contains(PublisherThird));
-            Barrel.Current.Add(key:$"{nameof(GetAllVolumes)}/{PublisherPrincipal}", marvelOrDc.ToList(), expireIn: TimeSpan.FromDays(1));
+            var marvelOrDc = notNull.Where(e => e.Publisher.Name.Contains(publisherPrincipal) || e.Publisher.Name.Contains(publisherSecond) || e.Publisher.Name.Contains(publisherThird));
+            Barrel.Current.Add(key:$"{nameof(GetAllVolumes)}/{publisherPrincipal}", marvelOrDc.ToList(), expireIn: TimeSpan.FromDays(1));
             return marvelOrDc.ToList();
         }
-        public async Task<List<Serie>> GetMoreSeries(int offset, string StudioName, string ExtraStudioName)
+        public async Task<List<Serie>> GetMoreSeries(int offset, string studioName, string extraStudioName)
         {
             var getRequest = RestService.For<IApiComicsVine>(Config.UrlApiComicsVine);
             var series = await getRequest.GetAllSeries(Config.Apikey, offset);
             var notNull = from item in series.Series where item.Publisher != null select item;
-            var marvelOrDc = notNull.Where(e => e.Publisher.Name.Contains(StudioName) || e.Publisher.Name.Contains(ExtraStudioName));
-            Barrel.Current.Add(key: $"{nameof(GetAllSeries)}/{StudioName}", marvelOrDc, expireIn: TimeSpan.FromDays(1));
+            var marvelOrDc = notNull.Where(e => e.Publisher.Name.Contains(studioName) || e.Publisher.Name.Contains(extraStudioName));
+            Barrel.Current.Add(key: $"{nameof(GetAllSeries)}/{studioName}", marvelOrDc, expireIn: TimeSpan.FromDays(1));
             return marvelOrDc.ToList();
         }
-        public async Task<List<Serie>> GetAllSeries(int offset,string StudioName,string ExtraStudioName)
+        public async Task<List<Serie>> GetAllSeries(int offset, string studioName, string extraStudioName)
         {
-            if (!NetworkAvalible($"{nameof(GetAllSeries)}/{StudioName}"))
+            if (!NetworkAvalible($"{nameof(GetAllSeries)}/{studioName}"))
             {
                 await Task.Yield();
-                return Barrel.Current.Get<List<Serie>>(key: $"{nameof(GetAllSeries)}/{StudioName}");
+                return Barrel.Current.Get<List<Serie>>(key: $"{nameof(GetAllSeries)}/{studioName}");
             }
             var getRequest = RestService.For<IApiComicsVine>(Config.UrlApiComicsVine);
             var series = await getRequest.GetAllSeries(Config.Apikey,offset);
             var notNull = from item in series.Series where item.Publisher != null select item;
-            var marvelOrDc = notNull.Where(e => e.Publisher.Name == StudioName || e.Publisher.Name == ExtraStudioName);
-            Barrel.Current.Add(key: $"{nameof(GetAllSeries)}/{StudioName}", marvelOrDc.ToList(), expireIn: TimeSpan.FromDays(1));
+            var marvelOrDc = notNull.Where(e => e.Publisher.Name == studioName || e.Publisher.Name == extraStudioName);
+            Barrel.Current.Add(key: $"{nameof(GetAllSeries)}/{studioName}", marvelOrDc.ToList(), expireIn: TimeSpan.FromDays(1));
             return notNull.ToList();
         }
         
@@ -141,12 +142,42 @@ namespace WikiHero.Services
         }
         public async Task<List<Serie>> GetRecentSeries(string studioName,string extraStudioName)
         {
-
             var getRequest = RestService.For<IApiComicsVine>(Config.UrlApiComicsVine);
-            var recentSeries = await getRequest.GetRecentSeries(Config.Apikey, 20);
+            var recentSeries = await getRequest.GetRecentSeries(Config.Apikey, 1);
             var notNull = from item in recentSeries.Series where item.Publisher != null select item;
             var marvelOrDc = notNull.Where(e => e.Publisher.Name == studioName || e.Publisher.Name == extraStudioName);
+            Barrel.Current.Add(key: $"{nameof(GetRecentSeries)}/{studioName}", marvelOrDc.ToList(), expireIn: TimeSpan.FromDays(1));
             return marvelOrDc.ToList();
         }
+        public async Task<List<Volume>> GetRecentVolumes(string publisherPrincipal, string publisherSecond, string publisherThird)
+        {
+            var getRequest = RestService.For<IApiComicsVine>(Config.UrlApiComicsVine);
+            var recentVolumes = await getRequest.GetRecentVolumes(1,Config.Apikey);
+            var notNull = from item in recentVolumes.Volumes where item.Publisher != null select item;
+            var marvelOrDc = notNull.Where(e => e.Publisher.Name == publisherPrincipal || e.Publisher.Name == publisherSecond || e.Publisher.Name == publisherThird);
+            Barrel.Current.Add(key: $"{nameof(GetRecentVolumes)}/{publisherPrincipal}", marvelOrDc.ToList(), expireIn: TimeSpan.FromDays(1));
+            return marvelOrDc.ToList();
+        }
+        public async Task<List<Character>> GetRecentCharacters(string publisher)
+        {
+
+            var getRequest = RestService.For<IApiComicsVine>(Config.UrlApiComicsVine);
+            var characters = await getRequest.GetRecentCharacters(Config.Apikey);
+            var notNull = from item in characters.Characters where item.Publisher != null select item;
+            var marvelOrDc = notNull.Where(e => e.Publisher.Name.Contains(publisher));
+            Barrel.Current.Add(key: $"{nameof(GetRecentCharacters)}/{publisher}", data: marvelOrDc.ToList(), expireIn: TimeSpan.FromDays(1));
+            return marvelOrDc.ToList();
+        }
+        public async Task<List<Team>> GetTeams(string publisher)
+        {
+
+            var getRequest = RestService.For<IApiComicsVine>(Config.UrlApiComicsVine);
+            var team = await getRequest.GetTeams(Config.Apikey);
+            var notNull = from item in team.Results where item.Publisher != null select item;
+            var marvelOrDc = notNull.Where(e => e.Publisher.Name.Contains(publisher));
+            Barrel.Current.Add(key: $"{nameof(GetRecentCharacters)}/{publisher}", data: marvelOrDc.ToList(), expireIn: TimeSpan.FromDays(1));
+            return marvelOrDc.ToList();
+        }
+
     }
 }

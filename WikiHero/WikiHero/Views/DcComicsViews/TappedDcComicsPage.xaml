@@ -35,7 +35,7 @@
             <local:DcCharactersPage Title="Characters"/>
         </x:Arguments>
     </NavigationPage>
-    <NavigationPage Title="VS" BarBackgroundColor="{StaticResource DCPrincipalColor}">
+    <NavigationPage Title="Vs" BarBackgroundColor="{StaticResource DCPrincipalColor}" IconImageSource="swordImage.png">
         <x:Arguments>
             <local:DcCompareCharacterPage/>
         </x:Arguments>

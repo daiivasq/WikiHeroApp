@@ -10,8 +10,9 @@ namespace WikiHero.ViewModels.DCViewModels
 {
     public class DcSeriesPageViewModel : SeriePageViewModel
     {
-        private const string DcUniverse = "DC";
+        private const string DcUniverse = "DC Comics";
         private const string WarnerBrothers = "Warner Brothers";
+
         private const int Offset = 0;
         public DcSeriesPageViewModel(INavigationService navigationService, IPageDialogService dialogService, ApiComicsVine apiComicsVine) : base(navigationService, dialogService, apiComicsVine, DcUniverse, WarnerBrothers, Offset)
         {
