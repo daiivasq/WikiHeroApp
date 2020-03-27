@@ -27,10 +27,6 @@ namespace WikiHeroApp.Services
         [Get("/api/volumes?format=json&filter=name:{name}&api_key={api_key}")]
         Task<ResultVolume> FindVolume(string name, string api_key, int offset);
         
-        [Get("/api/series_list?format=json&filter=name:{name}&api_key={api_key}")]
-
-
-
-
+       
     }
 }

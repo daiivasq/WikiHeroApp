@@ -47,6 +47,5 @@
     <Folder Include="Helpers\" />
     <Folder Include="Views\MarvelViews\" />
     <Folder Include="Views\DcComicsViews\" />
-    <Folder Include="Views\ControlsViews\" />
   </ItemGroup>
 </Project>
