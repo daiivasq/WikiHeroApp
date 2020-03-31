@@ -7,23 +7,13 @@ namespace WikiHero.Models
 {
     public class Episode
     {
-        [JsonProperty("aliases")]
-        public object Aliases { get; set; }
 
-        [JsonProperty("api_detail_url")]
-        public string ApiDetailUrl { get; set; }
-
-        [JsonProperty("air_date")]
-        public string AirDate { get; set; }
 
         [JsonProperty("date_added")]
         public string DateAdded { get; set; }
 
         [JsonProperty("date_last_updated")]
         public string DateLastUpdated { get; set; }
-
-        [JsonProperty("deck")]
-        public object Deck { get; set; }
 
         [JsonProperty("description")]
         public string Description { get; set; }

@@ -10,9 +10,9 @@ using Xamarin.Forms.Xaml;
 namespace WikiHero.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class StatsView : ContentView
+    public partial class NextPage : ContentPage
     {
-        public StatsView()
+        public NextPage()
         {
             InitializeComponent();
         }

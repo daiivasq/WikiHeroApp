@@ -19,7 +19,6 @@ namespace WikiHero.ViewModels
     {
         public ObservableCollection<Volume> Volumes { get; set; } = new ObservableCollection<Volume>();
         public int ItemTreshold { get; set; }
-        public bool IsBusy { get; set; }
         public string PublisherPrincipal { get; set; }
         private Volume selectionVolume;
 
@@ -39,10 +38,6 @@ namespace WikiHero.ViewModels
 
         public string PublisherSecond{ get; set; }
         public string PublisherThird { get; set; }
-        public DelegateCommand RefreshCommand { get; set; }
-        public string Text { get; set; }
-        public DelegateCommand ItemTresholdReachedCommand { get; set; }
-        public DelegateCommand SearchCommand => new DelegateCommand(FindVolume);
 
         public VolumePageViewModel(INavigationService navigationService, IPageDialogService dialogService, ApiComicsVine apiComicsVine, string publisherPrincipal, string publisherSecond, string publisherThird, int offeset) : base(navigationService, dialogService, apiComicsVine)
         {
@@ -59,7 +54,7 @@ namespace WikiHero.ViewModels
             {
                 IsBusy = true;
                 Text = null;
-                await LoadComics(0);
+                await LoadComics();
                 IsBusy = false;
 
             });
@@ -105,11 +100,11 @@ namespace WikiHero.ViewModels
          
             if (string.IsNullOrEmpty(Text))
             {
-                await LoadComics(0);
+                await LoadComics();
             }
             else
             {
-                var list = await apiComicsVine.FindVolume(Text, 0);
+                var list = await apiComicsVine.SearchVolume(Text,0);
                 Volumes = new ObservableCollection<Volume>(list);
             }
             
@@ -124,11 +119,11 @@ namespace WikiHero.ViewModels
             await navigationService.NavigateAsync(new Uri($"{ConfigPageUri.DetailComicPage}", UriKind.Relative), param, false);
         }
 
-        protected async Task LoadComics(int offset)
+        protected async Task LoadComics()
         {
             try
             {
-                var comics = await apiComicsVine.GetAllVolumes(offset,PublisherPrincipal,PublisherSecond,PublisherThird);
+                var comics = await apiComicsVine.GetMVolumes(PublisherPrincipal,PublisherSecond,PublisherThird);
                 Volumes = new ObservableCollection<Volume>(comics);
             }
             catch (Exception ex)

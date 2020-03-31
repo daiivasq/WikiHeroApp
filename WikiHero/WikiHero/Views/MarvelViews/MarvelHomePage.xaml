@@ -20,61 +20,90 @@
     <ContentPage.Content>
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
             <ScrollView Grid.Row="0">
-                <StackLayout >
-
-                    <CarouselView ItemsSource="{Binding  Teams}" WidthRequest="500" HeightRequest="230"
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <CarouselView ItemsSource="{Binding Path=ItemSelected.Teams, Source={x:Reference segment}}"
+                                  WidthRequest="500" HeightRequest="230"
                               HorizontalScrollBarVisibility="Always"
+                                  IndicatorView="indicatorView"
+                                  Grid.Row="0"
                               >
                         <CarouselView.ItemTemplate>
                             <DataTemplate>
-                                <pancakeview:PancakeView  
-                                             >
-                                    <Grid>
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="*"/>
-                                            <RowDefinition Height="40"/>
-                                        </Grid.RowDefinitions>
-                                        <Image Aspect="AspectFill" Source="{Binding Image.ScreenUrl}"/>
-                                        <Label Text="{Binding Name}"
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="40"/>
+                                    </Grid.RowDefinitions>
+                                    <Image Aspect="AspectFill" Source="{Binding Image.ScreenUrl}"/>
+                                    <Label Text="{Binding Name}"
                                            FontSize="20"
                                            HorizontalOptions="CenterAndExpand"
                                            Grid.Row="1"/>
-                                    </Grid>
-                                </pancakeview:PancakeView>
+                                </Grid>
 
                             </DataTemplate>
                         </CarouselView.ItemTemplate>
                     </CarouselView>
-                    <Label HeightRequest="1" BackgroundColor="Black"/>
-                    <Label Text="Recent Series"
+                    <IndicatorView x:Name="indicatorView"
+                                   IndicatorColor="Transparent"
+                                   SelectedIndicatorColor="Red"
+                                   HorizontalOptions="Center"
+                                   Grid.Row="1">
+                        <IndicatorView.IndicatorTemplate>
+                            <DataTemplate>
+                                <Image Source="MarvelCharacter"/>
+                            </DataTemplate>
+                        </IndicatorView.IndicatorTemplate>
+                    </IndicatorView>
+                    <Label HeightRequest="1" BackgroundColor="Black" 
+                           Grid.Row="2" />
+                    <Label Text="{Binding Path=ItemSelected.TitleSeries,Source={x:Reference segment}}"
                            FontSize="22" 
                            Style="{StaticResource LabelKeY}"
+                           Grid.Row="3"
                        />
-                    <controlsviews:HomeCarouselViewHorizontal   HeightRequest="200" 
+                    <controlsviews:CollectionHomeView   HeightRequest="200" 
                                                             WidthRequest="200" 
-                                                            ItemsSource="{Binding SeriesRecent}"/>
-                    <Label Text="Recent Characters" TextColor="Black" FontSize="22" HorizontalTextAlignment="Center"  Style="{StaticResource LabelKeY}" />
-                    <controlsviews:HomeCarouselViewHorizontal   HeightRequest="200"
+                                                            ItemsSource="{Binding Path=ItemSelected.ListSeries, Source={x:Reference segment}}"
+                                                        Grid.Row="4"/>
+                    <Label Text="{Binding Path=ItemSelected.TitleCharacter,Source={x:Reference segment}}" TextColor="Black" FontSize="22" HorizontalTextAlignment="Center"  Style="{StaticResource LabelKeY}" 
+                           Grid.Row="5"/>
+                    <controlsviews:CollectionHomeView   HeightRequest="200"
                                                             WidthRequest="200" 
-                                                            ItemsSource="{Binding RecentCharacters}"
+                                                           ItemsSource="{Binding Path=ItemSelected.ListCharacters, Source={x:Reference segment}}"
+                                                        Grid.Row="6"
                                                             />
-                    <Label Text="Recent Volume" TextColor="Black" FontSize="22" HorizontalTextAlignment="Center"  Style="{StaticResource LabelKeY}" />
-                    <controlsviews:HomeCarouselViewHorizontal  HeightRequest="200"
+                    <Label Text="{Binding Path=ItemSelected.TitleVolume,Source={x:Reference segment}}" TextColor="Black" FontSize="22" HorizontalTextAlignment="Center"
+                           Grid.Row="7"
+                           Style="{StaticResource LabelKeY}" />
+                    <controlsviews:CollectionHomeView  HeightRequest="200"
                                                            WidthRequest="200" 
-                                                           ItemsSource="{Binding VolumesRecent}"/>
+                                                       Grid.Row="8"
+                                                           ItemsSource="{Binding Path=ItemSelected.ListVolumes, Source={x:Reference segment}}"/>
 
-                </StackLayout>
+                </Grid>
             </ScrollView>
             <control:SegmentedControl  x:Name="segment"
-                                    HeightRequest="40" 
+                                    HeightRequest="30" 
                                     BackgroundColor="White"
+                                       Opacity="0.8 "
                                     ItemsSource="{Binding TabOptions}"
                                     SelectionIndicator="IsSelected"
-                                    VerticalOptions="EndAndExpand"
+                                    VerticalOptions="StartAndExpand"
                                     Grid.Row="0"
                                    
                                     >

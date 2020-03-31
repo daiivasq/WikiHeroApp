@@ -14,32 +14,27 @@
             BarBackgroundColor="{StaticResource MarvelPrincipalColor}"
             BarTextColor="White"
              >
-    
-       <NavigationPage Title="Home"  IconImageSource="Homemarvel.png" BarBackgroundColor="{StaticResource MarvelPrincipalColor}">
-        <x:Arguments>
-            <local:MarvelHomePage Title="Home"/>
-        </x:Arguments>
-    </NavigationPage>
-    
- 
-    <NavigationPage Title="Series" IconImageSource="ic_action_tv.png" BarBackgroundColor="{StaticResource MarvelPrincipalColor}">
-        <x:Arguments>
-            <local:MarvelSeriesPage Title="Series"/>
-        </x:Arguments>
-    </NavigationPage>
-    <NavigationPage Title="Comics" IconImageSource="comic.png" BarBackgroundColor="{StaticResource MarvelPrincipalColor}">
-        <x:Arguments>
-            <local:MarvelVolumePage Title="Comics"/>
-        </x:Arguments>
-    </NavigationPage>
-    <NavigationPage Title="Characters" IconImageSource="MarvelCharacter.png" BarBackgroundColor="{StaticResource MarvelPrincipalColor}">
-        <x:Arguments>
-            <local:MarvelCharactersPage Title="Characters"/>
-        </x:Arguments>
-    </NavigationPage>
-    <NavigationPage Title="Vs" BarBackgroundColor="{StaticResource MarvelPrincipalColor}" IconImageSource="swordImage.png">
-        <x:Arguments>
-            <local:MarvelCompareCharacterPage/>
-        </x:Arguments>
-    </NavigationPage>
+    <TabbedPage.Children>
+        <NavigationPage Title="Home"  IconImageSource="Homemarvel.png" BarBackgroundColor="{StaticResource MarvelPrincipalColor}">
+            <x:Arguments>
+                <local:MarvelHomePage Title="Home"/>
+            </x:Arguments>
+        </NavigationPage>
+
+        <NavigationPage Title="Series" IconImageSource="ic_action_tv.png" BarBackgroundColor="{StaticResource MarvelPrincipalColor}">
+            <x:Arguments>
+                <local:MarvelSeriesPage Title="Series"/>
+            </x:Arguments>
+        </NavigationPage>
+        <NavigationPage Title="Comics" IconImageSource="comic.png" BarBackgroundColor="{StaticResource MarvelPrincipalColor}">
+            <x:Arguments>
+                <local:MarvelVolumePage Title="Comics"/>
+            </x:Arguments>
+        </NavigationPage>
+        <NavigationPage Title="Characters" IconImageSource="MarvelCharacter.png" BarBackgroundColor="{StaticResource MarvelPrincipalColor}">
+            <x:Arguments>
+                <local:MarvelCharactersPage Title="Characters"/>
+            </x:Arguments>
+        </NavigationPage>
+    </TabbedPage.Children>
 </TabbedPage>

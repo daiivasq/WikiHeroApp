@@ -2,9 +2,11 @@
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:pancakeview="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:pancakeview="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              mc:Ignorable="d"
              x:Class="WikiHero.Views.ControlsViews.CollectionStats"
+             xmlns:ffTransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
              x:Name="this">
   <ContentView.Content>
         <Grid>
@@ -25,9 +27,10 @@
                                              Padding="10"
                                              HasShadow="True">
                             <StackLayout>
-                                <Image Source="{Binding Images.Sm}" 
+                                <ff:CachedImage Source="{Binding Images.Sm}" 
                                    HeightRequest="100"
-                                   WidthRequest="100"/>
+                                   WidthRequest="100">
+                                </ff:CachedImage>
                                 <Label Text="{Binding Name}"
                                    HorizontalOptions="CenterAndExpand"
                                    HeightRequest="40"/>

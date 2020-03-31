@@ -19,7 +19,7 @@ namespace WikiHero.ViewModels.MarvelViewModels
         {
             LoadListCommand = new DelegateCommand(async () =>
             {
-                await LoadSeries(Offset);
+                await LoadSeries();
             });
             LoadListCommand.Execute();
           

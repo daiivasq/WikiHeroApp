@@ -211,9 +211,6 @@ namespace WikiHero.Controls
         }
     }
 
-    /// <summary>
-    /// Extension methods for <see cref="IEnumerable"/>.
-    /// </summary>
     public static class NonGenericEnumerableExtensions
     {
         public static bool Any(this IEnumerable source)

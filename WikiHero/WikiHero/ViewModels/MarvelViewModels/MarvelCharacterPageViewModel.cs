@@ -15,11 +15,12 @@ namespace WikiHero.ViewModels.MarvelViewModels
     public class MarvelCharacterPageViewModel : CharacterPageViewModel
     {
         private const string Marvel = "Marvel";
-        public MarvelCharacterPageViewModel(INavigationService navigationService, IPageDialogService dialogService, ApiComicsVine apiComicsVine, int offeset=100) :base(navigationService, dialogService, apiComicsVine,Marvel, offeset)
+        const int offeset = 100;
+        public MarvelCharacterPageViewModel(INavigationService navigationService, IPageDialogService dialogService, ApiComicsVine apiComicsVine) :base(navigationService, dialogService, apiComicsVine,Marvel, offeset)
         {
             LoadListCommand = new DelegateCommand(async () =>
             {
-                await LoadCharacters(offeset);
+                await LoadCharacters();
             });
             LoadListCommand.Execute();
            

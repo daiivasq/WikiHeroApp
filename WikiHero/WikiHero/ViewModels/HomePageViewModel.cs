@@ -15,37 +15,32 @@ namespace WikiHero.ViewModels
     public class HomePageViewModel : BaseViewModel
     {
         public List<TabOption> TabOptions { get; set; }
-        public ObservableCollection<Team> Teams { get; set; }
-        public ObservableCollection<Character> RecentCharacters { get; set; }
-        public ObservableCollection<Serie> SeriesRecent { get; set; }
-        public ObservableCollection<Volume> VolumesRecent { get; set; }
-        public DelegateCommand  LoadListCommand { get; set; }
+        public List<Task> ListTask { get; set; }
         public string PublisherPrincipal { get; set; }
         public string PublisherSecond { get; set; }
         public string PublisherThird { get; set; }
         public string PublisherFourth { get; set; }
         public HomePageViewModel(INavigationService navigationService, IPageDialogService dialogService, ApiComicsVine apiComicsVine,string publisherPrincipal,string publisherSecond,string publisherThird,string publisherFourth) : base(navigationService, dialogService, apiComicsVine)
         {
+            TabOptions = new List<TabOption>()
+                        {
+                {new TabOption(){  Name="All", TitleCharacter="Recent Characters",TitleSeries = "Recent Series", TitleVolume = "Recent Volumes"} },
+                {new TabOption{  Name="Favorites"}},
+
+                    };
             this.PublisherPrincipal = publisherPrincipal;
             this.PublisherSecond = publisherSecond;
             this.PublisherThird = publisherThird;
             this.PublisherFourth = publisherFourth;
+            ListTask = new List<Task>() { LoadTeams(), LoadCharacters(), LoadRecentSeries(), LoadRecentVolumes()
+            };
             LoadListCommand = new DelegateCommand(async () =>
             {
-                await LoadTeams();
-                await LoadCharacters();
-                await LoadRecentSeries();
-                await LoadRecentVolumes();
-               
+               await Task.WhenAll(ListTask);
             });
             LoadListCommand.Execute();
-            TabOptions = new List<TabOption>()
-            {
-                {new TabOption{  Name="All",
-                ListCharacters = RecentCharacters} },
-                {new TabOption{  Name="Favorites"} },
 
-            };
+
         }
         protected async Task LoadCharacters()
         {
@@ -54,7 +49,7 @@ namespace WikiHero.ViewModels
                 try
                 {
                     var list = await apiComicsVine.GetRecentCharacters(PublisherPrincipal);
-                    RecentCharacters = new ObservableCollection<Character>(list);
+                    TabOptions[0].ListCharacters = new ObservableCollection<Character>(list);
                 }
                 catch (Exception ex)
                 {
@@ -74,7 +69,7 @@ namespace WikiHero.ViewModels
                 try
                 {
                     var list = await apiComicsVine.GetRecentSeries(PublisherPrincipal, PublisherSecond);
-                    SeriesRecent = new ObservableCollection<Serie>(list);
+                    TabOptions[0].ListSeries = new ObservableCollection<Serie>(list);
                 }
                 catch (Exception ex)
                 {
@@ -93,7 +88,7 @@ namespace WikiHero.ViewModels
                 try
                 {
                     var list = await apiComicsVine.GetRecentVolumes(PublisherPrincipal, PublisherSecond, PublisherThird);
-                    VolumesRecent = new ObservableCollection<Volume>(list);
+                    TabOptions[0].ListVolumes = new ObservableCollection<Volume>(list);
                 }
                 catch (Exception ex)
                 {
@@ -112,7 +107,7 @@ namespace WikiHero.ViewModels
                 try
                 {
                     var list = await apiComicsVine.GetTeams(PublisherPrincipal);
-                    Teams = new ObservableCollection<Team>(list);
+                    TabOptions[0].Teams = new ObservableCollection<Team>(list);
                 }
                 catch (Exception ex)
                 {

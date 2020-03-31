@@ -15,5 +15,15 @@ namespace WikiHero.Models
 
         [JsonProperty("name")]
         public string Name { get; set; }
+        
+        [JsonProperty("image")]
+        public Image Image { get; set; }
+
+        [JsonProperty("volumes")]
+        public IList<Volume> Volumes { get; set; }
+        [JsonProperty("teams")]
+        public IList<Team> Teams { get; set; }
+        [JsonProperty("characters")]
+        public IList<Character> Characters { get; set; }
     }
 }

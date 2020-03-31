@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 
 using Foundation;
+using Octane.Xamarin.Forms.VideoPlayer.iOS;
 using Prism;
 using Prism.Ioc;
 using UIKit;
+using Xamarin.Forms;
 
 namespace WikiHero.iOS
 {
@@ -25,8 +27,10 @@ namespace WikiHero.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             global::Xamarin.Forms.Forms.Init();
+            FormsVideoPlayer.Init();
             LoadApplication(new App(new IosInitialized()));
-
+            Forms.SetFlags("IndicatorView_Experimental");
+            FFImageLoading.Forms.Platform.CachedImageRenderer.Init();
             return base.FinishedLaunching(app, options);
         }
         public class IosInitialized : IPlatformInitializer

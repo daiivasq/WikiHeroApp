@@ -12,22 +12,7 @@
              sharedTransitions:SharedTransitionNavigationPage.BackgroundAnimation="Fade"
              sharedTransitions:SharedTransitionNavigationPage.TransitionDuration="3"
     >
-    <NavigationPage.TitleView>
-        <Grid ColumnSpacing="0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="30"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <Label Text="Vs"
-                   VerticalOptions="CenterAndExpand"
-                   FontSize="20"
-                   TextColor="White"/>
-            <SearchBar Grid.Column="1"
-                       TextColor="White"
-                       CancelButtonColor="White"
-                       BackgroundColor="Transparent"/>
-        </Grid>
-    </NavigationPage.TitleView>
+
     <ContentPage.Resources>
         <Style TargetType="Button">
             <Setter Property="FontFamily" Value="40"/>

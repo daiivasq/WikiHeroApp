@@ -3,9 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:pancakeview="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:pancakeview="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              mc:Ignorable="d"
-             x:Class="WikiHero.Views.ControlsViews.HomeCarouselViewHorizontal"
+             x:Class="WikiHero.Views.ControlsViews.CollectionHomeView"
              x:Name="this">
     <ContentView.Resources>
         <ResourceDictionary>
@@ -40,7 +40,7 @@
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="150"/>
                             </Grid.ColumnDefinitions>
-                            <Image Source="{Binding Image.MediumUrl}"
+                            <ff:CachedImage  Source="{Binding Image.MediumUrl}"
                                    HeightRequest="200" WidthRequest="150"
                                    Aspect="AspectFill"/>
                             <Label Text="{Binding Name}"

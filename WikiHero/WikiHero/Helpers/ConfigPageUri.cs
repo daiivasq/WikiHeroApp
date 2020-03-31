@@ -30,6 +30,7 @@ namespace WikiHero.Helpers
         public const string SharedTransitionNavigationPage = "/SharedTransitionNavigationPage";
         public const string DetailSeriesPage = "/DetailSeriesPage";
         public const string DetailComicPage = "/DetailComicPage";
+        public const string NextPage = "/NextPage"; 
 
 
     }

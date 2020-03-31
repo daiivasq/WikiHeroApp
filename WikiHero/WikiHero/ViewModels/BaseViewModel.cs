@@ -15,6 +15,11 @@ namespace WikiHero.ViewModels
         protected INavigationService navigationService;
         protected IPageDialogService dialogService;
         protected ApiComicsVine apiComicsVine;
+        public DelegateCommand RefreshCommand { get; set; }
+        public string Text { get; set; }
+        public bool IsBusy { get; set; }
+        public DelegateCommand SearchCommand { get; set; }
+        public DelegateCommand ItemTresholdReachedCommand { get; set; }
         public DelegateCommand LoadListCommand { get; set; }
         public BaseViewModel(INavigationService navigationService, IPageDialogService dialogService, ApiComicsVine apiComicsVine)
         {

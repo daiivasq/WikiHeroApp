@@ -18,7 +18,7 @@ namespace WikiHero.ViewModels.DCViewModels
         {
             LoadListCommand = new DelegateCommand(async () =>
             {
-                await LoadSeries(Offset);
+                await LoadSeries();
             });
             LoadListCommand.Execute();
            

@@ -18,12 +18,8 @@ namespace WikiHero.ViewModels
     {
         public ObservableCollection<Character> Characters { get; set; } = new ObservableCollection<Character>();
         public int ItemTreshold { get; set; }
-        public DelegateCommand RefreshCommand { get; set; }
-        public string Text { get; set; }
-        public bool IsBusy { get; set; }
+
         public string PublisherName { get; set; }
-        public DelegateCommand SearchCommand { get; set; }
-        public DelegateCommand ItemTresholdReachedCommand { get; set; }
 
         public CharacterPageViewModel(INavigationService navigationService, IPageDialogService dialogService, ApiComicsVine apiComicsVine,string publisherName,int offeset) : base(navigationService, dialogService, apiComicsVine)
         {
@@ -36,14 +32,14 @@ namespace WikiHero.ViewModels
 
             SearchCommand = new DelegateCommand(async () => 
             {
-                await FindCharacter(Text, 0);
+                await FindCharacter(Text);
             });
 
             RefreshCommand = new DelegateCommand(async () =>
             {
                 IsBusy = true;
                 Text = null;
-                await LoadCharacters(0);
+                await LoadCharacters();
                 IsBusy = false;
 
             });
@@ -84,13 +80,13 @@ namespace WikiHero.ViewModels
             }
       
         }
-      protected async Task LoadCharacters(int offset)
+      protected async Task LoadCharacters()
         {
             if (Connectivity.NetworkAccess == NetworkAccess.Internet)
             {
                 try
                 {
-                    var list = await apiComicsVine.GetAllCharacter(offset, PublisherName);
+                    var list = await apiComicsVine.GetCharacter(PublisherName);
                     Characters = new ObservableCollection<Character>(list);
                 }
                 catch (Exception ex)
@@ -105,12 +101,12 @@ namespace WikiHero.ViewModels
 
         }
 
-        protected async Task FindCharacter(string name, int offset) 
+        protected async Task FindCharacter(string name) 
         {
-            var list = await apiComicsVine.FindCharacter(name, offset);
+            var list = await apiComicsVine.SearchCharacters(name,0);
             if (string.IsNullOrEmpty(name))
             {
-                await LoadCharacters(offset);
+                await LoadCharacters();
             }
             else
             {

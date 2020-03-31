@@ -19,13 +19,8 @@ namespace WikiHero.ViewModels
     {
         public ObservableCollection<Serie> Series { get; set; } = new ObservableCollection<Serie>();
         public int ItemTreshold { get; set; }
-        public DelegateCommand RefreshCommand { get; set; }
-        public bool IsBusy { get; set; }
         protected string ExtraStudioName { get; set; }
         protected string StudioName { get; set; }
-        public DelegateCommand ItemTresholdReachedCommand { get; set; }
-        public string Text { get; set; }
-        public DelegateCommand SearchCommand { get; set; }
         private Serie selectSerie;
 
         public Serie SelectSerie
@@ -50,7 +45,7 @@ namespace WikiHero.ViewModels
             {
                 IsBusy = true;
                 Text = null;
-                await  LoadSeries(0);
+                await  LoadSeries();
                 IsBusy = false;
                 
             });
@@ -107,13 +102,13 @@ namespace WikiHero.ViewModels
             };
             await navigationService.NavigateAsync(new Uri($"{ConfigPageUri.DetailSeriesPage}",UriKind.Relative), param, false);
         }
-        protected async Task LoadSeries(int offset)
+        protected async Task LoadSeries()
         {
             if (Connectivity.NetworkAccess == NetworkAccess.Internet)
             {
                 try
                 {
-                    var series = await apiComicsVine.GetAllSeries(offset,StudioName,ExtraStudioName);
+                    var series = await apiComicsVine.GetSeries(StudioName,ExtraStudioName);
                     Series = new ObservableCollection<Serie>(series);
                 }
                 catch (Exception ex)
@@ -134,7 +129,7 @@ namespace WikiHero.ViewModels
             var list = await apiComicsVine.FindSeries(name, offset);
             if (string.IsNullOrEmpty(name))
             {
-                await LoadSeries(offset);
+                await LoadSeries();
             }
             else
             {

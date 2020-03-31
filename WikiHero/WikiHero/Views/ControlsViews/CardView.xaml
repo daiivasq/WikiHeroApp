@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:pancakeview="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:pancakeview="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              mc:Ignorable="d"
              x:Class="WikiHero.Views.ControlsViews.CardView"
              >
@@ -19,7 +19,7 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="30" />
                 </Grid.RowDefinitions>
-                <Image Grid.Column="0"
+                <ff:CachedImage  Grid.Column="0"
                        Grid.Row="0"
                        HeightRequest="100"
                        WidthRequest="100"

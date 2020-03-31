@@ -5,17 +5,27 @@ using System.Text;
 
 namespace WikiHero.Models
 {
-    public class Comic
+    public class Movie
     {
-
+       
         [JsonProperty("date_added")]
         public string DateAdded { get; set; }
 
-        [JsonProperty("date_last_updated")]
-        public string DateLastUpdated { get; set; }
+
+        [JsonProperty("deck")]
+        public string Deck { get; set; }
 
         [JsonProperty("description")]
-        public string Description { get; set; }
+        private string description;
+
+        public string Description
+        {
+            get { return description.Replace("</p>", ""); ; }
+            set { description = value; }
+        }
+
+        [JsonProperty("distributor")]
+        public object Distributor { get; set; }
 
 
         [JsonProperty("id")]
@@ -27,29 +37,25 @@ namespace WikiHero.Models
         [JsonProperty("name")]
         public string Name { get; set; }
 
-
         [JsonProperty("rating")]
         public string Rating { get; set; }
 
         [JsonProperty("release_date")]
         public string ReleaseDate { get; set; }
 
-        [JsonProperty("runtime")]
-        public string Runtime { get; set; }
-
         [JsonProperty("site_detail_url")]
         public string SiteDetailUrl { get; set; }
 
         [JsonProperty("studios")]
         public IList<Studio> Studios { get; set; }
+
         [JsonProperty("writers")]
         public IList<Writer> Writers { get; set; }
-    }
-    public class ResultComics
-    {
-
-        [JsonProperty("results")]
-        public IList<Comic> Results { get; set; }
         
+    }
+    public class ResultMovies
+    {
+        [JsonProperty("results")]
+        public IList<Movie> Results { get; set; }
     }
 }

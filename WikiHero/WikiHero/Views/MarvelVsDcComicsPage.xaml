@@ -4,36 +4,59 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:PrincipalPancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
-              xmlns:SecondPancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+              xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:ffTrans="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
              x:Class="WikiHero.Views.MarvelVsDcComicsPage"
              BackgroundImageSource="versusPrincipal"
+             xmlns:sharedTransitions="clr-namespace:Plugin.SharedTransitions;assembly=Plugin.SharedTransitions"
+             sharedTransitions:SharedTransitionNavigationPage.TransitionDuration="500"
+             sharedTransitions:SharedTransitionNavigationPage.BackgroundAnimation="SlideFromBottom"
              NavigationPage.HasNavigationBar="False"
              >
-
+    
     <ContentPage.Content>
-        <ScrollView>
-            <AbsoluteLayout>
-                <PrincipalPancake:PancakeView CornerRadius="0,0,0,500"   AbsoluteLayout.LayoutBounds="0,0">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <PrincipalPancake:PancakeView CornerRadius="0,0,0,500" 
+                                              x:Name="MarvelPancake"
+                                              Grid.Row="0" >
 
-                    <Image Source="Marvel.jpg" Grid.Row="0" HeightRequest="400" Aspect="AspectFill" />
+                <ff:CachedImage Source="Marvel.jpg" HeightRequest="380" Aspect="AspectFill" 
+                        />
 
-                    <PrincipalPancake:PancakeView.GestureRecognizers >
-                        <TapGestureRecognizer  NumberOfTapsRequired="1" Command="{Binding MarvelCommand}"/>
-                    </PrincipalPancake:PancakeView.GestureRecognizers>
+                <PrincipalPancake:PancakeView.GestureRecognizers >
+                    <TapGestureRecognizer  NumberOfTapsRequired="1"  Command="{Binding GoToNextPage}"
+                                               CommandParameter="Marvel.jpg"
+                                           />
+                </PrincipalPancake:PancakeView.GestureRecognizers>
+            </PrincipalPancake:PancakeView>
+
+            <PrincipalPancake:PancakeView CornerRadius="500,0,0,0"
+                                               x:Name="DcPancake"
+                                               Grid.Row="1">
+                <ff:CachedImage Source="DcComics.jpg" HeightRequest="380"  Aspect="AspectFill" />
+                <PrincipalPancake:PancakeView.GestureRecognizers >
+                    <TapGestureRecognizer  NumberOfTapsRequired="1" Command="{Binding GoToNextPage}"
+                                               CommandParameter="DcComics.jpg"
+                                               />
+                </PrincipalPancake:PancakeView.GestureRecognizers>
+
+            </PrincipalPancake:PancakeView>
+            <ff:CachedImage Source="VS3.png" 
+                        x:Name="VsPancake"
+                        Aspect="AspectFit"
+                         Grid.RowSpan="2"
+                         Margin="80"
+                        HeightRequest="250"
+                       VerticalOptions="Center"
+                       BackgroundColor="Transparent" >
+            </ff:CachedImage>
 
 
-                </PrincipalPancake:PancakeView>
-                <PrincipalPancake:PancakeView CornerRadius="500,0,0,0" AbsoluteLayout.LayoutBounds="0,350">
-                    <Image Source="DcComics.jpg" Grid.Row="2" HeightRequest="480"  Aspect="AspectFill" />
-                    <PrincipalPancake:PancakeView.GestureRecognizers >
-                        <TapGestureRecognizer  NumberOfTapsRequired="1" Command="{Binding DcUniverseCommand}"/>
-                    </PrincipalPancake:PancakeView.GestureRecognizers>
-
-                </PrincipalPancake:PancakeView>
-                <Image Source="VS3.png" AbsoluteLayout.LayoutBounds="50,220,300,300"/>
-
-            </AbsoluteLayout>
-        </ScrollView>
+        </Grid>
     </ContentPage.Content>
 
 

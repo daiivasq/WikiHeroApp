@@ -53,16 +53,16 @@
                            FontSize="22" 
                            Style="{StaticResource LabelKeY}"
                        />
-                    <controlsviews:HomeCarouselViewHorizontal   HeightRequest="200" 
+                    <controlsviews:CollectionHomeView   HeightRequest="200" 
                                                             WidthRequest="200" 
                                                             ItemsSource="{Binding SeriesRecent}"/>
                     <Label Text="Recent Characters" TextColor="Black" FontSize="22" HorizontalTextAlignment="Center"  Style="{StaticResource LabelKeY}" />
-                    <controlsviews:HomeCarouselViewHorizontal   HeightRequest="200"
+                    <controlsviews:CollectionHomeView   HeightRequest="200"
                                                             WidthRequest="200" 
                                                             ItemsSource="{Binding RecentCharacters}"
                                                             />
                     <Label Text="Recent Volume" TextColor="Black" FontSize="22" HorizontalTextAlignment="Center"  Style="{StaticResource LabelKeY}" />
-                    <controlsviews:HomeCarouselViewHorizontal  HeightRequest="200"
+                    <controlsviews:CollectionHomeView  HeightRequest="200"
                                                            WidthRequest="200" 
                                                            ItemsSource="{Binding VolumesRecent}"/>
 
