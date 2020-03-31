@@ -13,14 +13,15 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/> 
             </Grid.RowDefinitions>
-            <ff:CachedImage Source="{Binding ImagePublisher}"
-                        sharedTransitions:Transition.Name="Marvel.jpg"
+            <ff:CachedImage Source="ironman.gif" 
                             Aspect="AspectFill"
                         />
 
             <Button Text="Continue"
                     VerticalOptions="End"
                     TranslationY="-50"
+                    BackgroundColor="Transparent"
+                    TextColor="White"
                     Command="{Binding GoToMarvelOrDc}"/>
         </Grid>
     </ContentPage.Content>

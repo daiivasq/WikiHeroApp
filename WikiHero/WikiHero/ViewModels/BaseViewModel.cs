@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
 using WikiHero.Services;
+using Xamarin.Forms.StateSquid;
 
 namespace WikiHero.ViewModels
 {
@@ -21,6 +22,8 @@ namespace WikiHero.ViewModels
         public DelegateCommand SearchCommand { get; set; }
         public DelegateCommand ItemTresholdReachedCommand { get; set; }
         public DelegateCommand LoadListCommand { get; set; }
+        public State CurrentState { get; set; }
+        public DelegateCommand LoadingCommand { get; set; }
         public BaseViewModel(INavigationService navigationService, IPageDialogService dialogService, ApiComicsVine apiComicsVine)
         {
             this.navigationService = navigationService;

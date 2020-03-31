@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using WikiHero.Models;
 using WikiHero.Services;
 using Xamarin.Essentials;
+using Xamarin.Forms.StateSquid;
 
 namespace WikiHero.ViewModels
 {
@@ -20,14 +21,16 @@ namespace WikiHero.ViewModels
         public string PublisherSecond { get; set; }
         public string PublisherThird { get; set; }
         public string PublisherFourth { get; set; }
+
         public HomePageViewModel(INavigationService navigationService, IPageDialogService dialogService, ApiComicsVine apiComicsVine,string publisherPrincipal,string publisherSecond,string publisherThird,string publisherFourth) : base(navigationService, dialogService, apiComicsVine)
         {
+
             TabOptions = new List<TabOption>()
-                        {
+                 {
                 {new TabOption(){  Name="All", TitleCharacter="Recent Characters",TitleSeries = "Recent Series", TitleVolume = "Recent Volumes"} },
                 {new TabOption{  Name="Favorites"}},
 
-                    };
+                };
             this.PublisherPrincipal = publisherPrincipal;
             this.PublisherSecond = publisherSecond;
             this.PublisherThird = publisherThird;
@@ -36,7 +39,9 @@ namespace WikiHero.ViewModels
             };
             LoadListCommand = new DelegateCommand(async () =>
             {
-               await Task.WhenAll(ListTask);
+                CurrentState = State.Loading;
+                await Task.Delay(100000);
+                CurrentState = State.None;
             });
             LoadListCommand.Execute();
 

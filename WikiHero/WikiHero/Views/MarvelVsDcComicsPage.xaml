@@ -16,10 +16,12 @@
     
     <ContentPage.Content>
         <Grid>
+            
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
+            
             <PrincipalPancake:PancakeView CornerRadius="0,0,0,500" 
                                               x:Name="MarvelPancake"
                                               Grid.Row="0" >
