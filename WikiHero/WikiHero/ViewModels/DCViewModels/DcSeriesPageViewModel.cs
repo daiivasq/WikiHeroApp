@@ -14,13 +14,9 @@ namespace WikiHero.ViewModels.DCViewModels
         private const string WarnerBrothers = "Warner Brothers";
 
         private const int Offset = 0;
-        public DcSeriesPageViewModel(INavigationService navigationService, IPageDialogService dialogService, ApiComicsVine apiComicsVine) : base(navigationService, dialogService, apiComicsVine, DcUniverse, WarnerBrothers, Offset)
+        public DcSeriesPageViewModel(INavigationService navigationService, IPageDialogService dialogService, IApiComicsVine apiComicsVine) : base(navigationService, dialogService, apiComicsVine, DcUniverse, WarnerBrothers, Offset)
         {
-            LoadListCommand = new DelegateCommand(async () =>
-            {
-                await LoadSeries();
-            });
-            LoadListCommand.Execute();
+
            
         }
     }

@@ -50,7 +50,7 @@ namespace WikiHero.ViewModels
         }
 
         public DelegateCommand CompareCharacter { get; set; }
-        public CompareCharactersPageViewModel(INavigationService navigationService, IPageDialogService dialogService, ApiComicsVine apiComicsVine, ApiStatsCharacters apiStatsCharacters,string publisher) : base(navigationService, dialogService, apiComicsVine)
+        public CompareCharactersPageViewModel(INavigationService navigationService, IPageDialogService dialogService, IApiComicsVine apiComicsVine, ApiStatsCharacters apiStatsCharacters,string publisher) : base(navigationService, dialogService, apiComicsVine)
         {
             this.apiStatsCharacters = apiStatsCharacters;
             LoadListCommand = new DelegateCommand(async () =>

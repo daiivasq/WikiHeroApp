@@ -15,13 +15,9 @@ namespace WikiHero.ViewModels.MarvelViewModels
         private const string FawcettPublications = "Fawcett Publications";
         private const string Atlas = "Atlas";
         private const int Offset = 0;
-        public MarvelVolumePageViewModel(INavigationService navigationService, IPageDialogService dialogService, ApiComicsVine apiComicsVine) : base(navigationService, dialogService, apiComicsVine, MarvelUniverse, FawcettPublications, Atlas, Offset)
+        public MarvelVolumePageViewModel(INavigationService navigationService, IPageDialogService dialogService, IApiComicsVine apiComicsVine) : base(navigationService, dialogService, apiComicsVine, MarvelUniverse, FawcettPublications, Atlas, Offset)
         {
-            LoadListCommand = new DelegateCommand(async () =>
-            {
-                await LoadComics();
-            });
-            LoadListCommand.Execute();
+
            
         }
     }

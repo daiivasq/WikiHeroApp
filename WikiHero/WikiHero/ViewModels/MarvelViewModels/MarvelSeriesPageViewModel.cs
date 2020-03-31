@@ -15,13 +15,9 @@ namespace WikiHero.ViewModels.MarvelViewModels
         private const string MarvelUniverse = "Marvel";
         private const string Disney = "Disney";
         private const int Offset = 0;
-        public MarvelSeriesPageViewModel(INavigationService navigationService, IPageDialogService dialogService, ApiComicsVine apiComicsVine) : base(navigationService, dialogService, apiComicsVine, MarvelUniverse, Disney, Offset)
+        public MarvelSeriesPageViewModel(INavigationService navigationService, IPageDialogService dialogService, IApiComicsVine apiComicsVine) : base(navigationService, dialogService, apiComicsVine, MarvelUniverse, Disney, Offset)
         {
-            LoadListCommand = new DelegateCommand(async () =>
-            {
-                await LoadSeries();
-            });
-            LoadListCommand.Execute();
+
           
         }
 

@@ -12,7 +12,7 @@ namespace WikiHero.ViewModels.DCViewModels
         private const string DcUniverse = "DC Comics";
         private const string WarnerBrothers = "Warner Brothers";
         private const string DynamiteEntertainment = "Dynamite Entertainment";
-        public DcHomePageViewModel(INavigationService navigationService, IPageDialogService dialogService, ApiComicsVine apiComicsVine) : base(navigationService, dialogService, apiComicsVine, DcUniverse, WarnerBrothers, DynamiteEntertainment,null)
+        public DcHomePageViewModel(INavigationService navigationService, IPageDialogService dialogService, IApiComicsVine apiComicsVine) : base(navigationService, dialogService, apiComicsVine, DcUniverse, WarnerBrothers, DynamiteEntertainment,null)
         {
 
         }

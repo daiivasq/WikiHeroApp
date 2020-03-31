@@ -4,12 +4,12 @@ using Prism.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WikiHero.Models;
 using WikiHero.Services;
 using Xamarin.Essentials;
-using Xamarin.Forms.StateSquid;
 
 namespace WikiHero.ViewModels
 {
@@ -21,16 +21,14 @@ namespace WikiHero.ViewModels
         public string PublisherSecond { get; set; }
         public string PublisherThird { get; set; }
         public string PublisherFourth { get; set; }
-
-        public HomePageViewModel(INavigationService navigationService, IPageDialogService dialogService, ApiComicsVine apiComicsVine,string publisherPrincipal,string publisherSecond,string publisherThird,string publisherFourth) : base(navigationService, dialogService, apiComicsVine)
+        public HomePageViewModel(INavigationService navigationService, IPageDialogService dialogService, IApiComicsVine apiComicsVine,string publisherPrincipal,string publisherSecond,string publisherThird,string publisherFourth) : base(navigationService, dialogService, apiComicsVine)
         {
-
             TabOptions = new List<TabOption>()
-                 {
+                        {
                 {new TabOption(){  Name="All", TitleCharacter="Recent Characters",TitleSeries = "Recent Series", TitleVolume = "Recent Volumes"} },
                 {new TabOption{  Name="Favorites"}},
 
-                };
+                    };
             this.PublisherPrincipal = publisherPrincipal;
             this.PublisherSecond = publisherSecond;
             this.PublisherThird = publisherThird;
@@ -39,9 +37,7 @@ namespace WikiHero.ViewModels
             };
             LoadListCommand = new DelegateCommand(async () =>
             {
-                CurrentState = State.Loading;
-                await Task.Delay(100000);
-                CurrentState = State.None;
+               await Task.WhenAll(ListTask);
             });
             LoadListCommand.Execute();
 
@@ -53,8 +49,10 @@ namespace WikiHero.ViewModels
             {
                 try
                 {
-                    var list = await apiComicsVine.GetRecentCharacters(PublisherPrincipal);
-                    TabOptions[0].ListCharacters = new ObservableCollection<Character>(list);
+                    var characters = await apiComicsVine.GetRecentCharacters(Config.Apikey,PublisherPrincipal);
+                    var notNull = from item in characters.Characters where item.Publisher != null select item;
+                    var marvelOrDc = notNull.Where(e => e.Publisher.Name.Contains(PublisherPrincipal));
+                    TabOptions[0].ListCharacters = new ObservableCollection<Character>(marvelOrDc);
                 }
                 catch (Exception ex)
                 {
@@ -73,8 +71,10 @@ namespace WikiHero.ViewModels
             {
                 try
                 {
-                    var list = await apiComicsVine.GetRecentSeries(PublisherPrincipal, PublisherSecond);
-                    TabOptions[0].ListSeries = new ObservableCollection<Serie>(list);
+                    var recentSeries = await apiComicsVine.GetRecentSeries(Config.Apikey,0, PublisherPrincipal);
+                    var notNull = from item in recentSeries.Series where item.Publisher != null select item;
+                    var marvelOrDc = notNull.Where(e => e.Publisher.Name == PublisherPrincipal || e.Publisher.Name == PublisherSecond);
+                    TabOptions[0].ListSeries = new ObservableCollection<Serie>(marvelOrDc);
                 }
                 catch (Exception ex)
                 {
@@ -92,8 +92,10 @@ namespace WikiHero.ViewModels
             {
                 try
                 {
-                    var list = await apiComicsVine.GetRecentVolumes(PublisherPrincipal, PublisherSecond, PublisherThird);
-                    TabOptions[0].ListVolumes = new ObservableCollection<Volume>(list);
+                    var recentVolumes = await apiComicsVine.GetRecentVolumes(1, Config.Apikey, PublisherPrincipal);
+                    var notNull = from item in recentVolumes.Volumes where item.Publisher != null select item;
+                    var marvelOrDc = notNull.Where(e => e.Publisher.Name == PublisherPrincipal || e.Publisher.Name == PublisherSecond || e.Publisher.Name == PublisherThird);
+                    TabOptions[0].ListVolumes = new ObservableCollection<Volume>(marvelOrDc);
                 }
                 catch (Exception ex)
                 {
@@ -111,8 +113,10 @@ namespace WikiHero.ViewModels
             {
                 try
                 {
-                    var list = await apiComicsVine.GetTeams(PublisherPrincipal);
-                    TabOptions[0].Teams = new ObservableCollection<Team>(list);
+                    var team = await apiComicsVine.GetTeams(Config.Apikey, PublisherPrincipal);
+                    var notNull = from item in team.Results where item.Publisher != null select item;
+                    var marvelOrDc = notNull.Where(e => e.Publisher.Name.Contains(PublisherPrincipal));
+                    TabOptions[0].Teams = new ObservableCollection<Team>(marvelOrDc);
                 }
                 catch (Exception ex)
                 {

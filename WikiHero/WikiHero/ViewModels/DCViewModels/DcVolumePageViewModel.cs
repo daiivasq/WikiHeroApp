@@ -14,13 +14,8 @@ namespace WikiHero.ViewModels.DCViewModels
         private const string WarnerBrothers = "Warner Brothers";
         private const string DynamiteEntertainment = "Dynamite Entertainment";
         private const int Offset = 0;
-        public DcVolumePageViewModel(INavigationService navigationService, IPageDialogService dialogService, ApiComicsVine apiComicsVine) : base(navigationService, dialogService, apiComicsVine, DcUniverse, WarnerBrothers, DynamiteEntertainment, Offset)
+        public DcVolumePageViewModel(INavigationService navigationService, IPageDialogService dialogService, IApiComicsVine apiComicsVine) : base(navigationService, dialogService, apiComicsVine, DcUniverse, WarnerBrothers, DynamiteEntertainment, Offset)
         {
-            LoadListCommand = new DelegateCommand(async () =>
-            {
-                await LoadComics();
-            });
-            LoadListCommand.Execute();
            
         }
     }

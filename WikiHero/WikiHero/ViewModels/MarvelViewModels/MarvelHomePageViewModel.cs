@@ -13,7 +13,7 @@ namespace WikiHero.ViewModels.MarvelViewModels
         private const string FawcettPublications = "Fawcett Publications";
         private const string Atlas = "Atlas";
         private const string Disney = "Disney";
-        public MarvelHomePageViewModel(INavigationService navigationService, IPageDialogService dialogService, ApiComicsVine apiComicsVine) : base(navigationService, dialogService, apiComicsVine, MarvelUniverse, FawcettPublications, Atlas,Disney)
+        public MarvelHomePageViewModel(INavigationService navigationService, IPageDialogService dialogService, IApiComicsVine apiComicsVine) : base(navigationService, dialogService, apiComicsVine, MarvelUniverse, FawcettPublications, Atlas,Disney)
           
         {
 

@@ -10,7 +10,7 @@ namespace WikiHero.ViewModels.MarvelViewModels
     public class MarvelCompareCharacterPageViewModel: CompareCharactersPageViewModel
     {
         protected const string MarvelComics = "Marvel Comics";
-        public MarvelCompareCharacterPageViewModel(INavigationService navigationService, IPageDialogService dialogService, ApiComicsVine apiComicsVine, ApiStatsCharacters apiStatsCharacters) : base(navigationService, dialogService, apiComicsVine, apiStatsCharacters, MarvelComics)
+        public MarvelCompareCharacterPageViewModel(INavigationService navigationService, IPageDialogService dialogService, IApiComicsVine apiComicsVine, ApiStatsCharacters apiStatsCharacters) : base(navigationService, dialogService, apiComicsVine, apiStatsCharacters, MarvelComics)
         {
 
         }

@@ -37,7 +37,7 @@ namespace WikiHero.ViewModels
 
 
 
-        public SeriePageViewModel(INavigationService navigationService, IPageDialogService dialogService, ApiComicsVine apiComicsVine, string studioName, string ExtrastudioName, int offeset) : base(navigationService, dialogService, apiComicsVine)
+        public SeriePageViewModel(INavigationService navigationService, IPageDialogService dialogService, IApiComicsVine apiComicsVine, string studioName, string ExtrastudioName, int offeset) : base(navigationService, dialogService, apiComicsVine)
         {
             this.ExtraStudioName = ExtrastudioName;
             this.StudioName = studioName;
@@ -60,6 +60,11 @@ namespace WikiHero.ViewModels
             {
                 await FindSeries(Text, 0);
             });
+            LoadListCommand = new DelegateCommand(async () =>
+            {
+                await LoadSeries();
+            });
+            LoadListCommand.Execute();
         }
 
         protected async Task ScrollLoadSeries(int offset)
@@ -71,9 +76,10 @@ namespace WikiHero.ViewModels
                 try
                 {
 
-                    var items = await apiComicsVine.GetMoreSeries(offset, StudioName, ExtraStudioName);
-
-                    foreach (var item in items)
+                 var series = await apiComicsVine.GetMoreSeries(Config.Apikey,offset, ExtraStudioName);
+                var notNull = from item in series.Series where item.Publisher != null select item;
+                var marvelOrDc = notNull.Where(e => e.Publisher.Name.Contains(StudioName) || e.Publisher.Name.Contains(ExtraStudioName));
+                foreach (var item in marvelOrDc)
                     {
                         Series.Add(item);
                     }
@@ -109,7 +115,9 @@ namespace WikiHero.ViewModels
                 try
                 {
                     var series = await apiComicsVine.GetSeries(StudioName,ExtraStudioName);
-                    Series = new ObservableCollection<Serie>(series);
+                    var notNull = from item in series.Series where item.Publisher != null select item;
+                    var marvelOrDc = notNull.Where(e => e.Publisher.Name.Contains(StudioName) || e.Publisher.Name.Contains(ExtraStudioName));
+                    Series = new ObservableCollection<Serie>(marvelOrDc);
                 }
                 catch (Exception ex)
                 {
@@ -126,14 +134,16 @@ namespace WikiHero.ViewModels
 
         protected async Task FindSeries(string name, int offset)
         {
-            var list = await apiComicsVine.FindSeries(name, offset);
+            var series = await apiComicsVine.SearchSeries(name, Config.Apikey, offset,StudioName);
+            var notNull = from item in series.Series where item.Publisher != null select item;
+            var marvelOrDc = notNull.Where(e => e.Publisher.Name.Contains(StudioName) || e.Publisher.Name.Contains(ExtraStudioName));
             if (string.IsNullOrEmpty(name))
             {
                 await LoadSeries();
             }
             else
             {
-                Series = new ObservableCollection<Serie>(list);
+                Series = new ObservableCollection<Serie>(marvelOrDc);
             }
             
             

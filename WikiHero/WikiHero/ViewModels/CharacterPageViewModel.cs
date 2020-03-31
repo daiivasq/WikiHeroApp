@@ -20,8 +20,9 @@ namespace WikiHero.ViewModels
         public int ItemTreshold { get; set; }
 
         public string PublisherName { get; set; }
+        
 
-        public CharacterPageViewModel(INavigationService navigationService, IPageDialogService dialogService, ApiComicsVine apiComicsVine,string publisherName,int offeset) : base(navigationService, dialogService, apiComicsVine)
+        public CharacterPageViewModel(INavigationService navigationService, IPageDialogService dialogService, IApiComicsVine apiComicsVine,string publisherName,int offeset) : base(navigationService, dialogService, apiComicsVine)
         {
             this.PublisherName = publisherName;
             ItemTresholdReachedCommand = new DelegateCommand(async () =>
@@ -43,6 +44,11 @@ namespace WikiHero.ViewModels
                 IsBusy = false;
 
             });
+            LoadListCommand = new DelegateCommand(async () =>
+            {
+                await LoadCharacters();
+            });
+            LoadListCommand.Execute();
 
         }
         protected async Task ScrollLoadCharacters(int offset)
@@ -56,9 +62,10 @@ namespace WikiHero.ViewModels
             {
                 if (Connectivity.NetworkAccess == NetworkAccess.Internet)
                 {
-                    var items = await apiComicsVine.GetMoreCharacter(offset, PublisherName);
-                  
-                    foreach (var item in items)
+                    var characters = await apiComicsVine.GetMoreCharacter(Config.Apikey,offset, PublisherName);
+                    var notNull = from item in characters.Characters where item.Publisher != null select item;
+                    var marvelOrDc = notNull.Where(e => e.Publisher.Name.Contains(PublisherName));
+                    foreach (var item in marvelOrDc)
                     {
                         Characters.Add(item);
                     }
@@ -86,8 +93,10 @@ namespace WikiHero.ViewModels
             {
                 try
                 {
-                    var list = await apiComicsVine.GetCharacter(PublisherName);
-                    Characters = new ObservableCollection<Character>(list);
+                    var characters = await apiComicsVine.GetCharacter(Config.Apikey,PublisherName);
+                    var notNull = from item in characters.Characters where item.Publisher != null select item;
+                    var marvelOrDc = notNull.Where(e => e.Publisher.Name.Contains(PublisherName));
+                    Characters = new ObservableCollection<Character>(marvelOrDc);
                 }
                 catch (Exception ex)
                 {
@@ -103,14 +112,16 @@ namespace WikiHero.ViewModels
 
         protected async Task FindCharacter(string name) 
         {
-            var list = await apiComicsVine.SearchCharacters(name,0);
+            var characters = await apiComicsVine.SearchCharacters(name,Config.Apikey,0,PublisherName);
+            var notNull = from item in characters.Characters where item.Publisher != null select item;
+            var marvelOrDc = notNull.Where(e => e.Publisher.Name.Contains(PublisherName));
             if (string.IsNullOrEmpty(name))
             {
                 await LoadCharacters();
             }
             else
             {
-                Characters = new ObservableCollection<Character>(list);
+                Characters = new ObservableCollection<Character>(marvelOrDc);
             }
            
         }

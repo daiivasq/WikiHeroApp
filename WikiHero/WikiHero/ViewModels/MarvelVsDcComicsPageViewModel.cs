@@ -14,7 +14,7 @@ namespace WikiHero.ViewModels
     {
         public DelegateCommand<string> GoToNextPage { get; set; }
         public string SelectId { get; set; }
-        public MarvelVsDcComicsPageViewModel(INavigationService navigationService, IPageDialogService dialogService, ApiComicsVine apiComicsVine) :base(navigationService, dialogService, apiComicsVine)
+        public MarvelVsDcComicsPageViewModel(INavigationService navigationService, IPageDialogService dialogService, IApiComicsVine apiComicsVine) :base(navigationService, dialogService, apiComicsVine)
         {
                 GoToNextPage = new DelegateCommand<string>(async (url) =>
                 {

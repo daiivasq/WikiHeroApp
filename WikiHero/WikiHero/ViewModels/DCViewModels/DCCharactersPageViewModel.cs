@@ -16,14 +16,9 @@ namespace WikiHero.ViewModels.DCViewModels
     {
         private const string DC_Comics = "DC Comics";
         const int offeset = 0;
-        public DCCharactersPageViewModel(INavigationService navigationService, IPageDialogService dialogService, ApiComicsVine apiComicsVine) : base(navigationService, dialogService, apiComicsVine, DC_Comics, offeset)
+        public DCCharactersPageViewModel(INavigationService navigationService, IPageDialogService dialogService, IApiComicsVine apiComicsVine) : base(navigationService, dialogService, apiComicsVine, DC_Comics, offeset)
         {
-            LoadListCommand = new DelegateCommand(async () =>
-            {
-                await LoadCharacters();
-            });
-            LoadListCommand.Execute();
-           
+
         }
     }
 }

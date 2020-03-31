@@ -39,7 +39,7 @@ namespace WikiHero.ViewModels
         public string PublisherSecond{ get; set; }
         public string PublisherThird { get; set; }
 
-        public VolumePageViewModel(INavigationService navigationService, IPageDialogService dialogService, ApiComicsVine apiComicsVine, string publisherPrincipal, string publisherSecond, string publisherThird, int offeset) : base(navigationService, dialogService, apiComicsVine)
+        public VolumePageViewModel(INavigationService navigationService, IPageDialogService dialogService, IApiComicsVine apiComicsVine, string publisherPrincipal, string publisherSecond, string publisherThird, int offeset) : base(navigationService, dialogService, apiComicsVine)
         {
             this.PublisherPrincipal =publisherPrincipal;
             this.PublisherSecond = publisherSecond;
@@ -58,6 +58,11 @@ namespace WikiHero.ViewModels
                 IsBusy = false;
 
             });
+            LoadListCommand = new DelegateCommand(async () =>
+            {
+                await LoadComics();
+            });
+            LoadListCommand.Execute();
 
         }
 
@@ -71,8 +76,10 @@ namespace WikiHero.ViewModels
 
             try
             {
-                var items = await apiComicsVine.GetMoreVolumes(offset, PublisherPrincipal, PublisherSecond, PublisherThird);
-                foreach (var item in items)
+                var volumes = await apiComicsVine.GetMoreVolumes(Config.Apikey,offset, PublisherPrincipal);
+                var notNull = from item in volumes.Volumes where item.Publisher != null select item;
+                var marvelOrDc = notNull.Where(e => e.Publisher.Name.Contains(PublisherPrincipal) || e.Publisher.Name.Contains(PublisherSecond) || e.Publisher.Name.Contains(PublisherThird));
+                foreach (var item in marvelOrDc)
                 {
                     Volumes.Add(item);
                 }
@@ -104,8 +111,10 @@ namespace WikiHero.ViewModels
             }
             else
             {
-                var list = await apiComicsVine.SearchVolume(Text,0);
-                Volumes = new ObservableCollection<Volume>(list);
+                var volumes = await apiComicsVine.SearchVolume(Text,Config.Apikey,0);
+                var notNull = from item in volumes.Volumes where item.Publisher != null select item;
+                var marvelOrDc = notNull.Where(e => e.Publisher.Name == PublisherPrincipal || e.Publisher.Name == PublisherSecond || e.Publisher.Name == PublisherThird);
+                Volumes = new ObservableCollection<Volume>(marvelOrDc);
             }
             
         }
@@ -123,8 +132,10 @@ namespace WikiHero.ViewModels
         {
             try
             {
-                var comics = await apiComicsVine.GetMVolumes(PublisherPrincipal,PublisherSecond,PublisherThird);
-                Volumes = new ObservableCollection<Volume>(comics);
+                var volumes = await apiComicsVine.GetMVolumes(Config.Apikey,PublisherPrincipal);
+                var notNull = from item in volumes.Volumes where item.Publisher != null select item;
+                var marvelOrDc = notNull.Where(e => e.Publisher.Name.Contains(PublisherPrincipal) || e.Publisher.Name.Contains(PublisherSecond) || e.Publisher.Name.Contains(PublisherThird));
+                Volumes = new ObservableCollection<Volume>(marvelOrDc);
             }
             catch (Exception ex)
             {

@@ -17,7 +17,7 @@ namespace WikiHero.ViewModels
         public DelegateCommand LoadCommand { get; set; }
         public Serie Serie { get; set; } = new Serie();
 
-        public DetailSeriesPageViewModel(INavigationService navigationService, IPageDialogService dialogService, ApiComicsVine apiComicsVine) : base(navigationService, dialogService, apiComicsVine)
+        public DetailSeriesPageViewModel(INavigationService navigationService, IPageDialogService dialogService, IApiComicsVine apiComicsVine) : base(navigationService, dialogService, apiComicsVine)
         {
 
            
@@ -27,8 +27,8 @@ namespace WikiHero.ViewModels
         {
             try
             {
-                var episodes = await apiComicsVine.GetEpisode(idSeries);
-                Episodes = new ObservableCollection<Episode>(episodes);
+                var episodes = await apiComicsVine.FindEpisode(Config.Apikey,idSeries,null);
+                Episodes = new ObservableCollection<Episode>(episodes.Results);
             }
             catch (Exception err)
             {

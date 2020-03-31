@@ -16,7 +16,7 @@ namespace WikiHero.ViewModels
         public string UrlNavigate { get; set; }
         public DelegateCommand GoToMarvelOrDc { get; set; }
 
-            public NextPageViewModel(INavigationService navigationService, IPageDialogService dialogService, ApiComicsVine apiComicsVine) : base(navigationService, dialogService, apiComicsVine)
+            public NextPageViewModel(INavigationService navigationService, IPageDialogService dialogService, IApiComicsVine apiComicsVine) : base(navigationService, dialogService, apiComicsVine)
             {
             
 
