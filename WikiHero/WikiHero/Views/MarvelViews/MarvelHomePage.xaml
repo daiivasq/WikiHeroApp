@@ -1,0 +1,174 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:controlsviews="clr-namespace:WikiHero.Views.ControlsViews"
+             xmlns:control="clr-namespace:WikiHero.Controls"
+             xmlns:pancakeview="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" xmlns:state="clr-namespace:Xamarin.Forms.StateSquid;assembly=Xamarin.Forms.StateSquid"
+             mc:Ignorable="d"
+               Title="Home"
+             x:Class="WikiHero.Views.MarvelViews.MarvelHomePage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label" x:Key="LabelKeY">
+                <Setter Property="FontSize" Value="20" />
+                <Setter Property="HorizontalOptions" Value="CenterAndExpand"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <ScrollView Grid.Row="0">
+                <StackLayout state:StateLayout.CurrentState="{Binding CurrentState}">
+                    <state:StateLayout.StateViews>
+                        <state:StateView StateKey="Loading">
+                            <Grid BackgroundColor="Transparent">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="40"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="40"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="40"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <state:SkeletonView BackgroundColor="#cccc" HeightRequest="250" Grid.ColumnSpan="3" >
+                                </state:SkeletonView>
+                                <Image BackgroundColor="Red" Grid.Column="1"/>
+                                <Label Text="{Binding Path=ItemSelected.TitleSeries,Source={x:Reference segment}}"
+                                     FontSize="22" 
+                                     Style="{StaticResource LabelKeY}"
+                                       TextColor="#cccc"
+                                    />
+                                <state:SkeletonView CornerRadius="6" HeightRequest="160" BackgroundColor="#cccc" Grid.Row="2" Grid.Column="0">
+                                </state:SkeletonView>
+                                <state:SkeletonView CornerRadius="6" HeightRequest="160" BackgroundColor="#cccc" Grid.Row="2" Grid.Column="1"/>
+                                <state:SkeletonView CornerRadius="6" HeightRequest="6" BackgroundColor="#cccc" Grid.Row="2" Grid.Column="2"/>
+                                <Label Text="{Binding Path=ItemSelected.TitleSeries,Source={x:Reference segment}}" 
+                                     FontSize="22" 
+                                        TextColor="#cccc"
+                                    HorizontalTextAlignment="Center"  
+                                     Style="{StaticResource LabelKeY}" />
+                                <state:SkeletonView CornerRadius="6" HeightRequest="160" BackgroundColor="#cccc" Grid.Row="4" Grid.Column="0"/>
+                                <state:SkeletonView CornerRadius="6" HeightRequest="160" BackgroundColor="#cccc" Grid.Row="4" Grid.Column="1"/>
+                                <state:SkeletonView CornerRadius="6" HeightRequest="160" BackgroundColor="#cccc" Grid.Row="4" Grid.Column="2"/>
+                                <Label Text="{Binding Path=ItemSelected.TitleVolume,Source={x:Reference segment}}" 
+                                       FontSize="22" 
+                                        TextColor="#cccc"
+                                       HorizontalTextAlignment="Center"
+                                     Grid.Row="7"
+                                    Style="{StaticResource LabelKeY}" />
+                                <state:SkeletonView CornerRadius="6" HeightRequest="160" BackgroundColor="#cccc" Grid.Row="6" Grid.Column="0"/>
+                                <state:SkeletonView CornerRadius="6" HeightRequest="160" BackgroundColor="#cccc" Grid.Row="6" Grid.Column="1"/>
+                                <state:SkeletonView CornerRadius="6" HeightRequest="160" BackgroundColor="#cccc" Grid.Row="6" Grid.Column="2"/>
+
+                            </Grid>
+                        </state:StateView>
+                    </state:StateLayout.StateViews>
+                    <CarouselView ItemsSource="{Binding Path=ItemSelected.Teams, Source={x:Reference segment}}" WidthRequest="500" HeightRequest="230"
+                              HorizontalScrollBarVisibility="Always"
+                              >
+                        <CarouselView.ItemTemplate>
+                            <DataTemplate>
+                                <pancakeview:PancakeView  
+                                             >
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="40"/>
+                                        </Grid.RowDefinitions>
+                                        <Image Aspect="AspectFill" Source="{Binding Image.ScreenUrl}"/>
+                                        <Label Text="{Binding Name}"
+                                           FontSize="20"
+                                           HorizontalOptions="CenterAndExpand"
+                                           Grid.Row="1"/>
+                                    </Grid>
+                                </pancakeview:PancakeView>
+
+                            </DataTemplate>
+                        </CarouselView.ItemTemplate>
+                    </CarouselView>
+                    <Label HeightRequest="1" BackgroundColor="Black"/>
+                    <Label Text="{Binding Path=ItemSelected.TitleSeries,Source={x:Reference segment}}"
+                           FontSize="22" 
+                           Style="{StaticResource LabelKeY}"
+                       />
+                    <controlsviews:CollectionHomeView   HeightRequest="200" 
+                                                        WidthRequest="200" 
+                                                        ItemsSource="{Binding Path=ItemSelected.ListSeries, Source={x:Reference segment}}"
+                                                            />
+                    <Label Text="{Binding Path=ItemSelected.TitleSeries,Source={x:Reference segment}}" 
+                           FontSize="22" 
+                           HorizontalTextAlignment="Center"  
+                           Style="{StaticResource LabelKeY}" />
+                    <controlsviews:CollectionHomeView   HeightRequest="200"
+                                                            WidthRequest="200" 
+                                                            ItemsSource="{Binding Path=ItemSelected.ListCharacters, Source={x:Reference segment}}"
+                                                            />
+                    <Label Text="{Binding Path=ItemSelected.TitleVolume,Source={x:Reference segment}}" TextColor="Black" FontSize="22" HorizontalTextAlignment="Center"
+                           Grid.Row="7"
+                           Style="{StaticResource LabelKeY}" />
+                    <controlsviews:CollectionHomeView  HeightRequest="200"
+                                                           WidthRequest="200" 
+                                                         ItemsSource="{Binding Path=ItemSelected.ListVolumes, Source={x:Reference segment}}"/>
+
+                </StackLayout>
+            </ScrollView>
+            <control:SegmentedControl  x:Name="segment"
+                                    HeightRequest="40" 
+                                    BackgroundColor="White"
+                                    ItemsSource="{Binding TabOptions}"
+                                    SelectionIndicator="IsSelected"
+                                    VerticalOptions="EndAndExpand"
+                                    Grid.Row="0"
+                                   
+                                    >
+
+                <control:SegmentedControl.ItemTemplate >
+                    <DataTemplate>
+                        <StackLayout VerticalOptions="FillAndExpand" 
+                                                 HorizontalOptions="FillAndExpand"
+                                                 Spacing="5">
+
+                            <Label Margin="20,10" 
+                                                   Text="{Binding Name}" 
+                                                   TextColor="Gray"
+                                                   HorizontalOptions="CenterAndExpand">
+                                <Label.Triggers>
+                                    <DataTrigger TargetType="Label"
+                                                                        Binding="{Binding IsSelected}"
+                                                                        Value="True">
+                                        <Setter Property="FontAttributes" Value="Bold" />
+                                        <Setter Property="TextColor" Value="{StaticResource MarvelPrincipalColor}" />
+                                    </DataTrigger>
+                                </Label.Triggers>
+                            </Label>
+                            <BoxView HeightRequest="5" 
+                                             BackgroundColor="Blue"
+                                             HorizontalOptions="FillAndExpand">
+                                <BoxView.Triggers>
+                                    <DataTrigger TargetType="BoxView"
+                                                            Binding="{Binding IsSelected}"
+                                                            Value="False">
+                                        <Setter Property="BackgroundColor" Value="Transparent" />
+                                    </DataTrigger>
+                                </BoxView.Triggers>
+                            </BoxView>
+                        </StackLayout>
+                    </DataTemplate>
+                </control:SegmentedControl.ItemTemplate>
+            </control:SegmentedControl>
+
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:controlsviews="clr-namespace:WikiHero.Views.ControlsViews"
+             mc:Ignorable="d"
+             x:Class="WikiHero.Views.DetailCharactersPage">
+    <ContentPage.Content>
+        <ScrollView>
+
+            <Grid >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="200"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="105"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Label BackgroundColor="Chartreuse"
+                       Grid.Row="0"
+                       Grid.Column="0"
+                       Grid.ColumnSpan="4" />
+                <Label Text="Capitan America"
+                       TextColor="Black"
+                       FontSize="25"
+                       FontAttributes="Bold"
+                       Grid.Row="0"
+                       Grid.Column="0"
+                       Grid.ColumnSpan="2"
+                       VerticalOptions="End" />
+                <Label Text="Actor, productor, un papi chulo"
+                       TextColor="Black"
+                       FontSize="Medium"
+                       FontAttributes="Italic"
+                       Grid.Row="0"
+                       Grid.Column="0"
+                       Grid.ColumnSpan="3"
+                       VerticalOptions="EndAndExpand"
+                       Margin="0,-20" />
+
+                <Image x:Name="Xname"
+                       Source="Background.jpg"
+                       Grid.Row="1"
+                       VerticalOptions="StartAndExpand"
+                       Margin="10,20"/>
+                <Label Text="LOL ADJNAKDJNKASJDNANDFIANDFI  NDIANF IAN IASNDIAS NISUAND IASU ND TAKI TAKI, TAKI TAKI RUMBAAAAAAA"
+                        TextColor="Black" 
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        Grid.ColumnSpan="3" 
+                        VerticalOptions="Start"
+                        Margin="0,25"/>
+                <Label Text="Peliculas a la que pertenece "
+                       TextColor="Black"
+                       Grid.Row="2"
+                       VerticalOptions="Start"
+                       Grid.ColumnSpan="4"
+                       HorizontalOptions="CenterAndExpand"
+                       />
+                <controlsviews:CollectionHomeView 
+                    ItemsSource="{Binding CharactersEnemys}"
+                    HeightRequest="200"
+                    WidthRequest="200" 
+                    Grid.Row="4"/>
+
+            </Grid>
+
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

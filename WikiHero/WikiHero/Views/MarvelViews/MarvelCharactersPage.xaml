@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:controlsviews="clr-namespace:WikiHero.Views.ControlsViews"
+             mc:Ignorable="d"
+             x:Class="WikiHero.Views.MarvelViews.MarvelCharactersPage">
+    <ContentPage.Content>
+        <StackLayout Padding="10,0,10,10">
+            <Frame CornerRadius="20" HeightRequest="20" Opacity="0.5" HasShadow="True" >
+                <SearchBar HeightRequest="50" 
+                           x:Name="search"
+                           SearchCommand="{Binding SearchCommand}"
+                           Text="{Binding Text}"/>
+            </Frame>
+
+            <controlsviews:ControlListView ItemsSource="{Binding Characters}"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

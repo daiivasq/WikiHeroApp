@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:pancakeview="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:state="clr-namespace:Xamarin.Forms.StateSquid;assembly=Xamarin.Forms.StateSquid"
+             mc:Ignorable="d"
+             x:Class="WikiHero.Views.ControlsViews.CollectionHomeView"
+             x:Name="this">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label">
+                <Setter Property="Opacity" Value="0.7"/>
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <ContentView.Content>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <StackLayout state:StateLayout.CurrentState="{Binding CurrentState}" Grid.Row="0" >
+                <state:StateLayout.StateViews>
+                    <state:StateView StateKey="Loading" RepeatCount="3" >
+                        <state:StateView.RepeatTemplate>
+                            <DataTemplate>
+                                <pancakeview:PancakeView CornerRadius="60,0,0,60"
+                                                         HeightRequest="500">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*"/>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="150"/>
+                                        </Grid.ColumnDefinitions>
+                                        <state:SkeletonView   HeightRequest="600" BackgroundColor="#cccccc" />
+                                        <state:SkeletonView   BackgroundColor="#cccccc"   VerticalOptions="EndAndExpand"/>
+                                    </Grid>
+                                </pancakeview:PancakeView>
+                            </DataTemplate>
+                        </state:StateView.RepeatTemplate>
+                    </state:StateView>
+                </state:StateLayout.StateViews>
+            </StackLayout>
+            <CollectionView ItemsSource="{Binding ItemsSource} "
+                        x:Name="CharactersList"
+                        BindingContext="{x:Reference this}">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout    Orientation="Horizontal"/>
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <pancakeview:PancakeView Padding="10"
+                                                     Style="{StaticResource PancakeViewCornerRadiusKey}">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="150"/>
+                                </Grid.ColumnDefinitions>
+                                <ff:CachedImage  Source="{Binding Image.MediumUrl}"
+                                   HeightRequest="200" WidthRequest="150"
+                                   Aspect="AspectFill"/>
+                                <Label Text="{Binding Name}"
+                                   BackgroundColor="Black"
+                                   VerticalOptions="EndAndExpand"/>
+                            </Grid>
+                        </pancakeview:PancakeView>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
+    </ContentView.Content>
+</ContentView>

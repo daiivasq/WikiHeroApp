@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:pancakeview="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             mc:Ignorable="d"
+             x:Class="WikiHero.Views.ControlsViews.CardCharacterView"
+              xmlns:sharedTransitions="clr-namespace:Plugin.SharedTransitions;assembly=Plugin.SharedTransitions" xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             x:Name="this"
+             >
+  <ContentView.Content>
+        <pancakeview:PancakeView HasShadow="True"
+                                 CornerRadius="0,0,15,15"
+                                 Padding="10"
+                                 BindingContext="{x:Reference this}"
+                                  sharedTransitions:Transition.Name="CardVillain">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="30"/>    
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="20"/>
+                    <ColumnDefinition Width="40"/>
+                    <ColumnDefinition Width="20"/>
+                </Grid.ColumnDefinitions>
+
+                <ff:CachedImage  Grid.RowSpan="2"
+                       Grid.ColumnSpan="5"
+                       x:Name="ImageCharacters"
+                       Source="{Binding CharacterImage}"
+                       Aspect="AspectFill"
+                      />
+                <Label Text="{Binding Average}"
+                       FontSize="1"
+                       Grid.Row="0"
+                       HeightRequest="80"
+                       Grid.ColumnSpan="2"
+                         Margin="5,0,0,0"
+                         x:Name="LabelAverage"/>
+                    <Label Text="{Binding Inteligent}"
+                       Grid.Row="2"
+                       Grid.Column="0"
+                        x:Name="LabelInteligent"
+                           HorizontalOptions="EndAndExpand"
+                       />
+                <Image Grid.Row="2"
+                       Grid.Column="1"
+                       Source="brainImage.png"
+                      
+                       />
+                <Label Text="{Binding Power}"
+                       Grid.Row="3"
+                       Grid.Column="0"
+                        x:Name="LabelPower"
+                         HorizontalOptions="EndAndExpand"
+                       />
+                <Image Grid.Row="3"
+                       Grid.Column="1"
+                       Source="powerImage.png"
+                       />
+                <Label Text="{Binding Strength}"
+                       Grid.Row="4"
+                       Grid.Column="0"
+                         HorizontalOptions="EndAndExpand"
+                       x:Name="LabelStrength"
+                       />
+                <Image Grid.Row="4"
+                       Source="strengthImage.png"
+                       Grid.Column="1"
+                       />
+
+                <Label Text="{Binding Combat}"
+                       Grid.Row="2"
+                       Grid.Column="2"
+                       x:Name="LabelCombat"
+                       HorizontalOptions="EndAndExpand"
+                       />
+                <Image Grid.Row="2"
+                       Source="swordImage.png"
+                       Grid.Column="3"
+                       />
+                <Label Text="{Binding Durability}"
+                       Grid.Row="3"
+                       Grid.Column="2"
+                        HorizontalOptions="EndAndExpand"
+                       x:Name="LabelDurability"
+                       />
+                <Image Grid.Row="3"
+                       Grid.Column="3"
+                       Source="batteryImage.png"
+                       />
+                <Label Text="{Binding Speed}"
+                       Grid.Row="4"
+                       Grid.Column="2"
+                       
+                        HorizontalOptions="EndAndExpand"
+                        x:Name="LabelSpeed"
+                       />
+                <Image Grid.Row="4"
+                       Source="speedImage.png"
+                       Grid.Column="3"
+                       />
+            </Grid>
+        </pancakeview:PancakeView>
+    </ContentView.Content>
+</ContentView>

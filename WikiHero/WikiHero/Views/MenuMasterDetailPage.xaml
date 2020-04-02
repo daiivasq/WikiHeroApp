@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" xmlns:ffTransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+                  mc:Ignorable="d"
+             x:Class="WikiHero.Views.MenuMasterDetailPage"
+                  BackgroundColor="White"
+             NavigationPage.HasNavigationBar="True"
+                >
+    <MasterDetailPage.Master>
+        <ContentPage Title="Menu">
+            <CollectionView ItemsSource="{Binding ItemPages}"
+                            SelectedItem="{Binding SelectPage}"
+                            SelectionMode="Single">
+                <CollectionView.Header>
+                    <StackLayout>
+                        <ff:CachedImage Source="MarvelLogoCircle.png" BackgroundColor="White" HeightRequest="200">
+                                <ff:CachedImage.Transformations>
+                                    <ffTransformations:CircleTransformation/>
+                                </ff:CachedImage.Transformations>
+                            </ff:CachedImage>
+                    </StackLayout>
+                </CollectionView.Header>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Margin="10" Padding="0,10,0,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="60"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <ff:CachedImage Source="{Binding Image}" />
+                            <Label Text="{Binding Title}" 
+                                   Grid.Column="1"
+                                   HorizontalOptions="CenterAndExpand"/>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+                <CollectionView.Footer>
+                    <StackLayout>
+                        <ff:CachedImage 
+                                        BackgroundColor="White"
+                                        HeightRequest="100"
+                                        VerticalOptions="End"
+                                        Margin="20,170"
+                                        HorizontalOptions="EndAndExpand">
+                            <ff:CachedImage.Transformations>
+                                <ffTransformations:CircleTransformation/>
+                            </ff:CachedImage.Transformations>
+                        </ff:CachedImage>
+                    </StackLayout>
+                </CollectionView.Footer>
+            </CollectionView>
+        </ContentPage>
+    </MasterDetailPage.Master>
+</MasterDetailPage>

@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:controlsviews="clr-namespace:WikiHero.Views.ControlsViews" xmlns:state="clr-namespace:Xamarin.Forms.StateSquid;assembly=Xamarin.Forms.StateSquid"
+             mc:Ignorable="d"   
+             x:Class="WikiHero.Views.ControlsViews.ControlListView">
+  <ContentView.Content>
+        <RefreshView Command="{Binding RefreshCommand}" IsRefreshing="{Binding IsBusy}" >
+            <StackLayout state:StateLayout.CurrentState="{Binding CurrentState}" Grid.Row="0">
+                <state:StateLayout.StateViews>
+                    <state:StateView StateKey="Loading" RepeatCount="10">
+                        <state:StateView.RepeatTemplate>
+                            <DataTemplate>
+                                <Grid VerticalOptions="Center">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="180" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <state:SkeletonView CornerRadius="15" Grid.Row="0" Grid.ColumnSpan="2" HeightRequest="120" BackgroundColor="#cccccc"  />
+                                </Grid>
+                            </DataTemplate>
+                        </state:StateView.RepeatTemplate>
+                    </state:StateView>
+                </state:StateLayout.StateViews>
+
+                <CollectionView ItemsSource="{Binding ItemsSource}"
+                        x:Name="publisherList"
+                                SelectedItem="{Binding SelectCharacter, Mode= TwoWay}"
+                                SelectionMode="Single"
+                        RemainingItemsThreshold="{Binding ItemTreshold}"
+                        RemainingItemsThresholdReachedCommand="{Binding ItemTresholdReachedCommand}"
+                        ItemSizingStrategy="MeasureAllItems">
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout Orientation="Vertical"
+                                   ItemSpacing="20"/>
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <controlsviews:CardView/>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </StackLayout>
+        </RefreshView>
+    </ContentView.Content>
+</ContentView>

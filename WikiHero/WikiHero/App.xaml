@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<prims:PrismApplication
+    xmlns:prims="http://prismlibrary.com" xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:sharedTransitions="clr-namespace:Plugin.SharedTransitions;assembly=Plugin.SharedTransitions"
+             xmlns:pancakeview="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             x:Class="WikiHero.App">
+    <Application.Resources>
+        <ResourceDictionary>
+            <Color x:Key="MarvelPrincipalColor">#ED1D24</Color>
+            <Color x:Key="DCPrincipalColor">#0476F2</Color>
+            <Style TargetType="Label">
+                <Setter Property="TextColor" Value="Black"/>
+            </Style>
+            <Style TargetType="sharedTransitions:SharedTransitionNavigationPage">
+                <Setter Property="NavigationPage.HasNavigationBar" Value="False"/>
+            </Style>
+            <Style TargetType="pancakeview:PancakeView" x:Key="PancakeViewCornerRadiusKey">
+                <Setter Property="CornerRadius" Value="60,0,0,60"/>
+                <Setter Property="BackgroundColor" Value="White"/>
+            </Style>
+        </ResourceDictionary>
+    </Application.Resources>
+</prims:PrismApplication>
