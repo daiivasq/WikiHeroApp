@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using WikiHero.Models;
 using WikiHero.Services;
 using Xamarin.Essentials;
+using Xamarin.Forms.StateSquid;
 
 namespace WikiHero.ViewModels
 {
@@ -33,11 +34,13 @@ namespace WikiHero.ViewModels
             this.PublisherSecond = publisherSecond;
             this.PublisherThird = publisherThird;
             this.PublisherFourth = publisherFourth;
-            ListTask = new List<Task>() { LoadTeams(), LoadCharacters(), LoadRecentSeries(), LoadRecentVolumes()
-            };
+
             LoadListCommand = new DelegateCommand(async () =>
             {
+             ListTask = new List<Task>() { LoadTeams(), LoadCharacters(), LoadRecentSeries(), LoadRecentVolumes()};
+                CurrentState = State.Loading;
                await Task.WhenAll(ListTask);
+                CurrentState = State.None;
             });
             LoadListCommand.Execute();
 

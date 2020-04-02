@@ -12,6 +12,7 @@ using WikiHero.Helpers;
 using WikiHero.Models;
 using WikiHero.Services;
 using Xamarin.Essentials;
+using Xamarin.Forms.StateSquid;
 
 namespace WikiHero.ViewModels
 {
@@ -53,7 +54,7 @@ namespace WikiHero.ViewModels
             RefreshCommand = new DelegateCommand(async () =>
             {
                 IsBusy = true;
-                Text = null;
+                Text = string.Empty;
                 await LoadComics();
                 IsBusy = false;
 
@@ -132,6 +133,7 @@ namespace WikiHero.ViewModels
         {
             try
             {
+                CurrentState = State.Loading;
                 var volumes = await apiComicsVine.GetMVolumes(Config.Apikey,PublisherPrincipal);
                 var notNull = from item in volumes.Volumes where item.Publisher != null select item;
                 var marvelOrDc = notNull.Where(e => e.Publisher.Name.Contains(PublisherPrincipal) || e.Publisher.Name.Contains(PublisherSecond) || e.Publisher.Name.Contains(PublisherThird));
@@ -139,7 +141,7 @@ namespace WikiHero.ViewModels
             }
             catch (Exception ex)
             {
-
+                CurrentState = State.Error;
                 await dialogService.DisplayAlertAsync("Volume", $"{ex.Message}", "Ok");
 
             }

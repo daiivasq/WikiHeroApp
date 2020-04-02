@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using WikiHero.Models;
 using WikiHero.Services;
 using Xamarin.Essentials;
+using Xamarin.Forms.StateSquid;
 
 namespace WikiHero.ViewModels
 {
@@ -39,14 +40,16 @@ namespace WikiHero.ViewModels
             RefreshCommand = new DelegateCommand(async () =>
             {
                 IsBusy = true;
-                Text = null;
+                Text = string.Empty;
                 await LoadCharacters();
                 IsBusy = false;
 
             });
             LoadListCommand = new DelegateCommand(async () =>
             {
+               
                 await LoadCharacters();
+         
             });
             LoadListCommand.Execute();
 
@@ -62,6 +65,7 @@ namespace WikiHero.ViewModels
             {
                 if (Connectivity.NetworkAccess == NetworkAccess.Internet)
                 {
+                    CurrentState = State.Loading;
                     var characters = await apiComicsVine.GetMoreCharacter(Config.Apikey,offset, PublisherName);
                     var notNull = from item in characters.Characters where item.Publisher != null select item;
                     var marvelOrDc = notNull.Where(e => e.Publisher.Name.Contains(PublisherName));
@@ -93,14 +97,16 @@ namespace WikiHero.ViewModels
             {
                 try
                 {
+                    CurrentState = State.Loading;
                     var characters = await apiComicsVine.GetCharacter(Config.Apikey,PublisherName);
                     var notNull = from item in characters.Characters where item.Publisher != null select item;
                     var marvelOrDc = notNull.Where(e => e.Publisher.Name.Contains(PublisherName));
                     Characters = new ObservableCollection<Character>(marvelOrDc);
+                    CurrentState = State.None;
                 }
                 catch (Exception ex)
                 {
-
+                    CurrentState = State.Error;
                     await dialogService.DisplayAlertAsync("Error", $"{ex.Message}", "Ok");
 
                 }
@@ -121,6 +127,7 @@ namespace WikiHero.ViewModels
             }
             else
             {
+
                 Characters = new ObservableCollection<Character>(marvelOrDc);
             }
            

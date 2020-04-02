@@ -5,6 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:controlsviews="clr-namespace:WikiHero.Views.ControlsViews"
              mc:Ignorable="d"
+              Title="Volume"
              x:Class="WikiHero.Views.MarvelViews.MarvelVolumePage">
     <ContentPage.Content>
         <StackLayout Padding="10,10,10,0">

@@ -14,12 +14,8 @@
                            SearchCommand="{Binding SearchCommand}"
                            Text="{Binding Text}"/>
             </Frame>
-            <RefreshView Command="{Binding RefreshCommand}" 
-                         IsRefreshing="{Binding IsBusy}" >
 
-                <controlsviews:ControlListView ItemsSource="{Binding Characters}"/>
-
-            </RefreshView>
+            <controlsviews:ControlListView ItemsSource="{Binding Characters}"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -79,26 +79,26 @@ namespace WikiHero.ViewModels
             }
 
         }
-        async Task LoadComics()
-        {
-            try
-            {
-                string comic = null;
-                foreach (var item in Character.Issues)
-                {
-                    comic += $"{item.Id}||";
-                }
+        //async Task LoadComics()
+        //{
+        //    try
+        //    {
+        //        string comic = null;
+        //        foreach (var item in Character.Issues)
+        //        {
+        //            comic += $"{item.Id}||";
+        //        }
 
-                var comics = await apiComicsVine.FindCharacterComics(Config.Apikey, comic, null);
-                Comics = new ObservableCollection<Comic   >(comics.Results);
-            }
-            catch (Exception err)
-            {
+        //        var comics = await apiComicsVine.FindCharacterComics(Config.Apikey, comic, null);
+        //        Comics = new ObservableCollection<Comic   >(comics.Results);
+        //    }
+        //    catch (Exception err)
+        //    {
 
-                await dialogService.DisplayAlertAsync("Error", $"{err}", "ok");
-            }
+        //        await dialogService.DisplayAlertAsync("Error", $"{err}", "ok");
+        //    }
 
-        }
+        //}
 
 
 

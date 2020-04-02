@@ -9,39 +9,41 @@
              xmlns:ffTransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
              x:Name="this">
   <ContentView.Content>
-        <Grid>
-            <CollectionView  ItemsSource="{Binding ItemsSource}"
+        <RefreshView Command="{Binding RefreshCommand}" IsRefreshing="{Binding IsBusy}" >
+            <Grid>
+                <CollectionView  ItemsSource="{Binding ItemsSource}"
                       x:Name="CharactersList"
                          SelectedItem="{Binding SelectItem}"
                          SelectionMode="Single"
                          BindingContext="{x:Reference this}">
-                <CollectionView.ItemsLayout>
-                    <LinearItemsLayout Orientation="Horizontal"
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout Orientation="Horizontal"
                                    ItemSpacing="10"
                                    />
-                </CollectionView.ItemsLayout>
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <pancakeview:PancakeView CornerRadius="10"
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <pancakeview:PancakeView CornerRadius="10"
                                              BackgroundColor="White"
                                              Padding="10"
                                              HasShadow="True">
-                            <StackLayout>
-                                <ff:CachedImage Source="{Binding Images.Sm}" 
+                                <StackLayout>
+                                    <ff:CachedImage Source="{Binding Images.Sm}" 
                                    HeightRequest="100"
                                    WidthRequest="100">
-                                </ff:CachedImage>
-                                <Label Text="{Binding Name}"
+                                    </ff:CachedImage>
+                                    <Label Text="{Binding Name}"
                                    HorizontalOptions="CenterAndExpand"
                                    HeightRequest="40"/>
-                            </StackLayout>
-                        </pancakeview:PancakeView>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
-            <ActivityIndicator IsRunning="{Binding IsBusy}"
+                                </StackLayout>
+                            </pancakeview:PancakeView>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+                <ActivityIndicator IsRunning="{Binding IsBusy}"
                                HorizontalOptions="CenterAndExpand"
                                IsVisible="{Binding IsBusy}" />
-        </Grid>
+            </Grid>
+        </RefreshView>
     </ContentView.Content>
 </ContentView>

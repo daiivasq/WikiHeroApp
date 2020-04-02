@@ -5,7 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:controlsviews="clr-namespace:WikiHero.Views.ControlsViews"
              xmlns:control="clr-namespace:WikiHero.Controls"
-             xmlns:pancakeview="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:pancakeview="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" xmlns:state="clr-namespace:Xamarin.Forms.StateSquid;assembly=Xamarin.Forms.StateSquid"
              mc:Ignorable="d"
              x:Class="WikiHero.Views.DcComicsViews.DcHomePage">
     <ContentPage.Resources>
@@ -23,8 +23,44 @@
             </Grid.RowDefinitions>
 
             <ScrollView Grid.Row="0">
-                <StackLayout >
+                <StackLayout state:StateLayout.CurrentState="{Binding CurrentState}">
+                    <state:StateLayout.StateViews>
+                        <state:StateView StateKey="Loading">
+                            <Grid BackgroundColor="Transparent">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="40"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="40"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="40"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <state:SkeletonView BackgroundColor="#cccc" HeightRequest="250" Grid.ColumnSpan="3" >
+                                </state:SkeletonView>
+                                <Image BackgroundColor="Red" Grid.Column="1"/>
+                                <Label Text="Recent series" FontSize="25" Grid.Row="1" />
+                                <state:SkeletonView CornerRadius="6" HeightRequest="160" BackgroundColor="#cccc" Grid.Row="2" Grid.Column="0">
+                                </state:SkeletonView>
+                                <state:SkeletonView CornerRadius="6" HeightRequest="160" BackgroundColor="#cccc" Grid.Row="2" Grid.Column="1"/>
+                                <state:SkeletonView CornerRadius="6" HeightRequest="6" BackgroundColor="#cccc" Grid.Row="2" Grid.Column="2"/>
+                                <Label FontSize="25" Grid.Row="3" />
+                                <state:SkeletonView CornerRadius="6" HeightRequest="160" BackgroundColor="#cccc" Grid.Row="4" Grid.Column="0"/>
+                                <state:SkeletonView CornerRadius="6" HeightRequest="160" BackgroundColor="#cccc" Grid.Row="4" Grid.Column="1"/>
+                                <state:SkeletonView CornerRadius="6" HeightRequest="160" BackgroundColor="#cccc" Grid.Row="4" Grid.Column="2"/>
+                                <Label />
+                                <state:SkeletonView CornerRadius="6" HeightRequest="160" BackgroundColor="#cccc" Grid.Row="6" Grid.Column="0"/>
+                                <state:SkeletonView CornerRadius="6" HeightRequest="160" BackgroundColor="#cccc" Grid.Row="6" Grid.Column="1"/>
+                                <state:SkeletonView CornerRadius="6" HeightRequest="160" BackgroundColor="#cccc" Grid.Row="6" Grid.Column="2"/>
 
+                            </Grid>
+                        </state:StateView>
+                    </state:StateLayout.StateViews>
                     <CarouselView ItemsSource="{Binding  Teams}" WidthRequest="500" HeightRequest="230"
                               HorizontalScrollBarVisibility="Always"
                               >
@@ -49,22 +85,28 @@
                         </CarouselView.ItemTemplate>
                     </CarouselView>
                     <Label HeightRequest="1" BackgroundColor="Black"/>
-                    <Label Text="Recent Series"
+                    <Label Text="{Binding Path=ItemSelected.TitleSeries,Source={x:Reference segment}}"
                            FontSize="22" 
                            Style="{StaticResource LabelKeY}"
                        />
                     <controlsviews:CollectionHomeView   HeightRequest="200" 
-                                                            WidthRequest="200" 
-                                                            ItemsSource="{Binding SeriesRecent}"/>
-                    <Label Text="Recent Characters" TextColor="Black" FontSize="22" HorizontalTextAlignment="Center"  Style="{StaticResource LabelKeY}" />
+                                                        WidthRequest="200" 
+                                                        ItemsSource="{Binding Path=ItemSelected.ListSeries, Source={x:Reference segment}}"
+                                                            />
+                    <Label Text="{Binding Path=ItemSelected.TitleSeries,Source={x:Reference segment}}" 
+                           FontSize="22" 
+                           HorizontalTextAlignment="Center"  
+                           Style="{StaticResource LabelKeY}" />
                     <controlsviews:CollectionHomeView   HeightRequest="200"
                                                             WidthRequest="200" 
-                                                            ItemsSource="{Binding RecentCharacters}"
+                                                            ItemsSource="{Binding Path=ItemSelected.ListCharacters, Source={x:Reference segment}}"
                                                             />
-                    <Label Text="Recent Volume" TextColor="Black" FontSize="22" HorizontalTextAlignment="Center"  Style="{StaticResource LabelKeY}" />
+                    <Label Text="{Binding Path=ItemSelected.TitleVolume,Source={x:Reference segment}}" TextColor="Black" FontSize="22" HorizontalTextAlignment="Center"
+                           Grid.Row="7"
+                           Style="{StaticResource LabelKeY}" />
                     <controlsviews:CollectionHomeView  HeightRequest="200"
                                                            WidthRequest="200" 
-                                                           ItemsSource="{Binding VolumesRecent}"/>
+                                                         ItemsSource="{Binding Path=ItemSelected.ListVolumes, Source={x:Reference segment}}"/>
 
                 </StackLayout>
             </ScrollView>

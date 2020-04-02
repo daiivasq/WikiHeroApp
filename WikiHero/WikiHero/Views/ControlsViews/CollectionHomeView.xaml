@@ -3,7 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:pancakeview="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" xmlns:state="clr-namespace:Xamarin.Forms.StateSquid;assembly=Xamarin.Forms.StateSquid"
+             xmlns:pancakeview="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:state="clr-namespace:Xamarin.Forms.StateSquid;assembly=Xamarin.Forms.StateSquid"
              mc:Ignorable="d"
              x:Class="WikiHero.Views.ControlsViews.CollectionHomeView"
              x:Name="this">
@@ -13,10 +15,6 @@
                 <Setter Property="Opacity" Value="0.7"/>
                 <Setter Property="TextColor" Value="White"/>
                 <Setter Property="FontAttributes" Value="Bold"/>
-            </Style>
-            <Style TargetType="pancakeview:PancakeView">
-                <Setter Property="CornerRadius" Value="60,0,0,60"/>
-                <Setter Property="BackgroundColor" Value="White"/>
             </Style>
         </ResourceDictionary>
     </ContentView.Resources>
@@ -28,7 +26,7 @@
             </Grid.RowDefinitions>
             <StackLayout state:StateLayout.CurrentState="{Binding CurrentState}" Grid.Row="0" >
                 <state:StateLayout.StateViews>
-                    <state:StateView StateKey="Loading" RepeatCount="3">
+                    <state:StateView StateKey="Loading" RepeatCount="3" >
                         <state:StateView.RepeatTemplate>
                             <DataTemplate>
                                 <pancakeview:PancakeView CornerRadius="60,0,0,60"
@@ -57,7 +55,8 @@
                 </CollectionView.ItemsLayout>
                 <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <pancakeview:PancakeView Padding="10">
+                            <pancakeview:PancakeView Padding="10"
+                                                     Style="{StaticResource PancakeViewCornerRadiusKey}">
                             <Grid>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="*"/>

@@ -6,6 +6,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              xmlns:sharedTransitions="clr-namespace:Plugin.SharedTransitions;assembly=Plugin.SharedTransitions"
+             xmlns:pancakeview="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              x:Class="WikiHero.App">
     <Application.Resources>
         <ResourceDictionary>
@@ -16,6 +17,10 @@
             </Style>
             <Style TargetType="sharedTransitions:SharedTransitionNavigationPage">
                 <Setter Property="NavigationPage.HasNavigationBar" Value="False"/>
+            </Style>
+            <Style TargetType="pancakeview:PancakeView" x:Key="PancakeViewCornerRadiusKey">
+                <Setter Property="CornerRadius" Value="60,0,0,60"/>
+                <Setter Property="BackgroundColor" Value="White"/>
             </Style>
         </ResourceDictionary>
     </Application.Resources>

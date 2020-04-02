@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace WikiHero.Views.MarvelViews
+namespace WikiHero.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class TappedMarvelPage : TabbedPage
+    public partial class MenuMasterDetailPage : MasterDetailPage    
     {
-        public TappedMarvelPage()
+        public MenuMasterDetailPage()
         {
             InitializeComponent();
         }

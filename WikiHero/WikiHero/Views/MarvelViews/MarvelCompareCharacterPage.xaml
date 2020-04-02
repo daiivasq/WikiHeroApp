@@ -11,6 +11,7 @@
              xmlns:helpers="clr-namespace:WikiHero.Helpers"
              sharedTransitions:SharedTransitionNavigationPage.BackgroundAnimation="Fade"
              sharedTransitions:SharedTransitionNavigationPage.TransitionDuration="3"
+               Title="Vs"
     >
 
     <ContentPage.Resources>

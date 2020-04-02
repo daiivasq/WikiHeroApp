@@ -13,14 +13,12 @@ namespace WikiHero.ViewModels
    public class MarvelVsDcComicsPageViewModel:BaseViewModel
     {
         public DelegateCommand<string> GoToNextPage { get; set; }
-        public string SelectId { get; set; }
         public MarvelVsDcComicsPageViewModel(INavigationService navigationService, IPageDialogService dialogService, IApiComicsVine apiComicsVine) :base(navigationService, dialogService, apiComicsVine)
         {
-                GoToNextPage = new DelegateCommand<string>(async (url) =>
+                GoToNextPage = new DelegateCommand<string>(async (image) =>
                 {
-                    SelectId = url;
                     var param = new NavigationParameters();
-                    param.Add($"{nameof(ConfigPageUri)}", url);
+                    param.Add($"{nameof(ConfigPageUri.MenuMasterDetailPage)}", image);
                     await navigationService.NavigateAsync(new Uri($"{ConfigPageUri.NextPage}", UriKind.Relative),param);
                 });
        

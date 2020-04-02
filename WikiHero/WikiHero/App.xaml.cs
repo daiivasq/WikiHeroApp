@@ -28,7 +28,7 @@ namespace WikiHero
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
-            containerRegistry.RegisterInstance<ApiComicsVine>(new ApiComicsVine());
+            containerRegistry.RegisterInstance<IApiComicsVine>(new ApiComicsVine());
             containerRegistry.RegisterInstance<ApiStatsCharacters>(new ApiStatsCharacters());
             containerRegistry.RegisterForNavigation<MarvelVsDcComicsPage, MarvelVsDcComicsPageViewModel>();
             containerRegistry.RegisterForNavigation<DetailSeriesPage, DetailSeriesPageViewModel>();
@@ -40,7 +40,7 @@ namespace WikiHero
             containerRegistry.RegisterForNavigation<MarvelVolumePage, MarvelVolumePageViewModel>();
             containerRegistry.RegisterForNavigation<MarvelHomePage, MarvelHomePageViewModel>();
             containerRegistry.RegisterForNavigation<MarvelSeriesPage, MarvelSeriesPageViewModel>();
-            containerRegistry.RegisterForNavigation<TappedMarvelPage, TappedMarvelPageViewModel>();
+            containerRegistry.RegisterForNavigation<MenuMasterDetailPage, MenuMasterDetailPageViewModel>();
             containerRegistry.RegisterForNavigation<MarvelCompareCharacterPage, MarvelCompareCharacterPageViewModel>();
             
             
@@ -49,7 +49,6 @@ namespace WikiHero
             containerRegistry.RegisterForNavigation<DcVolumePage, DcVolumePageViewModel>();
             containerRegistry.RegisterForNavigation<DcHomePage, DcHomePageViewModel>();
             containerRegistry.RegisterForNavigation<DcSeriesPage, DcSeriesPageViewModel>(); 
-            containerRegistry.RegisterForNavigation<TappedDcComicsPage, TappedDcComicsPageViewModel>();
             containerRegistry.RegisterForNavigation<DcCompareCharacterPage, DcCompareCharacterPageViewModel>();
 
             

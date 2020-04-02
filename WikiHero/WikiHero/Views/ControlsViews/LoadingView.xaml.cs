@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace WikiHero.Views.DcComicsViews
+namespace WikiHero.Views.ControlsViews
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class TappedDcComicsPage : TabbedPage
+    public partial class LoadingView : ContentView
     {
-        public TappedDcComicsPage()
+        public LoadingView()
         {
             InitializeComponent();
         }

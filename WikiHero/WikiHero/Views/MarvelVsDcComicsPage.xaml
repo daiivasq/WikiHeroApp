@@ -8,7 +8,7 @@
              xmlns:ffTrans="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
              x:Class="WikiHero.Views.MarvelVsDcComicsPage"
              BackgroundImageSource="versusPrincipal"
-             xmlns:sharedTransitions="clr-namespace:Plugin.SharedTransitions;assembly=Plugin.SharedTransitions"
+             xmlns:sharedTransitions="clr-namespace:Plugin.SharedTransitions;assembly=Plugin.SharedTransitions" xmlns:controlsviews="clr-namespace:WikiHero.Views.ControlsViews"
              sharedTransitions:SharedTransitionNavigationPage.TransitionDuration="500"
              sharedTransitions:SharedTransitionNavigationPage.BackgroundAnimation="SlideFromBottom"
              NavigationPage.HasNavigationBar="False"
@@ -16,12 +16,11 @@
     
     <ContentPage.Content>
         <Grid>
-            
+
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            
             <PrincipalPancake:PancakeView CornerRadius="0,0,0,500" 
                                               x:Name="MarvelPancake"
                                               Grid.Row="0" >
@@ -31,7 +30,7 @@
 
                 <PrincipalPancake:PancakeView.GestureRecognizers >
                     <TapGestureRecognizer  NumberOfTapsRequired="1"  Command="{Binding GoToNextPage}"
-                                               CommandParameter="Marvel.jpg"
+                                               CommandParameter="Marvel"
                                            />
                 </PrincipalPancake:PancakeView.GestureRecognizers>
             </PrincipalPancake:PancakeView>
@@ -42,7 +41,7 @@
                 <ff:CachedImage Source="DcComics.jpg" HeightRequest="380"  Aspect="AspectFill" />
                 <PrincipalPancake:PancakeView.GestureRecognizers >
                     <TapGestureRecognizer  NumberOfTapsRequired="1" Command="{Binding GoToNextPage}"
-                                               CommandParameter="DcComics.jpg"
+                                               CommandParameter="Dc"
                                                />
                 </PrincipalPancake:PancakeView.GestureRecognizers>
 

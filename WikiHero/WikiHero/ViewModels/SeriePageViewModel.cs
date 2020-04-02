@@ -12,6 +12,7 @@ using WikiHero.Helpers;
 using WikiHero.Models;
 using WikiHero.Services;
 using Xamarin.Essentials;
+using Xamarin.Forms.StateSquid;
 
 namespace WikiHero.ViewModels
 {
@@ -44,7 +45,7 @@ namespace WikiHero.ViewModels
             RefreshCommand = new DelegateCommand(async()=> 
             {
                 IsBusy = true;
-                Text = null;
+                Text  =string.Empty;
                 await  LoadSeries();
                 IsBusy = false;
                 
@@ -110,30 +111,40 @@ namespace WikiHero.ViewModels
         }
         protected async Task LoadSeries()
         {
-            if (Connectivity.NetworkAccess == NetworkAccess.Internet)
-            {
+            
+              
                 try
                 {
+                if (Connectivity.NetworkAccess == NetworkAccess.Internet)
+                {
+                    CurrentState = State.Loading;
                     var series = await apiComicsVine.GetSeries(StudioName,ExtraStudioName);
                     var notNull = from item in series.Series where item.Publisher != null select item;
                     var marvelOrDc = notNull.Where(e => e.Publisher.Name.Contains(StudioName) || e.Publisher.Name.Contains(ExtraStudioName));
                     Series = new ObservableCollection<Serie>(marvelOrDc);
+                    CurrentState = State.None;
                 }
+                else
+                    await dialogService.DisplayAlertAsync("Connection error ", Connectivity.NetworkAccess.ToString(), "Ok");
+                 }
                 catch (Exception ex)
                 {
-
+                    CurrentState = State.Error;
                     await dialogService.DisplayAlertAsync("Serie", $"{ex.Message}", "Ok");
 
                 }
-            }
-            else
-                await dialogService.DisplayAlertAsync("Connection error ", Connectivity.NetworkAccess.ToString(), "Ok");
+                 finally
+                 {
+             
+                 }
+
             
 
         }
 
         protected async Task FindSeries(string name, int offset)
         {
+
             var series = await apiComicsVine.SearchSeries(name, Config.Apikey, offset,StudioName);
             var notNull = from item in series.Series where item.Publisher != null select item;
             var marvelOrDc = notNull.Where(e => e.Publisher.Name.Contains(StudioName) || e.Publisher.Name.Contains(ExtraStudioName));

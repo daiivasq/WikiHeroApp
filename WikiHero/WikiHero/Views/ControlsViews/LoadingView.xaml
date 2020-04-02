@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:state="clr-namespace:Xamarin.Forms.StateSquid;assembly=Xamarin.Forms.StateSquid"
+             mc:Ignorable="d"
+             x:Class="WikiHero.Views.ControlsViews.LoadingView">
+  <ContentView.Content>
+        <StackLayout state:StateLayout.CurrentState="{Binding CurrentState}" Grid.Row="0">
+            <state:StateLayout.StateViews>
+                <state:StateView StateKey="Loading" RepeatCount="5">
+                    <state:StateView.RepeatTemplate>
+                        <DataTemplate>
+                            <Grid Padding="20">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <state:SkeletonView CornerRadius="6" Grid.Row="0" Grid.Column="0" HeightRequest="200" BackgroundColor="#cccccc"  />
+                                <state:SkeletonView CornerRadius="6" Grid.Row="0" Grid.Column="1" HeightRequest="200" BackgroundColor="#cccccc" />
+                            </Grid>
+                        </DataTemplate>
+                    </state:StateView.RepeatTemplate>
+                </state:StateView>
+            </state:StateLayout.StateViews>
+        </StackLayout>
+    </ContentView.Content>
+</ContentView>

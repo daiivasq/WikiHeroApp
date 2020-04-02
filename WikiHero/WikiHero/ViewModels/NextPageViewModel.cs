@@ -13,7 +13,6 @@ namespace WikiHero.ViewModels
         public class NextPageViewModel : BaseViewModel,INavigationAware
         {
         public string ImagePublisher { get; set; }
-        public string UrlNavigate { get; set; }
         public DelegateCommand GoToMarvelOrDc { get; set; }
 
             public NextPageViewModel(INavigationService navigationService, IPageDialogService dialogService, IApiComicsVine apiComicsVine) : base(navigationService, dialogService, apiComicsVine)
@@ -22,7 +21,11 @@ namespace WikiHero.ViewModels
 
                 GoToMarvelOrDc = new DelegateCommand(async () =>
                 {
-                    await navigationService.NavigateAsync(new Uri($"{UrlNavigate}", UriKind.Relative));
+                    var param = new NavigationParameters
+                    {
+                        { $"{ConfigPageUri.MenuMasterDetailPage}", ImagePublisher }
+                    };
+                    await navigationService.NavigateAsync(new Uri($"{ConfigPageUri.MenuMasterDetailPage}{ConfigPageUri.SharedTransitionNavigationPage}{ConfigPageUri.MarvelHomePage}", UriKind.Absolute),param);
                 });
 
             }
@@ -33,8 +36,7 @@ namespace WikiHero.ViewModels
 
         public void OnNavigatedTo(INavigationParameters parameters)
         {
-            ImagePublisher = (string)parameters[$"{nameof(ConfigPageUri)}"];
-            UrlNavigate= ImagePublisher == "Marvel.jpg" ? ConfigPageUri.TappedMarvelPage : ConfigPageUri.TappedDcComicsPage ;
+            ImagePublisher = (string)parameters[$"{nameof(ConfigPageUri.MenuMasterDetailPage)}"];
         }
     }
     
