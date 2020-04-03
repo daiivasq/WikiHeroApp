@@ -4,6 +4,7 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:controlsviews="clr-namespace:WikiHero.Views.ControlsViews"
+             xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              mc:Ignorable="d"
              x:Class="WikiHero.Views.DetailCharactersPage">
     <ContentPage.Content>
@@ -12,6 +13,17 @@
             <Grid >
                 <Grid.RowDefinitions>
                     <RowDefinition Height="200"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
@@ -26,7 +38,7 @@
                        Grid.Row="0"
                        Grid.Column="0"
                        Grid.ColumnSpan="4" />
-                <Label Text="Capitan America"
+                <Label Text="{Binding Character.Name}"
                        TextColor="Black"
                        FontSize="25"
                        FontAttributes="Bold"
@@ -34,42 +46,103 @@
                        Grid.Column="0"
                        Grid.ColumnSpan="2"
                        VerticalOptions="End" />
-                <Label Text="Actor, productor, un papi chulo"
-                       TextColor="Black"
-                       FontSize="Medium"
-                       FontAttributes="Italic"
-                       Grid.Row="0"
-                       Grid.Column="0"
-                       Grid.ColumnSpan="3"
-                       VerticalOptions="EndAndExpand"
-                       Margin="0,-20" />
-
-                <Image x:Name="Xname"
-                       Source="Background.jpg"
+               
+                <ff:CachedImage  x:Name="Xname"
+                       Source="{Binding Character.Image.MediumUrl}"
                        Grid.Row="1"
-                       VerticalOptions="StartAndExpand"
-                       Margin="10,20"/>
-                <Label Text="LOL ADJNAKDJNKASJDNANDFIANDFI  NDIANF IAN IASNDIAS NISUAND IASU ND TAKI TAKI, TAKI TAKI RUMBAAAAAAA"
+                       HeightRequest="200"
+                       Aspect="AspectFill"
+                       VerticalOptions="Start"
+                      />
+                
+                <Label Text="{Binding Character.Deck}"
                         TextColor="Black" 
                         Grid.Row="1"
                         Grid.Column="1"
                         Grid.ColumnSpan="3" 
                         VerticalOptions="Start"
-                        Margin="0,25"/>
-                <Label Text="Peliculas a la que pertenece "
+                        />
+                <ff:CachedImage Source="ic_add.png" Grid.Row="2" Grid.Column="2" />
+                <ff:CachedImage Source="ic_share.png" Grid.Row="2" Grid.Column="3" />
+
+                <!-- LIST -->
+                
+                <Label Text="Teams"
+                       FontAttributes="Bold"
+                       FontSize="18"
                        TextColor="Black"
-                       Grid.Row="2"
-                       VerticalOptions="Start"
+                       Grid.Row="4"
+                       VerticalOptions="StartAndExpand"
                        Grid.ColumnSpan="4"
                        HorizontalOptions="CenterAndExpand"
                        />
                 <controlsviews:CollectionHomeView 
                     ItemsSource="{Binding Teams}"
                     HeightRequest="200"
+                    VerticalOptions="CenterAndExpand"
                     Grid.ColumnSpan="4"
                     WidthRequest="200" 
-                    Grid.Row="4"/>
+                    Grid.Row="5"/>
 
+                <Label Text="Characters Enemys"
+                       FontAttributes="Bold"
+                       FontSize="18"
+                       TextColor="Black"
+                       Grid.Row="6"
+                       Grid.ColumnSpan="4"
+                       HorizontalOptions="CenterAndExpand"
+                       />
+                <controlsviews:CollectionHomeView 
+                    ItemsSource="{Binding CharactersEnemys}"
+                    HeightRequest="200"
+                    Grid.ColumnSpan="4"
+                    WidthRequest="200" 
+                    Grid.Row="7"/>
+                
+                <Label Text="Movies"
+                       FontAttributes="Bold"
+                       FontSize="18"
+                       TextColor="Black"
+                       Grid.Row="8"
+                       Grid.ColumnSpan="4"
+                       HorizontalOptions="CenterAndExpand"
+                       />
+                <controlsviews:CollectionHomeView 
+                    ItemsSource="{Binding Movies}"
+                    HeightRequest="200"
+                    Grid.ColumnSpan="4"
+                    WidthRequest="200" 
+                    Grid.Row="9"/>
+
+                <Label Text="Volumes"
+                       FontAttributes="Bold"
+                       FontSize="18"
+                       TextColor="Black"
+                       Grid.Row="10"
+                       Grid.ColumnSpan="4"
+                       HorizontalOptions="CenterAndExpand"
+                       />
+                <controlsviews:CollectionHomeView 
+                    ItemsSource="{Binding Volumes}"
+                    HeightRequest="200"
+                    Grid.ColumnSpan="4"
+                    WidthRequest="200" 
+                    Grid.Row="11"/>
+                
+                <Label Text="Comics"
+                       FontAttributes="Bold"
+                       FontSize="18"
+                       TextColor="Black"
+                       Grid.Row="12"
+                       Grid.ColumnSpan="4"
+                       HorizontalOptions="CenterAndExpand"
+                       />
+                <controlsviews:CollectionHomeView 
+                    ItemsSource="{Binding Comics}"
+                    HeightRequest="200"
+                    Grid.ColumnSpan="4"
+                    WidthRequest="200" 
+                    Grid.Row="13"/>
             </Grid>
 
         </ScrollView>

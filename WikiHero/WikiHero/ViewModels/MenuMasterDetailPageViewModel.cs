@@ -59,7 +59,7 @@ namespace WikiHero.ViewModels
                     new ItemPage("marvelhome","Home",ConfigPageUri.MarvelHomePage),
                     new ItemPage("monitor","Series",ConfigPageUri.MarvelSeriesPage),
                     new ItemPage("comic","Volumes",ConfigPageUri.MarvelVolumePage),
-                    new ItemPage("superhero","Characters",ConfigPageUri.MarvelCharactersPage),
+                    new ItemPage("MarvelCharacter","Characters",ConfigPageUri.MarvelCharactersPage),
                     new ItemPage("sword","Vs",ConfigPageUri.MarvelCompareCharacterPage),
                      new ItemPage("star","favorites",ConfigPageUri.MarvelFavoritesPage),
             };
@@ -69,7 +69,7 @@ namespace WikiHero.ViewModels
                  new ItemPage("dchome","Home",ConfigPageUri.DcHomePage),
                  new ItemPage("monitor","Series",ConfigPageUri.DcSeriesPage),
                  new ItemPage("comic","Volumes",ConfigPageUri.DcVolumePage),
-                 new ItemPage("superhero","Characters",ConfigPageUri.DcComicsCharactersPage),
+                 new ItemPage("DcCharacter","Characters",ConfigPageUri.DcComicsCharactersPage),
                  new ItemPage("sword","Vs",ConfigPageUri.MarvelCompareCharacterPage),
                  new ItemPage("star","favorites",ConfigPageUri.DcFavoritesPage),
               };

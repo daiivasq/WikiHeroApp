@@ -44,7 +44,7 @@
                                 </Grid.ColumnDefinitions>
                                 <state:SkeletonView BackgroundColor="#cccc" HeightRequest="250" Grid.ColumnSpan="3" >
                                 </state:SkeletonView>
-                                <Image BackgroundColor="Red" Grid.Column="1"/>
+                                <Image Source="ic_HulkLoading.png" Grid.Column="1"/>
                              
                                 <state:SkeletonView CornerRadius="6" HeightRequest="160" BackgroundColor="#cccc" Grid.Row="2" Grid.Column="0">
                                 </state:SkeletonView>

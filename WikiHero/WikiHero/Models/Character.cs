@@ -7,15 +7,9 @@ namespace WikiHero.Models
 {
    public class Character
     {
-        [JsonProperty("aliases")]
-        public string Aliases { get; set; }
+ 
 
-        [JsonProperty("api_detail_url")]
-        public string ApiDetailUrl { get; set; }
-
-        [JsonProperty("birth")]
-        public object Birth { get; set; }
-
+   
         [JsonProperty("character_enemies")]
         public IList<Character> CharacterEnemies { get; set; }
 
@@ -57,9 +51,6 @@ namespace WikiHero.Models
 
         [JsonProperty("real_name")]
         public string RealName { get; set; }
-
-        [JsonProperty("site_detail_url")]
-        public string SiteDetailUrl { get; set; }
 
         [JsonProperty("teams")]
         public IList<Team> Teams { get; set; }

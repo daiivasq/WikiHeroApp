@@ -30,11 +30,8 @@
 
                 <PrincipalPancake:PancakeView.GestureRecognizers >
                     <TapGestureRecognizer  NumberOfTapsRequired="1"  Command="{Binding GoToNextPage}"
-<<<<<<< HEAD
+
                                                CommandParameter="ironman.gif"
-=======
-                                            CommandParameter="Marvel"
->>>>>>> c4f0b17e18fdea774157cfbe5e1ee83327ff4d34
                                            />
                 </PrincipalPancake:PancakeView.GestureRecognizers>
             </PrincipalPancake:PancakeView>
