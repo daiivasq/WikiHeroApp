@@ -73,7 +73,7 @@ namespace WikiHero.ViewModels
         {
             var param = new NavigationParameters();
             param.Add(nameof(Character), character.Id);
-            await navigationService.NavigateAsync(new Uri(ConfigPageUri.DetailCharactersPage), param);
+            await navigationService.NavigateAsync(new Uri(ConfigPageUri.DetailCharactersPage,UriKind.Relative), param);
         }
         protected async Task ScrollLoadCharacters(int offset)
         {

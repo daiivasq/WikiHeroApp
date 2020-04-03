@@ -30,7 +30,7 @@
 
                 <PrincipalPancake:PancakeView.GestureRecognizers >
                     <TapGestureRecognizer  NumberOfTapsRequired="1"  Command="{Binding GoToNextPage}"
-                                               CommandParameter="Marvel"
+                                            CommandParameter="Marvel"
                                            />
                 </PrincipalPancake:PancakeView.GestureRecognizers>
             </PrincipalPancake:PancakeView>

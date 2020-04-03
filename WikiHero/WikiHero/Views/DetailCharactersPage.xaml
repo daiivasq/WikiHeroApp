@@ -12,9 +12,9 @@
             <Grid >
                 <Grid.RowDefinitions>
                     <RowDefinition Height="200"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="105"/>
@@ -64,8 +64,9 @@
                        HorizontalOptions="CenterAndExpand"
                        />
                 <controlsviews:CollectionHomeView 
-                    ItemsSource="{Binding CharactersEnemys}"
+                    ItemsSource="{Binding Teams}"
                     HeightRequest="200"
+                    Grid.ColumnSpan="4"
                     WidthRequest="200" 
                     Grid.Row="4"/>
 

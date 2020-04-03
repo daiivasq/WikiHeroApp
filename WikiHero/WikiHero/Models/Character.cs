@@ -76,8 +76,12 @@ namespace WikiHero.Models
         [JsonProperty("name")]
         public string Name { get; set; }
     }
-
     public class ResultCharacter
+    {
+        [JsonProperty("results")]
+        public Character Character { get; set; }
+    }
+    public class ResultCharacters
     {
 
         [JsonProperty("results")]
