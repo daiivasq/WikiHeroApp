@@ -15,7 +15,7 @@ namespace WikiHero.ViewModels
 {
     public class CompareCharactersPageViewModel:BaseViewModel
     {
-        protected ApiStatsCharacters apiStatsCharacters;
+        protected IApiCharacterStats apiStatsCharacters;
         public ObservableCollection<CharacterStats> HeroesCharacters { get; set; }
         public ObservableCollection<CharacterStats> VillainCharacters { get; set; }
         private CharacterStats selectHeroes;
@@ -50,7 +50,7 @@ namespace WikiHero.ViewModels
         }
 
         public DelegateCommand CompareCharacter { get; set; }
-        public CompareCharactersPageViewModel(INavigationService navigationService, IPageDialogService dialogService, IApiComicsVine apiComicsVine, ApiStatsCharacters apiStatsCharacters,string publisher) : base(navigationService, dialogService, apiComicsVine)
+        public CompareCharactersPageViewModel(INavigationService navigationService, IPageDialogService dialogService, IApiComicsVine apiComicsVine, IApiCharacterStats apiStatsCharacters,string publisher) : base(navigationService, dialogService, apiComicsVine)
         {
             this.apiStatsCharacters = apiStatsCharacters;
             LoadListCommand = new DelegateCommand(async () =>
@@ -64,7 +64,7 @@ namespace WikiHero.ViewModels
             IsBusy = true;
             const string bad = "bad";
             const string good = "good";
-            var stats = await apiStatsCharacters.GetCharacterStats(publisher);
+            var stats = await apiStatsCharacters.CharacterStats(publisher);
             var publishers = stats.Where(e=> e.Biography.Publisher.Contains(publisher));
             HeroesCharacters = new ObservableCollection<CharacterStats>(publishers.Where(e=>e.Biography.Alignment!= bad));
             VillainCharacters = new ObservableCollection<CharacterStats>(publishers.Where(e => e.Biography.Alignment != good));

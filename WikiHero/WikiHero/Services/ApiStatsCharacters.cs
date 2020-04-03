@@ -10,7 +10,7 @@ using Xamarin.Essentials;
 
 namespace WikiHero.Services
 {
-    public class ApiStatsCharacters
+    public class ApiStatsCharacters : IApiCharacterStats
     {
         public ApiStatsCharacters()
         {
@@ -25,20 +25,21 @@ namespace WikiHero.Services
             }
             return true;
         }
-        public async Task<List<CharacterStats>> GetCharacterStats(string publisher)
+        
+
+        public async Task<List<CharacterStats>> CharacterStats(string publisher)
         {
-            if (!NetworkAvalible($"{nameof(GetCharacterStats)}/{publisher}"))
+            if (!NetworkAvalible($"{nameof(CharacterStats)}/{publisher}"))
             {
                 await Task.Yield();
-                return Barrel.Current.Get<List<CharacterStats>>(key: $"{nameof(GetCharacterStats)}/{publisher}");
+                return Barrel.Current.Get<List<CharacterStats>>(key: $"{nameof(CharacterStats)}/{publisher}");
             }
 
             var getRequest = RestService.For<IApiCharacterStats>(Config.UrlApiCharactersStats);
-            var stats = await getRequest.CharacterStats();
-            var characters = stats.Where(e => e.Biography.Publisher != null).ToList(); 
-            Barrel.Current.Add(key: $"{nameof(GetCharacterStats)}/{publisher}", characters, expireIn: TimeSpan.FromDays(1));
+            var stats = await getRequest.CharacterStats(publisher);
+            var characters = stats.Where(e => e.Biography.Publisher != null).ToList();
+            Barrel.Current.Add(key: $"{nameof(CharacterStats)}/{publisher}", characters, expireIn: TimeSpan.FromDays(1));
             return characters;
-
         }
     }
 }

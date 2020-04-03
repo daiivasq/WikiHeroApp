@@ -10,6 +10,6 @@ namespace WikiHero.Services
     public interface IApiCharacterStats
     {
         [Get("/all.json")]
-        Task<List<CharacterStats>> CharacterStats();
+        Task<List<CharacterStats>> CharacterStats(string publisher);
     }
 }

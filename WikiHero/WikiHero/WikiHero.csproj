@@ -34,10 +34,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Converters\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Compile Update="Views\ControlsViews\CollectionStats.xaml.cs">
       <DependentUpon>CollectionStats.xaml</DependentUpon>
     </Compile>
