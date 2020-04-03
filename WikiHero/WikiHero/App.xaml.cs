@@ -42,6 +42,7 @@ namespace WikiHero
             containerRegistry.RegisterForNavigation<NavigationPage>(); 
             containerRegistry.RegisterForNavigation<SharedTransitionNavigationPage>();
             containerRegistry.RegisterForNavigation<NextPage, NextPageViewModel>();
+            containerRegistry.RegisterForNavigation<VideoPage, VideoPageViewModel>();
 
             containerRegistry.RegisterForNavigation<MarvelCharactersPage, MarvelCharacterPageViewModel>();
             containerRegistry.RegisterForNavigation<MarvelVolumePage, MarvelVolumePageViewModel>();

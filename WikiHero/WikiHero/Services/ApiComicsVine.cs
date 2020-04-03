@@ -21,7 +21,7 @@ namespace WikiHero.Services
         }
 
 
-        public async Task<ResultCharacter> GetMoreCharacter(string api_key, int offset,string publisher)
+        public async Task<ResultCharacters> GetMoreCharacter(string api_key, int offset,string publisher)
         {
             var getRequest = RestService.For<IApiComicsVine>(Config.UrlApiComicsVine);
             var characters = await getRequest.GetMoreCharacter(Config.Apikey, offset, publisher);
@@ -42,7 +42,7 @@ namespace WikiHero.Services
             return volumes; ;
         }
 
-        public async Task<ResultCharacter> GetCharacter(string api_key, string publisher)
+        public async Task<ResultCharacters> GetCharacter(string api_key, string publisher)
         {
            
             var getRequest = RestService.For<IApiComicsVine>(Config.UrlApiComicsVine);
@@ -127,7 +127,7 @@ namespace WikiHero.Services
             return recentVolumes;
         }
 
-        public async Task<ResultCharacter> GetRecentCharacters(string api_key, string publisher)
+        public async Task<ResultCharacters> GetRecentCharacters(string api_key, string publisher)
         {
            
             var getRequest = RestService.For<IApiComicsVine>(Config.UrlApiComicsVine);
@@ -141,9 +141,9 @@ namespace WikiHero.Services
             var getRequest = RestService.For<IApiComicsVine>(Config.UrlApiComicsVine);
             var team = await getRequest.GetTeams(Config.Apikey, publisher);
             return team;
-        }
+        }   
 
-        public async Task<ResultCharacter> SearchCharacters(string name, string api_key, int offset, string publisher)
+        public async Task<ResultCharacters> SearchCharacters(string name, string api_key, int offset, string publisher)
         {
             
             var getRequest = RestService.For<IApiComicsVine>(Config.UrlApiComicsVine);
@@ -151,11 +151,11 @@ namespace WikiHero.Services
             return character;
         }
 
-        public async Task<Character> FindCharacter(string id, string api_key, string publisher)
+        public async Task<ResultCharacter> FindCharacter(int id, string api_key, string publisher)
         {
-            HttpClient client = new HttpClient();
-            var characters = await client.GetStringAsync($"{Config.UrlApiComicsVine}/api/character/{id}?format=json&api_key={Config.Apikey}");
-            return JsonConvert.DeserializeObject<Character>(characters);
+            var getRequest = RestService.For<IApiComicsVine>(Config.UrlApiComicsVine);
+            var character = await getRequest.FindCharacter(id, Config.Apikey,publisher);
+            return character;
         }
 
         public async Task<ResultVideo> GetVideo(string api_key, string name, string publisher)
@@ -165,43 +165,41 @@ namespace WikiHero.Services
             return videos; ;
         }
 
-        public async Task<ResultTeam> FindTeamsCharacter(string api_key, string filter, string publisher)
+        public async Task<ResultTeam> FindTeamsCharacter(string api_key, string filter)
         {
 
             var getRequest = RestService.For<IApiComicsVine>(Config.UrlApiComicsVine);
-            var characterTeam = await getRequest.FindTeamsCharacter(filter, Config.Apikey, publisher);
+            var characterTeam = await getRequest.FindTeamsCharacter(Config.Apikey, filter);
             return characterTeam;
         }
 
-        public async Task<ResultCharacter> FindEnenmyCharacter(string api_key, string filter, string publisher)
+        public async Task<ResultCharacters> FindEnenmyCharacter(string api_key, string filter)
         {
 
             var getRequest = RestService.For<IApiComicsVine>(Config.UrlApiComicsVine);
-            var characterEnemy = await getRequest.FindEnenmyCharacter(filter, Config.Apikey, publisher);
+            var characterEnemy = await getRequest.FindEnenmyCharacter(Config.Apikey, filter);
             return characterEnemy;
         }
-
-        public async Task<ResultComics> FindCharacterComics(string api_key, string filter, string publisher)
+        public async Task<ResultVolume> FindCharactersVolumes(string api_key, string filter)
         {
 
             var getRequest = RestService.For<IApiComicsVine>(Config.UrlApiComicsVine);
-            var comics = await getRequest.FindCharacterComics(filter, Config.Apikey, publisher);
-            return comics;
-        }
-
-        public async Task<ResultVolume> FindCharactersVolumes(string api_key, string filter, string publisher)
-        {
-
-            var getRequest = RestService.For<IApiComicsVine>(Config.UrlApiComicsVine);
-            var volumes = await getRequest.FindCharactersVolumes(filter, Config.Apikey, publisher);
+            var volumes = await getRequest.FindCharactersVolumes(Config.Apikey,filter);
             return volumes;
         }
 
-        public async Task<ResultMovies> FindCharactersMovies(string api_key, string filter, string publisher)
+        public async Task<ResultMovies> FindCharactersMovies(string api_key, string filter)
         {
             var getRequest = RestService.For<IApiComicsVine>(Config.UrlApiComicsVine);
-            var movies = await getRequest.FindCharactersMovies(filter, Config.Apikey, publisher);
+            var movies = await getRequest.FindCharactersMovies(Config.Apikey, filter);
             return movies;
+        }
+
+        public async Task<ResultComics> FindCharacterComics(string api_key, string filter)
+        {
+            var getRequest = RestService.For<IApiComicsVine>(Config.UrlApiComicsVine);
+            var comics = await getRequest.FindCharacterComics(Config.Apikey, filter);
+            return comics   ;
         }
     }
 }

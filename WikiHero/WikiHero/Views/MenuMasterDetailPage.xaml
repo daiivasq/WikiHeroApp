@@ -15,10 +15,8 @@
                             SelectionMode="Single">
                 <CollectionView.Header>
                     <StackLayout>
-                        <ff:CachedImage Source="MarvelLogoCircle.png" BackgroundColor="White" HeightRequest="200">
-                                <ff:CachedImage.Transformations>
-                                    <ffTransformations:CircleTransformation/>
-                                </ff:CachedImage.Transformations>
+                        <ff:CachedImage Source="MarvelLLL.png" BackgroundColor="{StaticResource MarvelPrincipalColor}" HeightRequest="200">
+                            
                             </ff:CachedImage>
                     </StackLayout>
                 </CollectionView.Header>

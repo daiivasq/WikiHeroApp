@@ -45,33 +45,17 @@
                                 <state:SkeletonView BackgroundColor="#cccc" HeightRequest="250" Grid.ColumnSpan="3" >
                                 </state:SkeletonView>
                                 <Image BackgroundColor="Red" Grid.Column="1"/>
-                                <Label Text="{Binding Path=ItemSelected.TitleSeries,Source={x:Reference segment}}"
-                                     FontSize="22" 
-                                     Style="{StaticResource LabelKeY}"
-                                       TextColor="#cccc"
-                                    />
+                             
                                 <state:SkeletonView CornerRadius="6" HeightRequest="160" BackgroundColor="#cccc" Grid.Row="2" Grid.Column="0">
                                 </state:SkeletonView>
                                 <state:SkeletonView CornerRadius="6" HeightRequest="160" BackgroundColor="#cccc" Grid.Row="2" Grid.Column="1"/>
                                 <state:SkeletonView CornerRadius="6" HeightRequest="6" BackgroundColor="#cccc" Grid.Row="2" Grid.Column="2"/>
-                                <Label Text="{Binding Path=ItemSelected.TitleSeries,Source={x:Reference segment}}" 
-                                     FontSize="22" 
-                                        TextColor="#cccc"
-                                    HorizontalTextAlignment="Center"  
-                                     Style="{StaticResource LabelKeY}" />
                                 <state:SkeletonView CornerRadius="6" HeightRequest="160" BackgroundColor="#cccc" Grid.Row="4" Grid.Column="0"/>
                                 <state:SkeletonView CornerRadius="6" HeightRequest="160" BackgroundColor="#cccc" Grid.Row="4" Grid.Column="1"/>
                                 <state:SkeletonView CornerRadius="6" HeightRequest="160" BackgroundColor="#cccc" Grid.Row="4" Grid.Column="2"/>
-                                <Label Text="{Binding Path=ItemSelected.TitleVolume,Source={x:Reference segment}}" 
-                                       FontSize="22" 
-                                        TextColor="#cccc"
-                                       HorizontalTextAlignment="Center"
-                                     Grid.Row="7"
-                                    Style="{StaticResource LabelKeY}" />
                                 <state:SkeletonView CornerRadius="6" HeightRequest="160" BackgroundColor="#cccc" Grid.Row="6" Grid.Column="0"/>
                                 <state:SkeletonView CornerRadius="6" HeightRequest="160" BackgroundColor="#cccc" Grid.Row="6" Grid.Column="1"/>
                                 <state:SkeletonView CornerRadius="6" HeightRequest="160" BackgroundColor="#cccc" Grid.Row="6" Grid.Column="2"/>
-
                             </Grid>
                         </state:StateView>
                     </state:StateLayout.StateViews>

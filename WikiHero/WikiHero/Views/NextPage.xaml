@@ -13,7 +13,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/> 
             </Grid.RowDefinitions>
-            <ff:CachedImage Source="ironman.gif" 
+            <ff:CachedImage Source="{Binding ImagePublisher}" 
                             Aspect="AspectFill"
                         />
 
