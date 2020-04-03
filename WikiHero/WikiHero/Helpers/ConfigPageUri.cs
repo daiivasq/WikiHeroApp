@@ -22,6 +22,10 @@ namespace WikiHero.Helpers
         public const string DcSeriesPage = "/DcSeriesPage";
         public const string MarvelSeriesPage = "/MarvelSeriesPage";
 
+        public const string DcFavoritesPage = "/DcFavoritesPage";
+        public const string MarvelFavoritesPage = "/MarvelFavoritesPage";
+
+
         public const string MenuMasterDetailPage = "/MenuMasterDetailPage";
         public const string VsCharacterPage = "/VsCharacterPage";
 
@@ -30,7 +34,8 @@ namespace WikiHero.Helpers
         public const string DetailSeriesPage = "/DetailSeriesPage";
         public const string DetailCharactersPage = "/DetailCharactersPage";
         public const string DetailComicPage = "/DetailComicPage";
-        public const string NextPage = "/NextPage"; 
+        public const string NextPage = "/NextPage";
+        public const string VideoPage = "/VideoPage";
 
 
     }

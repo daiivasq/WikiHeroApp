@@ -49,27 +49,29 @@ namespace WikiHero.ViewModels
 
         public void OnNavigatedTo(INavigationParameters parameters)
         {
-            const string marvel = "Marvel";
-            const string dc = "Dc";
+            const string marvel = "ironman.gif";
+            const string dc = "batman.gif";
             MarvelOrDc = (string)parameters[ConfigPageUri.MenuMasterDetailPage];
             switch (MarvelOrDc)
             {
                 case marvel:
                     ItemPages = new List<ItemPage>() {
-                    new ItemPage("Homemarvel","Home",ConfigPageUri.MarvelHomePage),
-                    new ItemPage("ic_action_tv","Series",ConfigPageUri.MarvelSeriesPage),
+                    new ItemPage("marvelhome","Home",ConfigPageUri.MarvelHomePage),
+                    new ItemPage("monitor","Series",ConfigPageUri.MarvelSeriesPage),
                     new ItemPage("comic","Volumes",ConfigPageUri.MarvelVolumePage),
-                    new ItemPage("DcCharacters","Characters",ConfigPageUri.MarvelCharactersPage),
-                    new ItemPage("swordImage","Vs",ConfigPageUri.MarvelCompareCharacterPage),
+                    new ItemPage("superhero","Characters",ConfigPageUri.MarvelCharactersPage),
+                    new ItemPage("sword","Vs",ConfigPageUri.MarvelCompareCharacterPage),
+                     new ItemPage("star","favorites",ConfigPageUri.MarvelFavoritesPage),
             };
                     break;
                 case dc:
                     ItemPages = new List<ItemPage>() {
-                 new ItemPage("Homemarvel","Home",ConfigPageUri.DcHomePage),
-                 new ItemPage("ic_action_tv","Series",ConfigPageUri.DcSeriesPage),
+                 new ItemPage("dchome","Home",ConfigPageUri.DcHomePage),
+                 new ItemPage("monitor","Series",ConfigPageUri.DcSeriesPage),
                  new ItemPage("comic","Volumes",ConfigPageUri.DcVolumePage),
-                 new ItemPage("DcCharacters","Characters",ConfigPageUri.DcComicsCharactersPage),
-                 new ItemPage("swordImage.png","Vs",ConfigPageUri.MarvelCompareCharacterPage),
+                 new ItemPage("superhero","Characters",ConfigPageUri.DcComicsCharactersPage),
+                 new ItemPage("sword","Vs",ConfigPageUri.MarvelCompareCharacterPage),
+                 new ItemPage("star","favorites",ConfigPageUri.DcFavoritesPage),
               };
                     break;
 

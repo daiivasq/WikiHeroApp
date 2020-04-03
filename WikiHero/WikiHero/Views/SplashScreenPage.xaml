@@ -14,14 +14,16 @@
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Image Source="logoApp.png" 
                 VerticalOptions="Center"
+                   Grid.Row="0"
                    Grid.RowSpan="2"
-                   Grid.Column="3"
+                   Grid.Column="0"
+                   Grid.ColumnSpan="3"
                    HorizontalOptions="Center"
                    />
         </Grid>
