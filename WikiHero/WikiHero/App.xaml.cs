@@ -35,6 +35,7 @@ namespace WikiHero
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
             containerRegistry.RegisterInstance<IApiComicsVine>(new ApiComicsVine());
+            containerRegistry.RegisterInstance<IDBFavorites>(new DBFavorites());
             containerRegistry.RegisterInstance<IApiCharacterStats>(new ApiStatsCharacters());
             containerRegistry.RegisterForNavigation<MarvelVsDcComicsPage, MarvelVsDcComicsPageViewModel>();
             containerRegistry.RegisterForNavigation<DetailSeriesPage, DetailSeriesPageViewModel>();
