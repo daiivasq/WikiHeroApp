@@ -23,22 +23,13 @@ namespace WikiHero.ViewModels
         public ObservableCollection<LocationC> LocationCs { get; set; }
        private List<Task> loadTask;
 
-        public DetailComicPageViewModel(INavigationService navigationService, IPageDialogService dialogService, IApiComicsVine apiComicsVine,IDBFavorites dBFavorites) : base(navigationService, dialogService, apiComicsVine)
+        public DetailComicPageViewModel(INavigationService navigationService, IPageDialogService dialogService, IApiComicsVine apiComicsVine) : base(navigationService, dialogService, apiComicsVine)
         {
 
             ShareCommand = new DelegateCommand(async () =>
             {
                 await SharedOpcion();
             });
-            FavoriteCommand = new DelegateCommand(async () =>
-            {
-                const string Marvel = "Marvel";
-                const string Dc = "DC";
-                dBFavorites.AddComic(Marvel,Comic);
-
-
-            });
-
         }
 
         async Task LoadComics(int idcomics)

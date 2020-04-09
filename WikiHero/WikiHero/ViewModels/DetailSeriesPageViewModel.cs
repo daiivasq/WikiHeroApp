@@ -18,20 +18,13 @@ namespace WikiHero.ViewModels
         public DelegateCommand LoadCommand { get; set; }
         public Serie Serie { get; set; } = new Serie();
         public DelegateCommand ShareCommand { get; set; }
-        public DetailSeriesPageViewModel(INavigationService navigationService, IPageDialogService dialogService, IApiComicsVine apiComicsVine,IDBFavorites dBFavorites) : base(navigationService, dialogService, apiComicsVine)
+        public DetailSeriesPageViewModel(INavigationService navigationService, IPageDialogService dialogService, IApiComicsVine apiComicsVine) : base(navigationService, dialogService, apiComicsVine)
         {
 
             ShareCommand = new DelegateCommand(async () =>
             {
                 await SharedOpcion();
             });
-            FavoriteCommand = new DelegateCommand(async () =>
-            {
-                const string Marvel = "Marvel";
-                const string Dc = "DC";
-                dBFavorites.AddSeries(Marvel, Serie);
-            });
-
         }
         async Task LoadEpisode(int idSeries)
         {

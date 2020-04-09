@@ -6,25 +6,24 @@
              xmlns:controlsviews="clr-namespace:WikiHero.Views.ControlsViews"
              mc:Ignorable="d"
              x:Class="WikiHero.Views.DcComicsViews.DcCharactersPage">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Changed"
+                     Command="{Binding ChangedViewCommand}"/>
+    </ContentPage.ToolbarItems>
     <ContentPage.Content>
-
         <StackLayout>
+
             <Frame CornerRadius="20" HeightRequest="20" Opacity="0.5" HasShadow="True" >
                 <SearchBar HeightRequest="50"
                            SearchCommand="{Binding SearchCommand}"
-                           x:Name="search"
                            Text="{Binding Text}"/>
             </Frame>
-            <controlsviews:ConnectivityView 
-                                            ImageView="ComicsBatmanJokericon"
-                                            TextView="This is not a joke of mine you don't have internet"/>
-            <RefreshView Command="{Binding RefreshCommand}" 
-                         IsRefreshing="{Binding IsBusy}" >
-
-                <controlsviews:CollectionViewHorizontal ItemsSource="{Binding Characters}" 
-                                                        ColorFrame="{StaticResource DCPrincipalColor}"/>
-
-            </RefreshView>
+            <controlsviews:ConnectivityView  ImageView="ComicsBatmanJokericon"
+                                            TextView="This is not a joke of mine you don't have internet"
+                                            HorizontalOptions="CenterAndExpand"
+                                            VerticalOptions="CenterAndExpand"/>
+            <controlsviews:ControlListView ItemsSource="{Binding Characters}"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
+  

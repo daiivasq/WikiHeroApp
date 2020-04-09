@@ -79,7 +79,7 @@
                     </CarouselView.ItemTemplate>
                 </CarouselView>
                 <Label HeightRequest="1" BackgroundColor="Black"/>
-                <Label Text="{Binding TitleSeries}"
+                <Label Text="Series"
                            FontSize="22" 
                            Style="{StaticResource LabelKeY}"
                        />
@@ -87,23 +87,27 @@
                                                               WidthRequest="200" 
                                                               ItemsSource="{Binding ListSeries}"
                                                                 SpanCollection="1"
+                                                          SelectItem="{Binding SelectSerie,Mode=TwoWay}"
                                                             />
-                <Label Text="{Binding TitleSeries}" 
+                    <Label Text="Characters" 
                            FontSize="22" 
                            HorizontalTextAlignment="Center"  
                            Style="{StaticResource LabelKeY}" />
-                <controlsviews:CollectionViewHorizontal   HeightRequest="200"
+                    <controlsviews:CollectionViewHorizontal   HeightRequest="200"
                                                             WidthRequest="200" 
                                                             ItemsSource="{Binding ListCharacters}"
                                                              SpanCollection="1"
+                                                          SelectItem="{Binding SelectCharacter,Mode=TwoWay}"
                                                               />
-                <Label Text="{Binding TitleVolume}" TextColor="Black" FontSize="22" HorizontalTextAlignment="Center"
+                    <Label Text="Volumes" TextColor="Black" FontSize="22" HorizontalTextAlignment="Center"
                            Grid.Row="7"
                            Style="{StaticResource LabelKeY}" />
-                <controlsviews:CollectionViewHorizontal  HeightRequest="200"
+                    <controlsviews:CollectionViewHorizontal  HeightRequest="200"
                                                              WidthRequest="200" 
+                                                         SelectItem="{Binding SelectVolumes,Mode=TwoWay}"
                                                              ItemsSource="{Binding ListVolumes}"
                                                              SpanCollection="1"/>
+                    
 
             </StackLayout>
         </ScrollView>

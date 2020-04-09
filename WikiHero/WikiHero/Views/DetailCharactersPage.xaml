@@ -4,7 +4,7 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:controlsviews="clr-namespace:WikiHero.Views.ControlsViews"
-             xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" xmlns:ffTrans="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
              mc:Ignorable="d"
              x:Class="WikiHero.Views.DetailCharactersPage">
     <ContentPage.Content>
@@ -33,10 +33,22 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <Label BackgroundColor="Chartreuse"
+                <ff:CachedImage Source="{Binding Video.Image.MediumUrl}"
                        Grid.Row="0"
                        Grid.Column="0"
-                       Grid.ColumnSpan="4" />
+                       Grid.ColumnSpan="4" >
+                    <ff:CachedImage.Transformations>
+                        <ffTrans:BlurredTransformation Radius="10"/>
+                    </ff:CachedImage.Transformations>
+                </ff:CachedImage>
+                <ImageButton Grid.Row="0"
+                        Grid.ColumnSpan="4"
+                        VerticalOptions="CenterAndExpand"
+                        Command="{Binding GoToVideo}"
+                             Aspect="AspectFit"
+                             BackgroundColor="Transparent"
+                        Source="ic_play_circle_filled.png"
+                        HorizontalOptions="CenterAndExpand"/>
                 <Label Text="{Binding Character.Name}"
                        TextColor="Black"
                        FontSize="25"
@@ -63,7 +75,6 @@
                        FontSize="18"
                         FontFamily="{StaticResource ComicTansNormalFont}"
                         />
-                <ImageButton Command="{Binding FavoriteCommand}" Source="ic_add.png" Grid.Row="2" Grid.Column="2" />
                 <ff:CachedImage Source="ic_share.png" Grid.Row="2" Grid.Column="3" >
                     <ff:CachedImage.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding ShareCommand}" NumberOfTapsRequired="1"/>

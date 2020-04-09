@@ -8,7 +8,8 @@
              x:Class="WikiHero.Views.VideoPage">
     <ContentPage.Content>
         <StackLayout>
-            <o:VideoPlayer Source="https://www.youtube.com/watch?v=1xaKkOmyFeA" />
+            <o:VideoPlayer Source="{Binding Video.HighUrl}" 
+                           AutoPlay="True"/>
 
         </StackLayout>
     </ContentPage.Content>

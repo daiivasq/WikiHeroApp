@@ -7,6 +7,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WikiHero.Helpers;
 using WikiHero.Models;
 using WikiHero.Services;
 using Xamarin.Essentials;
@@ -21,20 +22,25 @@ namespace WikiHero.ViewModels
         public ObservableCollection<Movie> Movies { get; set; }
         public ObservableCollection<Volume> Volumes { get; set; }
         public ObservableCollection<Team> Teams { get; set; }
+        public Video Video { get; set; }
 
         public Character Character { get; set; }
         public List<Task> LoadTask { get; set; }
         public DelegateCommand LoadCommand { get; set; }
         public DelegateCommand ShareCommand { get; set; }
-        public DetailCharactersPageViewModel(INavigationService navigationService, IPageDialogService dialogService, IApiComicsVine apiComicsVine,IDBFavorites dBFavorites) : base(navigationService, dialogService, apiComicsVine)
+        public DelegateCommand GoToVideo { get; set; }
+        public DetailCharactersPageViewModel(INavigationService navigationService, IPageDialogService dialogService, IApiComicsVine apiComicsVine) : base(navigationService, dialogService, apiComicsVine)
         {
             ShareCommand = new DelegateCommand(async () =>
             {
                 await SharedOpcion();
             });
-            FavoriteCommand = new DelegateCommand(async () =>
+            
+            GoToVideo = new DelegateCommand(async () =>
             {
-                dBFavorites.AddCharacter(Character.Publisher.Name,Character);
+                var param = new NavigationParameters();
+                param.Add($"{nameof(Video)}", Video);
+                await navigationService.NavigateAsync(new Uri(ConfigPageUri.VideoPage,UriKind.Relative), param);
             });
 
         }
@@ -45,6 +51,24 @@ namespace WikiHero.ViewModels
             {
                 var character = await apiComicsVine.FindCharacter(id, Config.Apikey, null);
                 Character = character.Character;
+            }
+            catch (Exception err)
+            {
+
+                await dialogService.DisplayAlertAsync("Error", $"{err}", "ok");
+            }
+
+        }
+        async Task LoadVideo()
+        {
+            try
+            {
+                var videos = await apiComicsVine.GetVideo(Config.Apikey, Character.Name, null);
+                foreach (var item in videos.Results.Take(1))
+                {
+                    Video = item;
+                }
+              
             }
             catch (Exception err)
             {
@@ -174,7 +198,7 @@ namespace WikiHero.ViewModels
 
             LoadListCommand = new DelegateCommand(async () => {
                 await LoadCharacter(id);
-                LoadTask = new List<Task>() { LoadCharacterEnemyy(Character), LoadCVolumes(Character), LoadMovies(Character), LoadComics(Character), LoadTeams(Character)
+                LoadTask = new List<Task>() {LoadVideo(), LoadCharacterEnemyy(Character), LoadCVolumes(Character), LoadMovies(Character), LoadComics(Character), LoadTeams(Character)
                  };
                 await Task.WhenAll(LoadTask);
             });

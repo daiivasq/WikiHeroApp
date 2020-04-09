@@ -39,17 +39,11 @@ namespace WikiHero.ViewModels
 
      
 
-        public DetailVolumePageViewModel(INavigationService navigationService, IPageDialogService dialogService, IApiComicsVine apiComicsVine,IDBFavorites dBFavorites) : base(navigationService, dialogService, apiComicsVine)
+        public DetailVolumePageViewModel(INavigationService navigationService, IPageDialogService dialogService, IApiComicsVine apiComicsVine) : base(navigationService, dialogService, apiComicsVine)
         {
             ShareCommand = new DelegateCommand(async () =>
             {
                 await SharedOpcion();
-            });
-            FavoriteCommand = new DelegateCommand(async () =>
-            {
-                const string Marvel = "Marvel";
-                const string Dc = "DC";
-                dBFavorites.AddVolume(Marvel, Volume);
             });
         }
         async Task SharedOpcion()

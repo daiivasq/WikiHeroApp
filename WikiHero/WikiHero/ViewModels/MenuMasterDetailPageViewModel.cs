@@ -48,8 +48,7 @@ namespace WikiHero.ViewModels
                     new ItemPage("ic_action_live_tv.png","Series",ConfigPageUri.MarvelSeriesPage),
                     new ItemPage("comic","Volumes",ConfigPageUri.MarvelVolumePage),
                     new ItemPage("MarvelCharacter","Characters",ConfigPageUri.MarvelCharactersPage),
-                    new ItemPage("sword","Vs",ConfigPageUri.MarvelCompareCharacterPage),
-                     new ItemPage("ic_action_playlist_add.png","favorites",ConfigPageUri.MarvelFavoritesPage),
+                    new ItemPage("sword","Vs",ConfigPageUri.MarvelCompareCharacterPage)
                     };
                     break;
                 case Dc:
@@ -57,9 +56,8 @@ namespace WikiHero.ViewModels
                  new ItemPage("dchome","Home",ConfigPageUri.DcHomePage),
                  new ItemPage("ic_action_live_tv","Series",ConfigPageUri.DcSeriesPage),
                  new ItemPage("comic","Volumes",ConfigPageUri.DcVolumePage),
-                 new ItemPage("MarvelCharacter","Characters",ConfigPageUri.DcComicsCharactersPage),
-                 new ItemPage("sword","Vs",ConfigPageUri.MarvelCompareCharacterPage),
-                 new ItemPage("ic_action_playlist_add.png","favorites",ConfigPageUri.DcFavoritesPage),
+                 new ItemPage("superhero_batman_hero_comic.png","Characters",ConfigPageUri.DcComicsCharactersPage),
+                 new ItemPage("sword","Vs",ConfigPageUri.MarvelCompareCharacterPage)
                      };
                     break;
 

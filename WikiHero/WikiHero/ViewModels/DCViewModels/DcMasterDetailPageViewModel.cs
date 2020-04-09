@@ -14,14 +14,7 @@ namespace WikiHero.ViewModels.DCViewModels
     {
         public DcMasterDetailPageViewModel(INavigationService navigationService, IPageDialogService dialogService, IApiComicsVine apiComicsVine) : base(navigationService, dialogService, apiComicsVine, Dc)
         {
-            ItemPages = new List<ItemPage>() {
-                 new ItemPage("dchome","Home",ConfigPageUri.DcHomePage),
-                 new ItemPage("monitor","Series",ConfigPageUri.DcSeriesPage),
-                 new ItemPage("comic","Volumes",ConfigPageUri.DcVolumePage),
-                 new ItemPage("DcCharacter","Characters",ConfigPageUri.DcComicsCharactersPage),
-                 new ItemPage("sword","Vs",ConfigPageUri.MarvelCompareCharacterPage),
-                 new ItemPage("star","favorites",ConfigPageUri.DcFavoritesPage),
-            };
+            
             ChangePageCommand = new DelegateCommand(async () =>
             {
                 await navigationService.NavigateAsync(new Uri($"{ConfigPageUri.MarvelMasterDetailPage}{ConfigPageUri.SharedTransitionNavigationPage}{ConfigPageUri.MarvelHomePage}"));

@@ -17,7 +17,6 @@ namespace WikiHero.ViewModels
 {
     public class HomePageViewModel : BaseViewModel
     {
-        public List<TabOption> TabOptions { get; set; }
         public List<Task> ListTask { get; set; }
         public string PublisherPrincipal { get; set; }
         public string PublisherSecond { get; set; }
@@ -67,18 +66,18 @@ namespace WikiHero.ViewModels
         public ObservableCollection<Character> ListCharacters { get; set; }
         public ObservableCollection<Serie> ListSeries { get; set; }
         public ObservableCollection<Volume> ListVolumes { get; set; }
-        private Serie selectComics;
-        public Serie SelectComics
+        private Volume selectVolume;
+        public Volume SelectVolumes
         {
-            get { return selectComics; }
+            get { return selectVolume; }
             set
             {
-                selectComics = value;
-                if (selectComics != null)
+                selectVolume = value;
+                if (selectVolume != null)
                 {
                     NavigateDetailCommand = new DelegateCommand(async () =>
                     {
-                        await NavigationToDetailSerie(SelectComics);
+                        await NavigationToDetailComics(SelectVolumes);
                     });
                     NavigateDetailCommand.Execute();
 

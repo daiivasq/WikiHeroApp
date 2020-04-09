@@ -70,7 +70,7 @@ namespace WikiHero.Services
 
         public async Task<ResultVolume> GetMVolumes(string api_key, string publisher)
         {
-            if (Connectivity.NetworkAccess != NetworkAccess.Internet || !Barrel.Current.IsExpired(key: $"{nameof(GetMVolumes)}/{publisher}"))
+            if (Connectivity.NetworkAccess != NetworkAccess.Internet && !Barrel.Current.IsExpired(key: $"{nameof(GetMVolumes)}/{publisher}"))
             {
                 return Barrel.Current.Get<ResultVolume>(key: $"{nameof(GetMVolumes)}/{publisher}");
             }
@@ -127,7 +127,7 @@ namespace WikiHero.Services
 
         public async Task<ResultSeries> GetRecentSeries(string api_key, int offset, string publisher)
         {
-            if (Connectivity.NetworkAccess != NetworkAccess.Internet || !Barrel.Current.IsExpired(key: $"{nameof(GetRecentSeries)}/{publisher}"))
+            if (Connectivity.NetworkAccess != NetworkAccess.Internet && !Barrel.Current.IsExpired(key: $"{nameof(GetRecentSeries)}/{publisher}"))
             {
                return Barrel.Current.Get<ResultSeries>(key: $"{nameof(GetRecentSeries)}/{publisher}");
             }
@@ -139,7 +139,7 @@ namespace WikiHero.Services
 
         public async Task<ResultVolume> GetRecentVolumes(int offset, string api_key, string publisher)
         {
-            if (Connectivity.NetworkAccess != NetworkAccess.Internet || !Barrel.Current.IsExpired(key: $"{nameof(GetRecentVolumes)}/{publisher}"))
+            if (Connectivity.NetworkAccess != NetworkAccess.Internet && !Barrel.Current.IsExpired(key: $"{nameof(GetRecentVolumes)}/{publisher}"))
             {
                 return Barrel.Current.Get<ResultVolume>(key: $"{nameof(GetRecentVolumes)}/{publisher}");
             }
@@ -152,7 +152,7 @@ namespace WikiHero.Services
 
         public async Task<ResultCharacters> GetRecentCharacters(string api_key, string publisher)
         {
-            if (Connectivity.NetworkAccess != NetworkAccess.Internet || !Barrel.Current.IsExpired(key: $"{nameof(GetRecentCharacters)}/{publisher}"))
+            if (Connectivity.NetworkAccess != NetworkAccess.Internet && !Barrel.Current.IsExpired(key: $"{nameof(GetRecentCharacters)}/{publisher}"))
             {
                 return Barrel.Current.Get<ResultCharacters>(key: $"{nameof(GetRecentCharacters)}/{publisher}");
             }
@@ -164,7 +164,7 @@ namespace WikiHero.Services
 
         public async Task<ResultTeam> GetTeams(string api_key, string publisher)
         {
-            if (Connectivity.NetworkAccess != NetworkAccess.Internet || !Barrel.Current.IsExpired(key: $"{nameof(GetTeams)}/{publisher}"))
+            if (Connectivity.NetworkAccess != NetworkAccess.Internet && !Barrel.Current.IsExpired(key: $"{nameof(GetTeams)}/{publisher}"))
             {
                 return Barrel.Current.Get<ResultTeam>(key: $"{nameof(GetTeams)}/{publisher}");
             }
