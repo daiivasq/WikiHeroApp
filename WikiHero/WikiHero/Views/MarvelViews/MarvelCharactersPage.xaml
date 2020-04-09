@@ -13,16 +13,16 @@
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout>
-            <controlsviews:ConnectivityView
-                                            TextView="OOH NO !! Hydra has taken away the Internet, look for a fast connection"
-                                            ImageView="InternetFailVision"
-                                            HorizontalOptions="CenterAndExpand"
-                                            VerticalOptions="CenterAndExpand"/>
+
             <Frame CornerRadius="20" HeightRequest="20" Opacity="0.5" HasShadow="True" >
                 <SearchBar HeightRequest="50"
                            SearchCommand="{Binding SearchCommand}"
                            Text="{Binding Text}"/>
             </Frame>
+            <controlsviews:ConnectivityView TextView="OOH NO !! Hydra has taken away the Internet, look for a fast connection"
+                                            ImageView="InternetFailVision"
+                                            HorizontalOptions="CenterAndExpand"
+                                            VerticalOptions="CenterAndExpand"/>
             <controlsviews:ControlListView ItemsSource="{Binding Characters}"/>
         </StackLayout>
     </ContentPage.Content>

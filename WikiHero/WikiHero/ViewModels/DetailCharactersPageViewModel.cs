@@ -26,11 +26,15 @@ namespace WikiHero.ViewModels
         public List<Task> LoadTask { get; set; }
         public DelegateCommand LoadCommand { get; set; }
         public DelegateCommand ShareCommand { get; set; }
-        public DetailCharactersPageViewModel(INavigationService navigationService, IPageDialogService dialogService, IApiComicsVine apiComicsVine) : base(navigationService, dialogService, apiComicsVine)
+        public DetailCharactersPageViewModel(INavigationService navigationService, IPageDialogService dialogService, IApiComicsVine apiComicsVine,IDBFavorites dBFavorites) : base(navigationService, dialogService, apiComicsVine)
         {
             ShareCommand = new DelegateCommand(async () =>
             {
                 await SharedOpcion();
+            });
+            FavoriteCommand = new DelegateCommand(async () =>
+            {
+                dBFavorites.AddCharacter(Character.Publisher.Name,Character);
             });
 
         }
@@ -127,6 +131,7 @@ namespace WikiHero.ViewModels
             }
 
         }
+
         async Task SharedOpcion()
         {
             await Share.RequestAsync(new ShareTextRequest

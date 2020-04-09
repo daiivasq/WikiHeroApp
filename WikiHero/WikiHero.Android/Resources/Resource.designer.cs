@@ -12521,34 +12521,37 @@ namespace WikiHero.Droid
 			public const int notify_panel_notification_icon_bg = 2131165355;
 			
 			// aapt resource value: 0x7F0700AC
-			public const int powerImage = 2131165356;
+			public const int piqueo_de_ojo = 2131165356;
 			
 			// aapt resource value: 0x7F0700AD
-			public const int speedImage = 2131165357;
+			public const int powerImage = 2131165357;
 			
 			// aapt resource value: 0x7F0700AE
-			public const int SplashGray = 2131165358;
+			public const int speedImage = 2131165358;
 			
 			// aapt resource value: 0x7F0700AF
-			public const int strengthImage = 2131165359;
+			public const int SplashGray = 2131165359;
 			
 			// aapt resource value: 0x7F0700B0
-			public const int sword = 2131165360;
+			public const int strengthImage = 2131165360;
 			
 			// aapt resource value: 0x7F0700B1
-			public const int swordImage = 2131165361;
+			public const int sword = 2131165361;
 			
 			// aapt resource value: 0x7F0700B2
-			public const int tooltip_frame_dark = 2131165362;
+			public const int swordImage = 2131165362;
 			
 			// aapt resource value: 0x7F0700B3
-			public const int tooltip_frame_light = 2131165363;
+			public const int tooltip_frame_dark = 2131165363;
 			
 			// aapt resource value: 0x7F0700B4
-			public const int versusPrincipal = 2131165364;
+			public const int tooltip_frame_light = 2131165364;
 			
 			// aapt resource value: 0x7F0700B5
-			public const int VS3 = 2131165365;
+			public const int versusPrincipal = 2131165365;
+			
+			// aapt resource value: 0x7F0700B6
+			public const int VS3 = 2131165366;
 			
 			static Drawable()
 			{

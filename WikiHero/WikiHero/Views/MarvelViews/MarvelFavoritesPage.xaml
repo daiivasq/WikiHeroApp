@@ -53,7 +53,7 @@
                        HorizontalOptions="CenterAndExpand"
                        />
                         <controlsviews:CollectionFavoritesView
-                 
+                 ItemsSource="{Binding Characters }"
                     HeightRequest="200"
                     VerticalOptions="CenterAndExpand"
                     Grid.ColumnSpan="4"
@@ -71,7 +71,7 @@
                        HorizontalOptions="CenterAndExpand"
                        />
                         <controlsviews:CollectionFavoritesView
-                 
+                 ItemsSource="{Binding Comics}"
                     HeightRequest="200"
                     VerticalOptions="CenterAndExpand"
                     Grid.ColumnSpan="2"
@@ -109,7 +109,7 @@
                                 HorizontalOptions="CenterAndExpand"
                        />
                         <controlsviews:CollectionFavoritesView
-                 
+                 ItemsSource="{Binding Volumes}"
                     HeightRequest="200"
                     VerticalOptions="CenterAndExpand"
                     Grid.ColumnSpan="4"

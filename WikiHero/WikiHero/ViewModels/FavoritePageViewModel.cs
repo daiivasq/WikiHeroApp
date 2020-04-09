@@ -20,9 +20,9 @@ namespace WikiHero.ViewModels
             Publisher = publisherPrincipal;
             GetCharacter();
             GetComic();
-            
             GetSeries();
             GetVolume();
+
 
         }
 
@@ -32,26 +32,44 @@ namespace WikiHero.ViewModels
         public ObservableCollection<Comic> Comics { get; set; } = new ObservableCollection<Comic>();
         
 
-        void GetSeries ()
+        protected void GetSeries ()
         {
             var series = dBFavorite.GetSeries(Publisher);
-            Series  = new ObservableCollection<Serie>(series); 
+            if (Series != null)
+            {
+                Series = new ObservableCollection<Serie>(series);
+
+            }
+        
         }
-        void GetCharacter() 
+        protected void GetCharacter() 
         {
+
             var character = dBFavorite.GetCharacter(Publisher);
-            Characters = new ObservableCollection<Character>(character);
+            if (character != null)
+            {
+                Characters = new ObservableCollection<Character>(character);
+            }
+
         }
-        void GetComic() 
+       protected void GetComic() 
         {
             var comics = dBFavorite.GetComic(Publisher);
-            Comics = new ObservableCollection<Comic>(comics);
+            if (comics != null)
+            {
+                Comics = new ObservableCollection<Comic>(comics);
+            }
+
         }
         
-        void GetVolume() 
+       protected void GetVolume() 
         {
             var volumes = dBFavorite.GetVolume(Publisher);
-            Volumes = new ObservableCollection<Volume>(volumes);
+            if (volumes != null)
+            {
+                Volumes = new ObservableCollection<Volume>(volumes);
+            }
+
         }
     }
 }

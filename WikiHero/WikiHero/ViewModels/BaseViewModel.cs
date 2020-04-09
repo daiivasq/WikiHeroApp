@@ -17,6 +17,7 @@ namespace WikiHero.ViewModels
         protected INavigationService navigationService;
         protected IPageDialogService dialogService;
         protected IApiComicsVine apiComicsVine;
+        public DelegateCommand FavoriteCommand { get; set; }
         public DelegateCommand RefreshCommand { get; set; }
         public string Text { get; set; }
         public bool IsBusy { get; set; }

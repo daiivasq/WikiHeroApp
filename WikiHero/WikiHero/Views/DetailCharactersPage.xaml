@@ -63,7 +63,7 @@
                        FontSize="18"
                         FontFamily="{StaticResource ComicTansNormalFont}"
                         />
-                <ff:CachedImage Source="ic_add.png" Grid.Row="2" Grid.Column="2" />
+                <ImageButton Command="{Binding FavoriteCommand}" Source="ic_add.png" Grid.Row="2" Grid.Column="2" />
                 <ff:CachedImage Source="ic_share.png" Grid.Row="2" Grid.Column="3" >
                     <ff:CachedImage.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding ShareCommand}" NumberOfTapsRequired="1"/>

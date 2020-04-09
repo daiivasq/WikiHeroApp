@@ -9,19 +9,17 @@
              x:Class="WikiHero.Views.MarvelViews.MarvelVolumePage">
     <ContentPage.Content>
         <StackLayout>
+
+            <Frame CornerRadius="20" HeightRequest="20" Opacity="0.8" HasShadow="True" >
+                <SearchBar HeightRequest="50" 
+                           Text="{Binding Text,Mode=TwoWay}"
+                           SearchCommand="{Binding SearchCommand}" />
+            </Frame>
             <controlsviews:ConnectivityView
                                             TextView="OOH NO !! Hydra has taken away the Internet, look for a fast connection"
                                             ImageView="InternetFailVision"
                                             HorizontalOptions="CenterAndExpand"
                                             VerticalOptions="CenterAndExpand"/>
-            <Frame CornerRadius="20"
-                   HeightRequest="20"
-                   Opacity="0.8"
-                   HasShadow="True" >
-                <SearchBar HeightRequest="50" 
-                           Text="{Binding Text,Mode=TwoWay}"
-                           SearchCommand="{Binding SearchCommand}" />
-            </Frame>
             <RefreshView Command="{Binding RefreshCommand}" 
                          IsRefreshing="{Binding IsBusy}" >
                 <StackLayout state:StateLayout.CurrentState="{Binding CurrentState}">
@@ -37,14 +35,8 @@
                                             <ColumnDefinition Width="150" />
                                             <ColumnDefinition Width="150" />
                                         </Grid.ColumnDefinitions>
-                                        <state:SkeletonView CornerRadius="6"
-                                                            Grid.Column="0"
-                                                            HeightRequest="200"
-                                                            BackgroundColor="#cccccc" />
-                                        <state:SkeletonView CornerRadius="6"
-                                                            Grid.Column="1"
-                                                            HeightRequest="200"
-                                                            BackgroundColor="#cccccc"  />
+                                        <state:SkeletonView CornerRadius="6" Grid.Column="0" HeightRequest="200" BackgroundColor="#cccccc" />
+                                        <state:SkeletonView CornerRadius="6" Grid.Column="1" HeightRequest="200" BackgroundColor="#cccccc"  />
                                     </Grid>
                                 </DataTemplate>
                             </state:StateView.RepeatTemplate>

@@ -126,7 +126,7 @@ namespace WikiHero.ViewModels
             {
                 { nameof(Volume), volume }
             };
-            await navigationService.NavigateAsync(new Uri($"{ConfigPageUri.DetailComicPage}", UriKind.Relative), param, false);
+            await navigationService.NavigateAsync(new Uri($"{ConfigPageUri.DetailVolumePage}", UriKind.Relative), param);
         }
 
         protected async Task LoadComics()

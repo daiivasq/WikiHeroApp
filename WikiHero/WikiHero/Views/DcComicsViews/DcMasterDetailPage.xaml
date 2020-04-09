@@ -25,12 +25,29 @@
                             SelectionMode="Single">
                 <CollectionView.Header>
                     <pancakeView:PancakeView>
-                        <ff:CachedImage Source="DC_Comics_Logo" >
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="50"/>
+                            </Grid.RowDefinitions>
+                            <ff:CachedImage Source="piqueo_de_ojo" 
+                                        Aspect="AspectFill"
+                                            Grid.RowSpan="2"
+                                        HeightRequest="200"
+                                        >
 
-                            <ff:CachedImage.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding  ChangePageCommand}" NumberOfTapsRequired="1"/>
-                            </ff:CachedImage.GestureRecognizers>
-                        </ff:CachedImage>
+                            </ff:CachedImage>
+                            <ff:CachedImage Source="DC_Comics_Logo" 
+                                        Aspect="AspectFit"
+                                            Grid.Row="1"
+                                            TranslationX="5"
+                                            HorizontalOptions="StartAndExpand"
+                                            VerticalOptions="EndAndExpand"
+                                        />
+                        </Grid>
+                        <pancakeView:PancakeView.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding  ChangePageCommand}" NumberOfTapsRequired="1"/>
+                        </pancakeView:PancakeView.GestureRecognizers>
                     </pancakeView:PancakeView>
                 </CollectionView.Header>
                 <CollectionView.ItemTemplate>

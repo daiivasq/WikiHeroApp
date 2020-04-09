@@ -35,9 +35,11 @@ namespace WikiHero.Services
         //issues
         [Get("/api/issues?format=json&api_key={api_key}&limit=100&filter=volume:{id}")]
         Task<ResultComics> VolumeComics(string api_key, int id,string publisher);
+        [Get("/api/issue/4000-{id}?format=json&api_key={api_key}")]
+        Task<ResultComic> FindComic(int id, string api_key);
 
         [Get("/api/locations?format=json&api_key={api_key}&limit=100&filter=id:{filter}")]
-        Task<ResultLocation> FindLocation(string api_key, string filter, string publisher);
+        Task<ResultLocation> FindLocation(string api_key, string filter);
 
         //series
 

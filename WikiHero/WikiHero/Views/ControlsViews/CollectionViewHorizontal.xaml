@@ -20,7 +20,8 @@
                     <CollectionView.ItemsLayout>
                         <GridItemsLayout x:Name="gridLayout" Span="{Binding SpanCollection}"
                                  Orientation="Vertical"
-                                 VerticalItemSpacing="10">
+                                 VerticalItemSpacing="10"
+                                         HorizontalItemSpacing="25">
                         </GridItemsLayout>
                     </CollectionView.ItemsLayout>
                     <CollectionView.Triggers>

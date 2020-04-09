@@ -4,6 +4,7 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
+             xmlns:system="clr-namespace:System;assembly=netstandard"
              xmlns:controlsviews="clr-namespace:WikiHero.Views.ControlsViews" xmlns:pancakeview="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              x:Class="WikiHero.Views.DetailSeriesPage">
     <ContentPage.Content>
@@ -20,7 +21,8 @@
                     <RowDefinition Height="40" />
                     <RowDefinition Height="40" />
                     <RowDefinition Height="40" />
-                    <RowDefinition Height="40" />
+                        <RowDefinition Height="40" />
+                        <RowDefinition Height="Auto" />
                      <RowDefinition Height="60" />
                     </Grid.RowDefinitions>
                     <pancakeview:PancakeView  Grid.RowSpan="5"
@@ -46,11 +48,18 @@
                     <Label Text="{Binding Serie.CountOfEpisodes,StringFormat='Count of episodes: {0}'}"
                    Grid.Row="4"
                    Grid.Column="1"/>
-                    <Label Text="{Binding Serie.DateAdded}"
-                   Grid.Row="5"
+                    <Label Text="Description"
+                             Grid.Row="5"
+                           FontSize="20"
+                           VerticalOptions="StartAndExpand"
+                   Grid.ColumnSpan="2"/>
+                    <Label Text="{Binding Serie.Description}"
+                           TextType="Html"
+                              VerticalOptions="CenterAndExpand"
+                   Grid.Row="6"
                    Grid.ColumnSpan="2"/>
                     <Label Text="Episodeo"
-                   Grid.Row="6"
+                   Grid.Row="7"
                     FontSize="30"
                    Grid.ColumnSpan="2"
                    />

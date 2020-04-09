@@ -46,8 +46,6 @@ namespace WikiHero.Models
         [JsonProperty("name")]
         public string Name { get; set; }
 
-        [JsonProperty("origin")]
-        public Origin Origin { get; set; }
 
         [JsonProperty("publisher")]
         public Publisher Publisher { get; set; }

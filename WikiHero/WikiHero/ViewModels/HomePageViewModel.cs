@@ -7,6 +7,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WikiHero.Helpers;
 using WikiHero.Models;
 using WikiHero.Services;
 using Xamarin.Essentials;
@@ -22,14 +23,70 @@ namespace WikiHero.ViewModels
         public string PublisherSecond { get; set; }
         public string PublisherThird { get; set; }
         public string PublisherFourth { get; set; }
+        public DelegateCommand NavigateDetailCommand { get; set; }
+        private Character selectCharacter;
+
+        public Character SelectCharacter
+        {
+            get { return selectCharacter; }
+            set
+            {
+                selectCharacter = value;
+                if (selectCharacter != null)
+                {
+                    NavigateDetailCommand = new DelegateCommand(async () =>
+                    {
+                       await NavigationToDetailCharacter(SelectCharacter);
+                    });
+                    NavigateDetailCommand.Execute();
+
+                }
+            }
+        }
+        private Serie selectSerie;
+
+        public Serie SelectSerie
+        {
+            get { return selectSerie; }
+            set
+            {
+                selectSerie = value;
+                if (SelectSerie != null)
+                {
+                    NavigateDetailCommand = new DelegateCommand(async () =>
+                    {
+                       await NavigationToDetailSerie(SelectSerie);
+                    });
+                    NavigateDetailCommand.Execute();
+
+
+                }
+            }
+        }
+        public ObservableCollection<Team> Teams { get; set; }
+        public ObservableCollection<Character> ListCharacters { get; set; }
+        public ObservableCollection<Serie> ListSeries { get; set; }
+        public ObservableCollection<Volume> ListVolumes { get; set; }
+        private Serie selectComics;
+        public Serie SelectComics
+        {
+            get { return selectComics; }
+            set
+            {
+                selectComics = value;
+                if (selectComics != null)
+                {
+                    NavigateDetailCommand = new DelegateCommand(async () =>
+                    {
+                        await NavigationToDetailSerie(SelectComics);
+                    });
+                    NavigateDetailCommand.Execute();
+
+                }
+            }
+        }
         public HomePageViewModel(INavigationService navigationService, IPageDialogService dialogService, IApiComicsVine apiComicsVine,string publisherPrincipal,string publisherSecond,string publisherThird,string publisherFourth) : base(navigationService, dialogService, apiComicsVine)
         {
-            TabOptions = new List<TabOption>()
-                        {
-                {new TabOption(){  Name="All", TitleCharacter="Recent Characters",TitleSeries = "Recent Series", TitleVolume = "Recent Volumes"} },
-                {new TabOption{  Name="Favorites"}},
-
-                    };
             this.PublisherPrincipal = publisherPrincipal;
             this.PublisherSecond = publisherSecond;
             this.PublisherThird = publisherThird;
@@ -46,14 +103,63 @@ namespace WikiHero.ViewModels
 
 
         }
-        protected async Task LoadCharacters()
+        async Task NavigationToDetailCharacter(Character character)
         {
+            try
+            {
+                var param = new NavigationParameters
+            {
+                { nameof(Character), character.Id }
+            };
+                await navigationService.NavigateAsync(new Uri($"{ConfigPageUri.DetailCharactersPage}", UriKind.Relative), param, true);
+            }
+            catch (Exception err)
+            {
+
+                await dialogService.DisplayAlertAsync("", $"{err}", "ok");
+            }
+        }
+        async Task NavigationToDetailSerie(Serie serie)
+        {
+            try
+            {
+                var param = new NavigationParameters
+            {
+                { nameof(Serie), serie }
+            };
+                await navigationService.NavigateAsync(new Uri($"{ConfigPageUri.DetailSeriesPage}", UriKind.Relative), param, true);
+            }
+            catch (Exception err)
+            {
+
+                await dialogService.DisplayAlertAsync("", $"{err}", "ok");
+            }
+        }
+
+        async Task NavigationToDetailComics(Volume volume)
+        {
+            try
+            {
+                var param = new NavigationParameters
+            {
+                { nameof(Volume), volume }
+            };
+                await navigationService.NavigateAsync(new Uri($"{ConfigPageUri.DetailSeriesPage}", UriKind.Relative), param, true);
+            }
+            catch (Exception err)
+            {
+
+                await dialogService.DisplayAlertAsync("", $"{err}", "ok");
+            }
+        }
+        protected async Task LoadCharacters()
+            {
                 try
                 {
                     var characters = await apiComicsVine.GetRecentCharacters(Config.Apikey,PublisherPrincipal);
                     var notNull = from item in characters.Characters where item.Publisher != null select item;
                     var marvelOrDc = notNull.Where(e => e.Publisher.Name.Contains(PublisherPrincipal));
-                    TabOptions[0].ListCharacters = new ObservableCollection<Character>(marvelOrDc);
+                     ListCharacters = new ObservableCollection<Character>(marvelOrDc);
                 }
                 catch (Exception ex)
                 {
@@ -74,8 +180,8 @@ namespace WikiHero.ViewModels
                     var recentSeries = await apiComicsVine.GetRecentSeries(Config.Apikey,0, PublisherPrincipal);
                     var notNull = from item in recentSeries.Series where item.Publisher != null select item;
                     var marvelOrDc = notNull.Where(e => e.Publisher.Name == PublisherPrincipal || e.Publisher.Name == PublisherSecond);
-                    TabOptions[0].ListSeries = new ObservableCollection<Serie>(marvelOrDc);
-                }
+                    ListSeries = new ObservableCollection<Serie>(marvelOrDc);
+            }
                 catch (Exception ex)
                 {
 
@@ -94,8 +200,8 @@ namespace WikiHero.ViewModels
                     var recentVolumes = await apiComicsVine.GetRecentVolumes(1, Config.Apikey, PublisherPrincipal);
                     var notNull = from item in recentVolumes.Volumes where item.Publisher != null select item;
                     var marvelOrDc = notNull.Where(e => e.Publisher.Name == PublisherPrincipal || e.Publisher.Name == PublisherSecond || e.Publisher.Name == PublisherThird);
-                    TabOptions[0].ListVolumes = new ObservableCollection<Volume>(marvelOrDc);
-                }
+                ListVolumes = new ObservableCollection<Volume>(marvelOrDc);
+            }
                 catch (Exception ex)
                 {
 
@@ -114,7 +220,7 @@ namespace WikiHero.ViewModels
                     var team = await apiComicsVine.GetTeams(Config.Apikey, PublisherPrincipal);
                     var notNull = from item in team.Results where item.Publisher != null select item;
                     var marvelOrDc = notNull.Where(e => e.Publisher.Name.Contains(PublisherPrincipal));
-                    TabOptions[0].Teams = new ObservableCollection<Team>(marvelOrDc);
+                    Teams = new ObservableCollection<Team>(marvelOrDc);
                 }
                 catch (Exception ex)
                 {

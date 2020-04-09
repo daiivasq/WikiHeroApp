@@ -46,15 +46,15 @@ namespace WikiHero
             containerRegistry.RegisterForNavigation<SharedTransitionNavigationPage>();
             containerRegistry.RegisterForNavigation<NextPage, NextPageViewModel>();
             containerRegistry.RegisterForNavigation<VideoPage, VideoPageViewModel>();
-            containerRegistry.RegisterForNavigation<DetailVolumePage>();
-            containerRegistry.RegisterForNavigation<DetailComicPage>();
+            containerRegistry.RegisterForNavigation<DetailVolumePage,DetailVolumePageViewModel>();
+            containerRegistry.RegisterForNavigation<DetailComicPage,DetailComicPageViewModel>();
 
             containerRegistry.RegisterForNavigation<MarvelCharactersPage, MarvelCharacterPageViewModel>();
             containerRegistry.RegisterForNavigation<MarvelVolumePage, MarvelVolumePageViewModel>();
             containerRegistry.RegisterForNavigation<MarvelHomePage, MarvelHomePageViewModel>();
             containerRegistry.RegisterForNavigation<MarvelSeriesPage, MarvelSeriesPageViewModel>();
             containerRegistry.RegisterForNavigation<MarvelMasterDetailPage, MarvelMasterDetailPageViewModel>();
-            containerRegistry.RegisterForNavigation<MarvelFavoritesPage>();
+            containerRegistry.RegisterForNavigation<MarvelFavoritesPage, MarvelFavoritesPageViewModel>();
             containerRegistry.RegisterForNavigation<MarvelCompareCharacterPage, MarvelCompareCharacterPageViewModel>();
             
             
@@ -64,7 +64,7 @@ namespace WikiHero
             containerRegistry.RegisterForNavigation<DcHomePage, DcHomePageViewModel>();
             containerRegistry.RegisterForNavigation<DcMasterDetailPage, DcMasterDetailPageViewModel>();
             containerRegistry.RegisterForNavigation<DcSeriesPage, DcSeriesPageViewModel>();
-            containerRegistry.RegisterForNavigation<DcFavoritesPage>();
+            containerRegistry.RegisterForNavigation<DcFavoritesPage, FavoritePageViewModel>();
             containerRegistry.RegisterForNavigation<DcCompareCharacterPage, DcCompareCharacterPageViewModel>();
         }
 

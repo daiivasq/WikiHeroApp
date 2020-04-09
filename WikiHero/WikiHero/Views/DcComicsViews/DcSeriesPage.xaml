@@ -48,7 +48,7 @@
                         </state:StateView>
                     </state:StateLayout.StateViews>
                     <controlsviews:CollectionViewHorizontal ItemsSource="{Binding Series}"
-                                                        SelectItem="{Binding SelectionVolume, Mode=TwoWay}"
+                                                        SelectItem="{Binding SelectSerie, Mode=TwoWay}"
                                                         SpanCollection="2"/>
                 </StackLayout>
             </RefreshView>

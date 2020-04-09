@@ -2,42 +2,49 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" xmlns:controlsviews="clr-namespace:WikiHero.Views.ControlsViews"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" xmlns:controlsviews="clr-namespace:WikiHero.Views.ControlsViews" xmlns:ffTrans="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations" xmlns:pancakeview="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              mc:Ignorable="d"
              NavigationPage.HasBackButton="True"
              x:Class="WikiHero.Views.DetailVolumePage">
     <ContentPage.Content>
-        <ScrollView>
-            <Grid RowSpacing="10" >
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="200"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="105"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <ff:CachedImage Source="DcComics"
-                                Aspect="AspectFit"
+        <CollectionView   ItemsSource="{Binding Comics}"
+                    SelectedItem="{Binding SelectComic,Mode=TwoWay}"
+                          SelectionMode="Single">
+            <CollectionView.Header>
+                <Grid RowSpacing="10" >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="200"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="105"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <ff:CachedImage Source="{Binding Volume.Image.OriginalUrl}"
+                                Aspect="AspectFill"
                                 Grid.Row="0"
                                 Grid.Column="0"
-                                Grid.ColumnSpan="4" />
+                                Grid.ColumnSpan="4" >
+                        <ff:CachedImage.Transformations>
+                            <ffTrans:BlurredTransformation Radius="10"/>
+                        </ff:CachedImage.Transformations>
 
-                <Frame  Grid.Row="0"
+                    </ff:CachedImage>
+
+                    <Frame  Grid.Row="0"
                         Grid.Column="0"
                         Grid.ColumnSpan="3"
                         Opacity="0.8"
                         CornerRadius="20"
                         VerticalOptions="End"
                         HeightRequest="20">
-                    <Label Text="NOMBRE DEL VOLUMEN "
+                        <Label Text="{Binding Volume.Name}"
                             TextColor="Black"
                             FontSize="14"
                             FontAttributes="Bold"
@@ -46,14 +53,11 @@
                             Grid.ColumnSpan="2"
                             VerticalOptions="End" />
 
-                </Frame>
-              
+                    </Frame>
 
-                <Label Text="Esto es una peque;a descripcion para pobrar como se ve. Taki taki, taki taki rumba!!!!
-                       Esto es una peque;a descripcion para pobrar como se ve. Taki taki, taki taki rumba!!!!
-                       Esto es una peque;a descripcion para pobrar como se ve. Taki taki, taki taki rumba!!!!
-                       Esto es una peque;a descripcion para pobrar como se ve. Taki taki, taki taki rumba!!!!"
-                       
+
+                    <Label Text="{Binding Volume.Description}"
+                       TextType="Html"
                         Padding="10"
                         TextColor="Black" 
                         Grid.Row="1"
@@ -63,26 +67,26 @@
                         FontSize="18"
                         FontFamily="{StaticResource ComicTansNormalFont}"
                         />
-                <ff:CachedImage Source="ic_add.png"
+                    <ff:CachedImage Source="ic_add.png"
                                 Grid.Row="2"
                                 Grid.Column="2" >
-                    <ff:CachedImage.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding FavoriteCommand}"
+                        <ff:CachedImage.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding FavoriteCommand}"
                                               NumberOfTapsRequired="1"/>
-                    </ff:CachedImage.GestureRecognizers>
-                </ff:CachedImage>
-                <ff:CachedImage Source="ic_share.png" 
+                        </ff:CachedImage.GestureRecognizers>
+                    </ff:CachedImage>
+                    <ff:CachedImage Source="ic_share.png" 
                                 Grid.Row="2" 
                                 Grid.Column="3" >
-                    <ff:CachedImage.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding ShareCommand}"
+                        <ff:CachedImage.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding ShareCommand}"
                                               NumberOfTapsRequired="1"/>
-                    </ff:CachedImage.GestureRecognizers>
-                </ff:CachedImage>
+                        </ff:CachedImage.GestureRecognizers>
+                    </ff:CachedImage>
 
-                <!-- LIST -->
+                    <!-- LIST -->
 
-                <Label Text="Volume's comics"
+                    <Label Text="Volume's comics"
                        FontAttributes="Bold"
                        FontSize="18"
                        TextColor="Black"
@@ -91,16 +95,38 @@
                        Grid.ColumnSpan="4"
                        HorizontalOptions="CenterAndExpand"
                        />
-                <controlsviews:CollectionViewHorizontal 
-                    SpanCollection="2"
-                    HeightRequest="200"
-                    VerticalOptions="CenterAndExpand"
-                    Grid.ColumnSpan="4"
-                    WidthRequest="200" 
-                    Grid.Row="5"/>
-
-            </Grid>
-
-        </ScrollView>
+                </Grid>
+            </CollectionView.Header>
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout Orientation="Vertical"
+                                         Span="2"/>
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <pancakeview:PancakeView Padding="10"
+                                                     Style="{StaticResource PancakeViewCornerRadiusKey}"
+                                                     BackgroundColor="Transparent">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="150"/>
+                            </Grid.ColumnDefinitions>
+                            <ff:CachedImage  
+                                        Source="{Binding Image.MediumUrl}"
+                                        HeightRequest="200"
+                                   Aspect="AspectFill"/>
+                            <Label Text="{Binding Name}"
+                                     TextColor="White"
+                                   BackgroundColor="Black"
+                                   VerticalOptions="EndAndExpand"
+                                        Opacity="0.8"
+                                       HeightRequest="30"/>
+                        </Grid>
+                    </pancakeview:PancakeView>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
     </ContentPage.Content>
 </ContentPage>

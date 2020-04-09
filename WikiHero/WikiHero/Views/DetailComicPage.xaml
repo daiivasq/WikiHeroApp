@@ -14,7 +14,7 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="40"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
@@ -23,8 +23,8 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <ff:CachedImage Source="DcComics"
-                                Aspect="AspectFit"
+                <ff:CachedImage Source="{Binding Comic.Image.MediumUrl}"
+                                Aspect="AspectFill"
                                 Grid.Row="0"
                                 Grid.Column="0"
                                 Grid.ColumnSpan="4" />
@@ -36,7 +36,7 @@
                         CornerRadius="20"
                         VerticalOptions="End"
                         HeightRequest="20">
-                    <Label Text="NOMBRE DEL Comics "
+                    <Label Text="{Binding Comic.Name}"
                             TextColor="Black"
                             FontSize="14"
                             FontAttributes="Bold"
@@ -48,11 +48,8 @@
                 </Frame>
 
 
-                <Label Text="Esto es una peque;a descripcion para pobrar como se ve. Taki taki, taki taki rumba!!!!
-                       Esto es una peque;a descripcion para pobrar como se ve. Taki taki, taki taki rumba!!!!
-                       Esto es una peque;a descripcion para pobrar como se ve. Taki taki, taki taki rumba!!!!
-                       Esto es una peque;a descripcion para pobrar como se ve. Taki taki, taki taki rumba!!!!"
-                       
+                <Label Text="{Binding Comic.Description}"
+                        TextType="Html"
                         Padding="10"
                         TextColor="Black" 
                         Grid.Row="1"
@@ -85,7 +82,7 @@
                        HorizontalOptions="CenterAndExpand"
                        />
                 <controlsviews:CollectionViewHorizontal 
-                 
+                    ItemsSource="{Binding LocationCs}"
                     HeightRequest="200"
                     VerticalOptions="CenterAndExpand"
                     Grid.ColumnSpan="4"
@@ -104,10 +101,11 @@
                 <controlsviews:CollectionViewHorizontal 
                 
                     HeightRequest="200"
-                    VerticalOptions="CenterAndExpand"
+                    ItemsSource="{Binding Characters}"
+                    VerticalOptions="EndAndExpand"
                     Grid.ColumnSpan="4"
                     WidthRequest="200" 
-                    Grid.Row="5"/>
+                    Grid.Row="6"/>
 
             </Grid>
 

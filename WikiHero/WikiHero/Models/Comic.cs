@@ -44,6 +44,15 @@ namespace WikiHero.Models
         public IList<Studio> Studios { get; set; }
         [JsonProperty("writers")]
         public IList<Writer> Writers { get; set; }
+        [JsonProperty("location_credits")]
+        public IList<LocationC> LocationCredits { get; set; }
+        [JsonProperty("character_credits")]
+        public IList<Character> CharacterCredits { get; set; }
+    }
+    public class ResultComic
+    {
+        [JsonProperty("results")]
+        public Comic Comic { get; set; }
     }
     public class ResultComics
     {

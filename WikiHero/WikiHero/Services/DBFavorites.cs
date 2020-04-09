@@ -11,58 +11,60 @@ namespace WikiHero.Services
     {
         public DBFavorites()
         {
-            Barrel.ApplicationId = Config.CacheKey;
+           
         }
 
     
 
         public void AddCharacter(string publisher, Character characters)
         {
-            List<Character> character = new List<Character>();
-            character.Add(characters);
-            Barrel.Current.Add(key:$"{nameof(AddCharacter)}/{publisher}", data: character, TimeSpan.FromDays(60));
+            Barrel.ApplicationId = Config.CacheKey;
+            Barrel.Current.Add(key:$"{nameof(AddCharacter)}/{publisher}", data: characters, expireIn:TimeSpan.FromDays(30));
         }
 
         public void AddComic(string publisher, Comic comics)
         {
-            List<Comic> comic = new List<Comic>();
-            comic.Add(comics);
-            Barrel.Current.Add(key: $"{nameof(AddComic)}/{publisher}", data: comic, TimeSpan.FromDays(60));
+            Barrel.Current.Add(key: $"{nameof(AddComic)}/{publisher}", data: comics, expireIn: TimeSpan.FromDays(60));
         }
         public void AddSeries(string publisher, Serie series)
         {
+            Barrel.ApplicationId = Config.CacheKey;
             List<Serie> serie = new List<Serie>();
             serie.Add(series);
-            Barrel.Current.Add(key: $"{nameof(AddSeries)}/{publisher}", data: serie, TimeSpan.FromDays(60));
+            Barrel.Current.Add(key: $"{nameof(AddSeries)}/{publisher}", data: serie, expireIn: TimeSpan.FromDays(60));
         }
 
         public void AddVolume(string publisher, Volume volumes)
         {
+            Barrel.ApplicationId = Config.CacheKey;
             List<Volume> volume = new List<Volume>();
             volume.Add(volumes);
-            Barrel.Current.Add(key: $"{nameof(AddVolume)}/{publisher}", data: volume, TimeSpan.FromDays(60));
+            Barrel.Current.Add(key: $"{nameof(AddVolume)}/{publisher}", data: volume, expireIn: TimeSpan.FromDays(60));
         }
 
         public List<Character> GetCharacter(string publisher)
         {
-            
-            return Barrel.Current.Get<List<Character>>(key: $"{nameof(AddCharacter)}");
+            Barrel.ApplicationId = Config.CacheKey;
+            return Barrel.Current.Get<List<Character>>(key: $"{nameof(AddCharacter)}/{publisher}");
         }
 
         public List<Comic> GetComic(string publisher)
         {
-            return Barrel.Current.Get<List<Comic>>(key: $"{nameof(AddComic)}");
+            Barrel.ApplicationId = Config.CacheKey;
+            return Barrel.Current.Get<List<Comic>>(key: $"{nameof(AddComic)}/{publisher}");
 
         }
 
         public List<Serie> GetSeries(string publisher)
         {
-            return Barrel.Current.Get<List<Serie>>(key: $"{nameof(AddSeries)}");
+            Barrel.ApplicationId = Config.CacheKey;
+            return Barrel.Current.Get<List<Serie>>(key: $"{nameof(AddSeries)}/{publisher}");
         }
 
         public List<Volume> GetVolume(string publisher)
         {
-            return Barrel.Current.Get<List<Volume>>(key: $"{nameof(AddVolume)}");
+            Barrel.ApplicationId = Config.CacheKey;
+            return Barrel.Current.Get<List<Volume>>(key: $"{nameof(AddVolume)}/{publisher}");
         }
     }
 }

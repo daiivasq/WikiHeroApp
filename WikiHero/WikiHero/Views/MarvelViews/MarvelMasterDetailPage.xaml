@@ -25,20 +25,35 @@
                             BackgroundColor="White"
                             >
                 <CollectionView.Header>
-                    <pancakeView:PancakeView Padding="10" BackgroundColor="{StaticResource MarvelPrincipalColor}">
-                        <ff:CachedImage Source="marvelLLL.png" 
+                    <pancakeView:PancakeView Padding="5" BackgroundColor="{StaticResource MarvelPrincipalColor}">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="35"/>
+                            </Grid.RowDefinitions>
+                            <ff:CachedImage Source="piqueo_de_ojo" 
+                                        Aspect="AspectFill"
+                                            Grid.RowSpan="2"
                                         HeightRequest="200"
                                         >
 
-                            <ff:CachedImage.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding  ChangePageCommand}" NumberOfTapsRequired="1"/>
-                            </ff:CachedImage.GestureRecognizers>
-                        </ff:CachedImage>
+                            </ff:CachedImage>
+                            <ff:CachedImage Source="marvelLLL" 
+                                        Aspect="AspectFit"
+                                            Grid.Row="1"
+                                            
+                                            HorizontalOptions="StartAndExpand"
+                                            VerticalOptions="EndAndExpand"
+                                        />
+                        </Grid>
+                        <pancakeView:PancakeView.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding  ChangePageCommand}" NumberOfTapsRequired="1"/>
+                        </pancakeView:PancakeView.GestureRecognizers>
                     </pancakeView:PancakeView>
                 </CollectionView.Header>
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <Grid Margin="10" Padding="0,10,0,0">
+                        <Grid Margin="10" Padding="0,10,0,0" BackgroundColor="White">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="60"/>
                                 <ColumnDefinition Width="*"/>
@@ -47,6 +62,7 @@
                             <Label Text="{Binding Title}" 
                                    Style="{StaticResource MasterMenuLabel}"
                                    Grid.Column="1"
+                                   FontSize="24"
                                    HorizontalOptions="CenterAndExpand"/>
                         </Grid>
                     </DataTemplate>

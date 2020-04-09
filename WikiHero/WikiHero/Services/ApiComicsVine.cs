@@ -17,6 +17,7 @@ namespace WikiHero.Services
         public ApiComicsVine()
         {
             Barrel.ApplicationId = Config.CacheKey;
+            Barrel.Current.EmptyAll();
         }
 
 
@@ -94,11 +95,11 @@ namespace WikiHero.Services
             return comics;
         }
 
-        public async Task<ResultLocation> FindLocation(string api_key, string filter, string publisher)
+        public async Task<ResultLocation> FindLocation(string api_key, string filter)
         {
 
             var getRequest = RestService.For<IApiComicsVine>(Config.UrlApiComicsVine);
-            var location = await getRequest.FindLocation(filter, Config.Apikey, publisher);
+            var location = await getRequest.FindLocation(filter, Config.Apikey);
             return location;
         }
 
@@ -230,6 +231,13 @@ namespace WikiHero.Services
 
             var getRequest = RestService.For<IApiComicsVine>(Config.UrlApiComicsVine);
             var comics = await getRequest.FindCharacterComics(Config.Apikey, filter);
+            return comics;
+        }
+
+        public async Task<ResultComic> FindComic(int id, string api_key)
+        {
+            var getRequest = RestService.For<IApiComicsVine>(Config.UrlApiComicsVine);
+            var comics = await getRequest.FindComic(id,Config.Apikey);
             return comics;
         }
     }

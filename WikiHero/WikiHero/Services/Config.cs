@@ -12,6 +12,11 @@ namespace WikiHero.Services
         public const string UrlApiComicsVine = "https://comicvine.gamespot.com";
         public const string UrlApiCharactersStats = "https://cdn.rawgit.com/akabab/superhero-api/0.2.0/api";
         public const string CacheKey = "WikiHeroCache";
+        public const string _dataBaseNameFile = "ContactSqlLite.db3";
+        public const SQLite.SQLiteOpenFlags Flags =
+         SQLite.SQLiteOpenFlags.ReadWrite |
+        SQLite.SQLiteOpenFlags.Create |
+        SQLite.SQLiteOpenFlags.SharedCache;
         public static bool IsNetworkAvalible()
         {
             if (Connectivity.NetworkAccess == NetworkAccess.Internet)
