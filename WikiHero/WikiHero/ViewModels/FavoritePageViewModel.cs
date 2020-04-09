@@ -53,9 +53,5 @@ namespace WikiHero.ViewModels
             var volumes = dBFavorite.GetVolume(Publisher);
             Volumes = new ObservableCollection<Volume>(volumes);
         }
-
-      
-
-
     }
 }

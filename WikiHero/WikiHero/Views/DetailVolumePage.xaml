@@ -26,25 +26,25 @@
                 </Grid.ColumnDefinitions>
                 <ff:CachedImage Source="DcComics"
                                 Aspect="AspectFit"
-                       Grid.Row="0"
-                       Grid.Column="0"
-                       Grid.ColumnSpan="4" />
+                                Grid.Row="0"
+                                Grid.Column="0"
+                                Grid.ColumnSpan="4" />
 
                 <Frame  Grid.Row="0"
-                       Grid.Column="0"
-                       Grid.ColumnSpan="3"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="3"
                         Opacity="0.8"
                         CornerRadius="20"
-                       VerticalOptions="End"
+                        VerticalOptions="End"
                         HeightRequest="20">
                     <Label Text="NOMBRE DEL VOLUMEN "
-                       TextColor="Black"
-                       FontSize="14"
-                       FontAttributes="Bold"
-                       Grid.Row="0"
-                       Grid.Column="0"
-                       Grid.ColumnSpan="2"
-                       VerticalOptions="End" />
+                            TextColor="Black"
+                            FontSize="14"
+                            FontAttributes="Bold"
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="2"
+                            VerticalOptions="End" />
 
                 </Frame>
               
@@ -54,23 +54,29 @@
                        Esto es una peque;a descripcion para pobrar como se ve. Taki taki, taki taki rumba!!!!
                        Esto es una peque;a descripcion para pobrar como se ve. Taki taki, taki taki rumba!!!!"
                        
-                       Padding="10"
+                        Padding="10"
                         TextColor="Black" 
                         Grid.Row="1"
                         Grid.Column="0"
                         Grid.ColumnSpan="4" 
                         VerticalOptions="Start"
-                       FontSize="18"
+                        FontSize="18"
                         FontFamily="{StaticResource ComicTansNormalFont}"
                         />
-                <ff:CachedImage Source="ic_add.png" Grid.Row="2" Grid.Column="2" >
+                <ff:CachedImage Source="ic_add.png"
+                                Grid.Row="2"
+                                Grid.Column="2" >
                     <ff:CachedImage.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding FavoriteCommand}" NumberOfTapsRequired="1"/>
+                        <TapGestureRecognizer Command="{Binding FavoriteCommand}"
+                                              NumberOfTapsRequired="1"/>
                     </ff:CachedImage.GestureRecognizers>
                 </ff:CachedImage>
-                <ff:CachedImage Source="ic_share.png" Grid.Row="2" Grid.Column="3" >
+                <ff:CachedImage Source="ic_share.png" 
+                                Grid.Row="2" 
+                                Grid.Column="3" >
                     <ff:CachedImage.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding ShareCommand}" NumberOfTapsRequired="1"/>
+                        <TapGestureRecognizer Command="{Binding ShareCommand}"
+                                              NumberOfTapsRequired="1"/>
                     </ff:CachedImage.GestureRecognizers>
                 </ff:CachedImage>
 

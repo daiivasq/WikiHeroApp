@@ -46,7 +46,7 @@
                             <ff:CachedImage Source="{Binding Image}" />
                             <Label Text="{Binding Title}" 
                                    Style="{StaticResource MasterMenuLabel}"
-                                Grid.Column="1"
+                                   Grid.Column="1"
                                    HorizontalOptions="CenterAndExpand"/>
                         </Grid>
                     </DataTemplate>

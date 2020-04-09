@@ -25,25 +25,25 @@
                 </Grid.ColumnDefinitions>
                 <ff:CachedImage Source="DcComics"
                                 Aspect="AspectFit"
-                       Grid.Row="0"
-                       Grid.Column="0"
-                       Grid.ColumnSpan="4" />
+                                Grid.Row="0"
+                                Grid.Column="0"
+                                Grid.ColumnSpan="4" />
 
                 <Frame  Grid.Row="0"
-                       Grid.Column="0"
-                       Grid.ColumnSpan="2"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="2"
                         Opacity="0.8"
                         CornerRadius="20"
-                       VerticalOptions="End"
+                        VerticalOptions="End"
                         HeightRequest="20">
                     <Label Text="NOMBRE DEL Comics "
-                       TextColor="Black"
-                       FontSize="14"
-                       FontAttributes="Bold"
-                       Grid.Row="0"
-                       Grid.Column="0"
-                       Grid.ColumnSpan="2"
-                       VerticalOptions="End" />
+                            TextColor="Black"
+                            FontSize="14"
+                            FontAttributes="Bold"
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="2"
+                            VerticalOptions="End" />
 
                 </Frame>
 
@@ -53,13 +53,13 @@
                        Esto es una peque;a descripcion para pobrar como se ve. Taki taki, taki taki rumba!!!!
                        Esto es una peque;a descripcion para pobrar como se ve. Taki taki, taki taki rumba!!!!"
                        
-                       Padding="10"
+                        Padding="10"
                         TextColor="Black" 
                         Grid.Row="1"
                         Grid.Column="0"
                         Grid.ColumnSpan="4" 
                         VerticalOptions="Start"
-                       FontSize="20"
+                        FontSize="20"
                         FontFamily="{StaticResource ComicTansNormalFont}"
                         />
                 <ff:CachedImage Source="ic_add.png" Grid.Row="2" Grid.Column="2" >

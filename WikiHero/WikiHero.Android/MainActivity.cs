@@ -10,10 +10,17 @@ using Prism.Ioc;
 using Prism;
 using Octane.Xamarin.Forms.VideoPlayer.Android;
 using Xamarin.Forms;
+using Plugin.AppShortcuts;
+using Android.Content;
 
 namespace WikiHero.Droid
 {
     [Activity(Label = "WikiHero", Icon = "@drawable/ic_logo_con_letras", Theme = "@style/MainTheme", MainLauncher = false, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
+    [IntentFilter(new[] { Intent.ActionView },
+              Categories = new[] { Intent.CategoryDefault },
+              DataScheme = "Kh",
+              DataHost = "WihiHeroShortcuts",
+              AutoVerify = true)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
         protected override void OnCreate(Bundle savedInstanceState)
@@ -27,7 +34,9 @@ namespace WikiHero.Droid
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             FormsVideoPlayer.Init();
-          
+            CrossAppShortcuts.Current.Init();
+
+
             LoadApplication(new App(new AndroidInitialized()));
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)

@@ -63,7 +63,8 @@
                                              Padding="10">
                         <StackLayout>
                             <Image Source="{Binding Image.MediumUrl}"
-                                   HeightRequest="200" WidthRequest="150"
+                                   HeightRequest="200"
+                                   WidthRequest="150"
                                    Aspect="AspectFill"/>
                             <Label Text="{Binding Name}"/>
                         </StackLayout>

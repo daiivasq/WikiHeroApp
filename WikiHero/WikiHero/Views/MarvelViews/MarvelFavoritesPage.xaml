@@ -80,14 +80,14 @@
 
 
                         <Label Text="Comic's favorites"
-                       FontAttributes="Bold"
-                       FontSize="18"
-                       TextColor="Black"
-                           Padding="10"
-                       Grid.Row="3"
-                       VerticalOptions="StartAndExpand"
-                       Grid.ColumnSpan="4"
-                       HorizontalOptions="CenterAndExpand"
+                                FontAttributes="Bold"
+                                FontSize="18"
+                                TextColor="Black"
+                                Padding="10"
+                                Grid.Row="3"
+                                VerticalOptions="StartAndExpand"
+                                Grid.ColumnSpan="4"
+                                HorizontalOptions="CenterAndExpand"
                        />
                         <controlsviews:CollectionFavoritesView
                  
@@ -99,14 +99,14 @@
 
 
                         <Label Text="Volume's favorites"
-                       FontAttributes="Bold"
-                       FontSize="18"
-                       TextColor="Black"
-                           Padding="10"
-                       Grid.Row="4"
-                       VerticalOptions="StartAndExpand"
-                       Grid.ColumnSpan="4"
-                       HorizontalOptions="CenterAndExpand"
+                                FontAttributes="Bold"
+                                FontSize="18"
+                                TextColor="Black"
+                                Padding="10"
+                                Grid.Row="4"
+                                VerticalOptions="StartAndExpand"
+                                Grid.ColumnSpan="4"
+                                HorizontalOptions="CenterAndExpand"
                        />
                         <controlsviews:CollectionFavoritesView
                  

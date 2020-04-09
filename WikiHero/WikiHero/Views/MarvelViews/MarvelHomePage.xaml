@@ -72,7 +72,8 @@
                                             <RowDefinition Height="*"/>
                                             <RowDefinition Height="40"/>
                                         </Grid.RowDefinitions>
-                                        <Image Aspect="AspectFill" Source="{Binding Image.ScreenUrl}"/>
+                                        <Image Aspect="AspectFill"
+                                               Source="{Binding Image.ScreenUrl}"/>
                                         <Label Text="{Binding Name}"
                                            FontSize="20"
                                            HorizontalOptions="CenterAndExpand"
@@ -89,9 +90,9 @@
                            Style="{StaticResource LabelKeY}"
                        />
                     <controlsviews:CollectionViewHorizontal   HeightRequest="200" 
-                                                        WidthRequest="200" 
-                                                        ItemsSource="{Binding Path=ItemSelected.ListSeries, Source={x:Reference segment}}"
-                                                          SpanCollection="1"
+                                                              WidthRequest="200" 
+                                                              ItemsSource="{Binding Path=ItemSelected.ListSeries, Source={x:Reference segment}}"
+                                                                SpanCollection="1"
                                                             />
                     <Label Text="{Binding Path=ItemSelected.TitleSeries,Source={x:Reference segment}}" 
                            FontSize="22" 
@@ -106,25 +107,25 @@
                            Grid.Row="7"
                            Style="{StaticResource LabelKeY}" />
                     <controlsviews:CollectionViewHorizontal  HeightRequest="200"
-                                                           WidthRequest="200" 
-                                                         ItemsSource="{Binding Path=ItemSelected.ListVolumes, Source={x:Reference segment}}"
-                                                           SpanCollection="1"/>
+                                                             WidthRequest="200" 
+                                                             ItemsSource="{Binding Path=ItemSelected.ListVolumes, Source={x:Reference segment}}"
+                                                             SpanCollection="1"/>
 
                 </StackLayout>
             </ScrollView>
             <control:SegmentedControl  x:Name="segment"
-                                    HeightRequest="40" 
-                                    BackgroundColor="White"
-                                    ItemsSource="{Binding TabOptions}"
-                                    SelectionIndicator="IsSelected"
-                                    VerticalOptions="EndAndExpand"
-                                    Grid.Row="0"
+                                        HeightRequest="40" 
+                                        BackgroundColor="White"
+                                        ItemsSource="{Binding TabOptions}"
+                                        SelectionIndicator="IsSelected"
+                                        VerticalOptions="EndAndExpand"
+                                        Grid.Row="0"
                                    
                                     >
 
                 <control:SegmentedControl.ItemTemplate >
                     <DataTemplate>
-                        <StackLayout VerticalOptions="FillAndExpand" 
+                        <StackLayout             VerticalOptions="FillAndExpand" 
                                                  HorizontalOptions="FillAndExpand"
                                                  Spacing="5">
 

@@ -35,8 +35,14 @@
                                         <ColumnDefinition Width="150" />
                                         <ColumnDefinition Width="150" />
                                     </Grid.ColumnDefinitions>
-                                    <state:SkeletonView CornerRadius="6" Grid.Column="0" HeightRequest="200" BackgroundColor="#cccccc" />
-                                    <state:SkeletonView CornerRadius="6" Grid.Column="1" HeightRequest="200" BackgroundColor="#cccccc"  />
+                                    <state:SkeletonView CornerRadius="6"
+                                                        Grid.Column="0"
+                                                        HeightRequest="200"
+                                                        BackgroundColor="#cccccc" />
+                                    <state:SkeletonView CornerRadius="6" 
+                                                        Grid.Column="1"
+                                                        HeightRequest="200" 
+                                                        BackgroundColor="#cccccc"  />
                                 </Grid>
                             </DataTemplate>
                         </state:StateView.RepeatTemplate>

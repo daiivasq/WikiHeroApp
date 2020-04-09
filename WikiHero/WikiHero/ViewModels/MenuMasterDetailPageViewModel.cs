@@ -57,9 +57,9 @@ namespace WikiHero.ViewModels
                  new ItemPage("dchome","Home",ConfigPageUri.DcHomePage),
                  new ItemPage("ic_action_live_tv","Series",ConfigPageUri.DcSeriesPage),
                  new ItemPage("comic","Volumes",ConfigPageUri.DcVolumePage),
-                 new ItemPage("DcCharacter","Characters",ConfigPageUri.DcComicsCharactersPage),
+                 new ItemPage("MarvelCharacter","Characters",ConfigPageUri.DcComicsCharactersPage),
                  new ItemPage("sword","Vs",ConfigPageUri.MarvelCompareCharacterPage),
-                 new ItemPage("ic_action_playlist_add","favorites",ConfigPageUri.DcFavoritesPage),
+                 new ItemPage("ic_action_playlist_add.png","favorites",ConfigPageUri.DcFavoritesPage),
                      };
                     break;
 

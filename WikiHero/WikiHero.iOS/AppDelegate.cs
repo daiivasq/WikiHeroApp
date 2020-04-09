@@ -40,5 +40,13 @@ namespace WikiHero.iOS
 
             }
         }
+        public override void PerformActionForShortcutItem(UIApplication application, UIApplicationShortcutItem shortcutItem, UIOperationHandler completionHandler)
+        {
+            var uri = Plugin.AppShortcuts.iOS.ArgumentsHelper.GetUriFromApplicationShortcutItem(shortcutItem);
+            if (uri != null)
+            {
+                Xamarin.Forms.Application.Current.SendOnAppLinkRequestReceived(uri);
+            }
+        }
     }
 }

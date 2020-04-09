@@ -21,9 +21,11 @@ namespace WikiHero
     public partial class App : PrismApplication
     {
         public App(IPlatformInitializer initializer = null) : base(initializer) { }
-        public const string AppShortcutUriBase = "asfs://appshortcutsformssample/";
+        public const string AppShortcutUriBase = "Kh://WihiHeroShortcuts/";
         public const string ShortcutOption1 = "Marvel";
-        public const string ShortcutOption2 = "Dc Comics";
+            public const string ShortcutOption2 = "DC";
+
+
         protected override void OnInitialized()
         {
             AddShortcuts();
@@ -70,7 +72,6 @@ namespace WikiHero
         {
             if (CrossAppShortcuts.IsSupported)
             {
-
                 var shortCurts = await CrossAppShortcuts.Current.GetShortcuts();
                 if (shortCurts.FirstOrDefault(prop => prop.Label == "Marvel") == null)
                 {
@@ -79,38 +80,39 @@ namespace WikiHero
                         Label = "Marvel",
                         Description = "Go to Marvel",
                         Icon = new ContactIcon(),
-                        Uri = $"{ConfigPageUri.SharedTransitionNavigationPage}{ConfigPageUri.MarvelHomePage}"
+                        Uri = $"{AppShortcutUriBase}{ShortcutOption1}"
                     };
                     await CrossAppShortcuts.Current.AddShortcut(shortcut);
                 }
 
-                if (shortCurts.FirstOrDefault(prop => prop.Label == "DC Comics") == null)
+                if (shortCurts.FirstOrDefault(prop => prop.Label == "DC") == null)
                 {
                     var shortcut = new Shortcut()
                     {
-                        Label = "DC Comics",
+                        Label = "DC",
                         Description = "Go to Dc Comics",
                         Icon = new UpdateIcon(),
-                        Uri = $"{ConfigPageUri.SharedTransitionNavigationPage}{ConfigPageUri.DcHomePage}"
+                        Uri = $"{AppShortcutUriBase}{ShortcutOption2}"
                     };
                     await CrossAppShortcuts.Current.AddShortcut(shortcut);
                 }
             }
+
+
         }
 
         protected override void OnAppLinkRequestReceived(Uri uri)
         {
             var option = uri.ToString().Replace(AppShortcutUriBase, "");
-            OnInitialized();
             if (!string.IsNullOrEmpty(option))
             {
+             
                 switch (option)
                 {
                     case ShortcutOption1:
                         NavigationService.NavigateAsync(new Uri($"{ConfigPageUri.SharedTransitionNavigationPage}{ConfigPageUri.MarvelHomePage}", UriKind.Absolute));
                         break;
                     case ShortcutOption2:
-
                         NavigationService.NavigateAsync(new Uri($"{ConfigPageUri.SharedTransitionNavigationPage}{ConfigPageUri.DcHomePage}", UriKind.Absolute));
                         break;
                 }
@@ -120,3 +122,4 @@ namespace WikiHero
         }
     }
 }
+

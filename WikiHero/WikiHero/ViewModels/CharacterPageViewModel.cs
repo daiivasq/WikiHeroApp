@@ -18,6 +18,10 @@ namespace WikiHero.ViewModels
 {
     public abstract class CharacterPageViewModel : BaseViewModel
     {
+        public int ItemTreshold { get; set; }
+
+        public string PublisherName { get; set; }
+
         public ObservableCollection<Character> Characters { get; set; } = new ObservableCollection<Character>();
         public bool IsChangedView { get; set; } = false;
         public DelegateCommand ChangedViewCommand { get; set; }
@@ -33,12 +37,7 @@ namespace WikiHero.ViewModels
                 }
             }
         }
-
-        public int ItemTreshold { get; set; }
-
-        public string PublisherName { get; set; }
-        
-
+       
         public CharacterPageViewModel(INavigationService navigationService, IPageDialogService dialogService, IApiComicsVine apiComicsVine,string publisherName,int offeset) : base(navigationService, dialogService, apiComicsVine)
         {
             this.PublisherName = publisherName;

@@ -15,20 +15,15 @@ namespace WikiHero.ViewModels
 {
     public abstract class  CompareCharactersPageViewModel:BaseViewModel
     {
-        protected IApiCharacterStats apiStatsCharacters;
-        public ObservableCollection<CharacterStats> HeroesCharacters { get; set; }
-        public ObservableCollection<CharacterStats> VillainCharacters { get; set; }
-        private CharacterStats selectHeroes;
-
         public bool IsHeroesEnabled { get; set; } = false;
         public bool IsVillainEnabled { get; set; } = false;
         public CharacterStats SelectHeroes
         {
             get { return selectHeroes; }
-            set 
+            set
             {
                 selectHeroes = value;
-                if (selectHeroes!=null)
+                if (selectHeroes != null)
                 {
                     IsHeroesEnabled = true;
                 }
@@ -39,7 +34,8 @@ namespace WikiHero.ViewModels
         public CharacterStats SelectVillain
         {
             get { return selectVillain; }
-            set { 
+            set
+            {
                 selectVillain = value;
                 if (selectVillain != null)
                 {
@@ -47,7 +43,10 @@ namespace WikiHero.ViewModels
                 }
             }
         }
-
+        protected IApiCharacterStats apiStatsCharacters;
+        public ObservableCollection<CharacterStats> HeroesCharacters { get; set; }
+        public ObservableCollection<CharacterStats> VillainCharacters { get; set; }
+        private CharacterStats selectHeroes;
         public DelegateCommand CompareCharacter { get; set; }
         public CompareCharactersPageViewModel(INavigationService navigationService, IPageDialogService dialogService, IApiComicsVine apiComicsVine, IApiCharacterStats apiStatsCharacters,string publisher) : base(navigationService, dialogService, apiComicsVine)
         {

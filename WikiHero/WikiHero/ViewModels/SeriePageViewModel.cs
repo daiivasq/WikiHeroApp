@@ -18,7 +18,6 @@ namespace WikiHero.ViewModels
 {
     public class SeriePageViewModel : BaseViewModel
     {
-        public ObservableCollection<Serie> Series { get; set; } = new ObservableCollection<Serie>();
         public int ItemTreshold { get; set; }
         protected string ExtraStudioName { get; set; }
         protected string StudioName { get; set; }
@@ -27,14 +26,17 @@ namespace WikiHero.ViewModels
         public Serie SelectSerie
         {
             get { return selectSerie; }
-            set { 
+            set
+            {
                 selectSerie = value;
-                if (selectSerie!=null)
+                if (selectSerie != null)
                 {
                     SelectionSeries(SelectSerie);
                 }
             }
         }
+        public ObservableCollection<Serie> Series { get; set; } = new ObservableCollection<Serie>();
+       
 
 
 
