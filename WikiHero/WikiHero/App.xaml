@@ -10,22 +10,44 @@
              x:Class="WikiHero.App">
     <Application.Resources>
         <ResourceDictionary>
+
             <Color x:Key="MarvelPrincipalColor">#ED1D24</Color>
             <Color x:Key="DCPrincipalColor">#0476F2</Color>
+
+            <OnPlatform x:TypeArguments="x:String" x:Key="ComicaBdBoldFont">
+                <On Platform="Android" Value="Comica BD Bold.ttf#Open Sans" />
+                <On Platform="iOS" Value="Comica BD Bold" />
+            </OnPlatform>
+            <OnPlatform x:TypeArguments="x:String" x:Key="ComicaBdNormalFont">
+                <On Platform="Android" Value="Comica BD.ttf#Open Sans" />
+                <On Platform="iOS" Value="Comica BD" />
+            </OnPlatform>
+            <OnPlatform x:TypeArguments="x:String" x:Key="ComicTansNormalFont">
+                <On Platform="Android" Value="ComicTans.ttf#Open Sans" />
+                <On Platform="iOS" Value="ComicTans" />
+            </OnPlatform>
+
+        
             <Style TargetType="Label">
+                <Setter Property="FontFamily" Value="{StaticResource ComicaBdBoldFont}"/>
                 <Setter Property="TextColor" Value="Black"/>
             </Style>
+            
             <Style TargetType="sharedTransitions:SharedTransitionNavigationPage">
                 <Setter Property="NavigationPage.HasNavigationBar" Value="False"/>
             </Style>
+            
             <Style TargetType="pancakeview:PancakeView" x:Key="PancakeViewCornerRadiusKey">
                 <Setter Property="CornerRadius" Value="60,0,0,60"/>
                 <Setter Property="BackgroundColor" Value="White"/>
             </Style>
+            
             <Style TargetType="Label" x:Key="MasterMenuLabel">
+                <Setter Property="FontFamily" Value="{StaticResource ComicaBdBoldFont}"/>
                 <Setter Property="VerticalOptions" Value="CenterAndExpand"/>
                 <Setter Property="FontSize" Value="20"/>
             </Style>
+            
         </ResourceDictionary>
     </Application.Resources>
 </prims:PrismApplication>

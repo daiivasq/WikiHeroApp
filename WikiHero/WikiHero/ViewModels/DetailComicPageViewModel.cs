@@ -12,13 +12,14 @@ using Xamarin.Essentials;
 
 namespace WikiHero.ViewModels
 {
-    public class DetailComicPageViewModel : BaseViewModel, INavigationAware
+    public class DetailComicPageViewModelS : BaseViewModel, INavigationAware
     {
         public ObservableCollection<Comic> Comics { get; set; }
         public Comic Comic { get; set; }
         public DelegateCommand LoadCommand { get; set; }
         public DelegateCommand ShareCommand { get; set; }
-        public DetailComicPageViewModel(INavigationService navigationService, IPageDialogService dialogService, IApiComicsVine apiComicsVine) : base(navigationService, dialogService, apiComicsVine)
+        public DelegateCommand FavoriteCommand { get; set; }
+        public DetailComicPageViewModelS(INavigationService navigationService, IPageDialogService dialogService, IApiComicsVine apiComicsVine) : base(navigationService, dialogService, apiComicsVine)
         {
 
             ShareCommand = new DelegateCommand(async () =>

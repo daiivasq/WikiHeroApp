@@ -13,7 +13,7 @@ using Android.Widget;
 namespace WikiHero.Droid
 {
 
-    [Activity(Label = "SplashActivity", Theme = "@style/Theme.Splash", MainLauncher = true, NoHistory = true)]
+    [Activity(Label = "WikiHero", Theme = "@style/Theme.Splash", MainLauncher = true, NoHistory = true)]
     public class SplashActivity : Activity
     {
         protected override void OnCreate(Bundle savedInstanceState)

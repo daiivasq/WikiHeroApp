@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" xmlns:pancakeview="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             mc:Ignorable="d"
+             x:Name="FavoriteView"
+             x:Class="WikiHero.Views.ControlsViews.CollectionFavoritesView">
+  <ContentView.Content>
+        <RefreshView Command="{Binding RefreshCommand}" IsRefreshing="{Binding IsBusy}" >
+            <CollectionView ItemsSource="{Binding ItemsSource}" SelectedItem="{Binding SelectItem}" x:Name="publisherList" BindingContext="{x:Reference FavoriteView}">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Horizontal">
+
+                    </LinearItemsLayout>
+
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate >
+                    <DataTemplate>
+                        <pancakeview:PancakeView Padding="10"
+                                                     Style="{StaticResource PancakeViewCornerRadiusKey}"
+                                                     BackgroundColor="Transparent">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="150"/>
+                                </Grid.ColumnDefinitions>
+                                <ff:CachedImage  
+                                        Source="{Binding Image.MediumUrl}"
+                                        HeightRequest="200"
+                                   Aspect="AspectFill"/>
+                                <Label Text="{Binding Name}"
+                                     TextColor="White"
+                                   BackgroundColor="Black"
+                                   VerticalOptions="EndAndExpand"
+                                        Opacity="0.8"
+                                       HeightRequest="30"/>
+                            </Grid>
+                        </pancakeview:PancakeView>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+             
+            </CollectionView>
+        </RefreshView>
+    </ContentView.Content>
+</ContentView>

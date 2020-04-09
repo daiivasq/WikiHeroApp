@@ -2,9 +2,10 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:controlsviews="clr-namespace:WikiHero.Views.ControlsViews" xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" xmlns:controlsviews="clr-namespace:WikiHero.Views.ControlsViews"
              mc:Ignorable="d"
-             x:Class="WikiHero.Views.DetailComicPage">
+             NavigationPage.HasBackButton="True"
+             x:Class="WikiHero.Views.DetailVolumePage">
     <ContentPage.Content>
         <ScrollView>
             <Grid RowSpacing="10" >
@@ -31,12 +32,12 @@
 
                 <Frame  Grid.Row="0"
                        Grid.Column="0"
-                       Grid.ColumnSpan="2"
+                       Grid.ColumnSpan="3"
                         Opacity="0.8"
                         CornerRadius="20"
                        VerticalOptions="End"
                         HeightRequest="20">
-                    <Label Text="NOMBRE DEL Comics "
+                    <Label Text="NOMBRE DEL VOLUMEN "
                        TextColor="Black"
                        FontSize="14"
                        FontAttributes="Bold"
@@ -46,7 +47,7 @@
                        VerticalOptions="End" />
 
                 </Frame>
-
+              
 
                 <Label Text="Esto es una peque;a descripcion para pobrar como se ve. Taki taki, taki taki rumba!!!!
                        Esto es una peque;a descripcion para pobrar como se ve. Taki taki, taki taki rumba!!!!
@@ -59,7 +60,7 @@
                         Grid.Column="0"
                         Grid.ColumnSpan="4" 
                         VerticalOptions="Start"
-                       FontSize="20"
+                       FontSize="18"
                         FontFamily="{StaticResource ComicTansNormalFont}"
                         />
                 <ff:CachedImage Source="ic_add.png" Grid.Row="2" Grid.Column="2" >
@@ -75,7 +76,7 @@
 
                 <!-- LIST -->
 
-                <Label Text="Location's Comics"
+                <Label Text="Volume's comics"
                        FontAttributes="Bold"
                        FontSize="18"
                        TextColor="Black"
@@ -85,24 +86,7 @@
                        HorizontalOptions="CenterAndExpand"
                        />
                 <controlsviews:CollectionViewHorizontal 
-                 
-                    HeightRequest="200"
-                    VerticalOptions="CenterAndExpand"
-                    Grid.ColumnSpan="4"
-                    WidthRequest="200" 
-                    Grid.Row="5"/>
-                
-                <Label Text="Character's comics"
-                       FontAttributes="Bold"
-                       FontSize="18"
-                       TextColor="Black"
-                       Grid.Row="5"
-                       VerticalOptions="StartAndExpand"
-                       Grid.ColumnSpan="4"
-                       HorizontalOptions="CenterAndExpand"
-                       />
-                <controlsviews:CollectionViewHorizontal 
-                
+                    SpanCollection="2"
                     HeightRequest="200"
                     VerticalOptions="CenterAndExpand"
                     Grid.ColumnSpan="4"

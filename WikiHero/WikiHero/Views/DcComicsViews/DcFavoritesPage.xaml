@@ -2,15 +2,123 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:controlsviews="clr-namespace:WikiHero.Views.ControlsViews"
              mc:Ignorable="d"
              x:Class="WikiHero.Views.DcComicsViews.DcFavoritesPage">
     <ContentPage.Content>
-        <StackLayout>
 
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <Grid Padding="20" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Frame BackgroundColor="{StaticResource DCPrincipalColor}" Grid.RowSpan="4" Grid.ColumnSpan="4" CornerRadius="30">
+                <ScrollView>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Label Text="DC COMIC'S FAVORITES!"
+                            Grid.ColumnSpan="4"
+                            Grid.Row="0"
+                            FontSize="30"
+                             VerticalOptions="StartAndExpand" 
+                            HorizontalOptions="CenterAndExpand" />
+
+                        <Label Text="Character's favorites"
+                       FontAttributes="Bold"
+                       FontSize="18"
+                       TextColor="Black"
+                       Grid.Row="1"
+                       VerticalOptions="StartAndExpand"
+                       Grid.ColumnSpan="4"
+                       HorizontalOptions="CenterAndExpand"
+                       />
+                        <controlsviews:CollectionFavoritesView
+                 
+                    HeightRequest="200"
+                    VerticalOptions="CenterAndExpand"
+                    Grid.ColumnSpan="4"
+                    WidthRequest="200" 
+                    Grid.Row="1"/>
+
+                        <Label Text="Series's favorites"
+                       FontAttributes="Bold"
+                       FontSize="18"
+                       TextColor="Black"
+                           Padding="10"
+                       Grid.Row="2"
+                       VerticalOptions="StartAndExpand"
+                       Grid.ColumnSpan="4"
+                       HorizontalOptions="CenterAndExpand"
+                       />
+                        <controlsviews:CollectionFavoritesView
+                 
+                    HeightRequest="200"
+                    VerticalOptions="CenterAndExpand"
+                    Grid.ColumnSpan="2"
+                    WidthRequest="200" 
+                    Grid.Row="1"/>
+
+
+                        <Label Text="Comic's favorites"
+                       FontAttributes="Bold"
+                       FontSize="18"
+                       TextColor="Black"
+                           Padding="10"
+                       Grid.Row="3"
+                       VerticalOptions="StartAndExpand"
+                       Grid.ColumnSpan="4"
+                       HorizontalOptions="CenterAndExpand"
+                       />
+                        <controlsviews:CollectionFavoritesView
+                 
+                    HeightRequest="200"
+                    VerticalOptions="CenterAndExpand"
+                    Grid.ColumnSpan="4"
+                    WidthRequest="200" 
+                    Grid.Row="3"/>
+
+
+                        <Label Text="Volume's favorites"
+                       FontAttributes="Bold"
+                       FontSize="18"
+                       TextColor="Black"
+                           Padding="10"
+                       Grid.Row="4"
+                       VerticalOptions="StartAndExpand"
+                       Grid.ColumnSpan="4"
+                       HorizontalOptions="CenterAndExpand"
+                       />
+                        <controlsviews:CollectionFavoritesView
+                 
+                    HeightRequest="200"
+                    VerticalOptions="CenterAndExpand"
+                    Grid.ColumnSpan="4"
+                    WidthRequest="200" 
+                    Grid.Row="1"/>
+                    </Grid>
+                </ScrollView>
+            </Frame>
+
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

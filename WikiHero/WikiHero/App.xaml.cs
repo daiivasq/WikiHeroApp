@@ -43,12 +43,15 @@ namespace WikiHero
             containerRegistry.RegisterForNavigation<SharedTransitionNavigationPage>();
             containerRegistry.RegisterForNavigation<NextPage, NextPageViewModel>();
             containerRegistry.RegisterForNavigation<VideoPage, VideoPageViewModel>();
+            containerRegistry.RegisterForNavigation<DetailVolumePage>();
+            containerRegistry.RegisterForNavigation<DetailComicPage>();
 
             containerRegistry.RegisterForNavigation<MarvelCharactersPage, MarvelCharacterPageViewModel>();
             containerRegistry.RegisterForNavigation<MarvelVolumePage, MarvelVolumePageViewModel>();
             containerRegistry.RegisterForNavigation<MarvelHomePage, MarvelHomePageViewModel>();
             containerRegistry.RegisterForNavigation<MarvelSeriesPage, MarvelSeriesPageViewModel>();
             containerRegistry.RegisterForNavigation<MarvelMasterDetailPage, MarvelMasterDetailPageViewModel>();
+            containerRegistry.RegisterForNavigation<MarvelFavoritesPage>();
             containerRegistry.RegisterForNavigation<MarvelCompareCharacterPage, MarvelCompareCharacterPageViewModel>();
             
             
@@ -57,7 +60,8 @@ namespace WikiHero
             containerRegistry.RegisterForNavigation<DcVolumePage, DcVolumePageViewModel>();
             containerRegistry.RegisterForNavigation<DcHomePage, DcHomePageViewModel>();
             containerRegistry.RegisterForNavigation<DcMasterDetailPage, DcMasterDetailPageViewModel>();
-            containerRegistry.RegisterForNavigation<DcSeriesPage, DcSeriesPageViewModel>(); 
+            containerRegistry.RegisterForNavigation<DcSeriesPage, DcSeriesPageViewModel>();
+            containerRegistry.RegisterForNavigation<DcFavoritesPage>();
             containerRegistry.RegisterForNavigation<DcCompareCharacterPage, DcCompareCharacterPageViewModel>();
         }
 

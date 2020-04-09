@@ -35,6 +35,7 @@ namespace WikiHero.Helpers
         public const string DetailSeriesPage = "/DetailSeriesPage";
         public const string DetailCharactersPage = "/DetailCharactersPage";
         public const string DetailComicPage = "/DetailComicPage";
+        public const string DetailVolumePage = "/DetailVolumePage";
         public const string NextPage = "/NextPage";
         public const string VideoPage = "/VideoPage";
 

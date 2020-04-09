@@ -60,6 +60,8 @@
                         Grid.Column="1"
                         Grid.ColumnSpan="3" 
                         VerticalOptions="Start"
+                       FontSize="18"
+                        FontFamily="{StaticResource ComicTansNormalFont}"
                         />
                 <ff:CachedImage Source="ic_add.png" Grid.Row="2" Grid.Column="2" />
                 <ff:CachedImage Source="ic_share.png" Grid.Row="2" Grid.Column="3" >

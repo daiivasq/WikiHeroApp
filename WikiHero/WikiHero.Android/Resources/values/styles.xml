@@ -27,7 +27,7 @@
 
   <!-- Splash Screen -->
   <style name="Theme.Splash" parent="android:Theme">
-    <item name="android:windowBackground">@drawable/SplashScreen</item>
+    <item name="android:windowBackground">@drawable/SplashGray</item>
     <item name="android:windowNoTitle">true</item>
     <item name="android:windowFullscreen">true</item>
     <item name="colorPrimaryDark">#313131</item>

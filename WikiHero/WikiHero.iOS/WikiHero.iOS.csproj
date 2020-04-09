@@ -67,6 +67,9 @@
     <None Include="Entitlements.plist" />
     <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <BundleResource Include="Resources\Comica BD Bold.ttf" />
+    <BundleResource Include="Resources\Comica BD.ttf" />
+    <BundleResource Include="Resources\ComicTans.ttf" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />

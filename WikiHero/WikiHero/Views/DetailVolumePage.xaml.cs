@@ -10,9 +10,9 @@ using Xamarin.Forms.Xaml;
 namespace WikiHero.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class SplashScreenPage : ContentPage
+    public partial class DetailVolumePage : ContentPage
     {
-        public SplashScreenPage()
+        public DetailVolumePage()
         {
             InitializeComponent();
         }
