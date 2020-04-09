@@ -25,8 +25,10 @@
 
 # Series Page
 <p align="center">
+  
 ![SeriesDc](https://user-images.githubusercontent.com/60607967/78949392-687f9c80-7a99-11ea-9d62-995b1a899fb1.gif)
 ![SeriesMarvel](https://user-images.githubusercontent.com/60607967/78949436-8cdb7900-7a99-11ea-96c6-a4a1cde344fe.gif)
+
   </p>
 # DetailSeries Page
 ![SeriesDetail](https://user-images.githubusercontent.com/60607967/78950057-91089600-7a9b-11ea-9be2-461ef6cdb306.PNG)
