@@ -26,7 +26,8 @@ namespace WikiHero.Helpers
         public const string MarvelFavoritesPage = "/MarvelFavoritesPage";
 
 
-        public const string MenuMasterDetailPage = "/MenuMasterDetailPage";
+        public const string MarvelMasterDetailPage = "/MarvelMasterDetailPage";
+        public const string DcMasterDetailPage = "/DcMasterDetailPage";
         public const string VsCharacterPage = "/VsCharacterPage";
 
         public const string MarvelCompareCharacterPage = "/MarvelCompareCharacterPage";

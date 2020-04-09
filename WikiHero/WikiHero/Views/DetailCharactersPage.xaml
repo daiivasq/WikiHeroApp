@@ -9,7 +9,6 @@
              x:Class="WikiHero.Views.DetailCharactersPage">
     <ContentPage.Content>
         <ScrollView>
-
             <Grid >
                 <Grid.RowDefinitions>
                     <RowDefinition Height="200"/>
@@ -46,7 +45,7 @@
                        Grid.Column="0"
                        Grid.ColumnSpan="2"
                        VerticalOptions="End" />
-               
+
                 <ff:CachedImage  x:Name="Xname"
                        Source="{Binding Character.Image.MediumUrl}"
                        Grid.Row="1"
@@ -54,7 +53,7 @@
                        Aspect="AspectFill"
                        VerticalOptions="Start"
                       />
-                
+
                 <Label Text="{Binding Character.Deck}"
                         TextColor="Black" 
                         Grid.Row="1"
@@ -63,10 +62,14 @@
                         VerticalOptions="Start"
                         />
                 <ff:CachedImage Source="ic_add.png" Grid.Row="2" Grid.Column="2" />
-                <ff:CachedImage Source="ic_share.png" Grid.Row="2" Grid.Column="3" />
+                <ff:CachedImage Source="ic_share.png" Grid.Row="2" Grid.Column="3" >
+                    <ff:CachedImage.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding ShareCommand}" NumberOfTapsRequired="1"/>
+                    </ff:CachedImage.GestureRecognizers>
+                </ff:CachedImage>
 
                 <!-- LIST -->
-                
+
                 <Label Text="Teams"
                        FontAttributes="Bold"
                        FontSize="18"
@@ -76,7 +79,7 @@
                        Grid.ColumnSpan="4"
                        HorizontalOptions="CenterAndExpand"
                        />
-                <controlsviews:CollectionHomeView 
+                <controlsviews:CollectionViewHorizontal 
                     ItemsSource="{Binding Teams}"
                     HeightRequest="200"
                     VerticalOptions="CenterAndExpand"
@@ -92,13 +95,13 @@
                        Grid.ColumnSpan="4"
                        HorizontalOptions="CenterAndExpand"
                        />
-                <controlsviews:CollectionHomeView 
+                <controlsviews:CollectionViewHorizontal 
                     ItemsSource="{Binding CharactersEnemys}"
                     HeightRequest="200"
                     Grid.ColumnSpan="4"
                     WidthRequest="200" 
                     Grid.Row="7"/>
-                
+
                 <Label Text="Movies"
                        FontAttributes="Bold"
                        FontSize="18"
@@ -107,7 +110,7 @@
                        Grid.ColumnSpan="4"
                        HorizontalOptions="CenterAndExpand"
                        />
-                <controlsviews:CollectionHomeView 
+                <controlsviews:CollectionViewHorizontal 
                     ItemsSource="{Binding Movies}"
                     HeightRequest="200"
                     Grid.ColumnSpan="4"
@@ -122,13 +125,13 @@
                        Grid.ColumnSpan="4"
                        HorizontalOptions="CenterAndExpand"
                        />
-                <controlsviews:CollectionHomeView 
+                <controlsviews:CollectionViewHorizontal 
                     ItemsSource="{Binding Volumes}"
                     HeightRequest="200"
                     Grid.ColumnSpan="4"
                     WidthRequest="200" 
                     Grid.Row="11"/>
-                
+
                 <Label Text="Comics"
                        FontAttributes="Bold"
                        FontSize="18"
@@ -137,7 +140,7 @@
                        Grid.ColumnSpan="4"
                        HorizontalOptions="CenterAndExpand"
                        />
-                <controlsviews:CollectionHomeView 
+                <controlsviews:CollectionViewHorizontal 
                     ItemsSource="{Binding Comics}"
                     HeightRequest="200"
                     Grid.ColumnSpan="4"

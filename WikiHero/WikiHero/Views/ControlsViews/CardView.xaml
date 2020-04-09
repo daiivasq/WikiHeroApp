@@ -3,40 +3,51 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:pancakeview="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:pancakeview="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" 
+             xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" 
+             xmlns:helpers="clr-namespace:RelativeTimeSample.Helpers"
+             xmlns:share="clr-namespace:Plugin.SharedTransitions;assembly=Plugin.SharedTransitions"
              mc:Ignorable="d"
              x:Class="WikiHero.Views.ControlsViews.CardView"
              >
-  <ContentView.Content>
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label">
+                <Setter Property="BackgroundColor" Value="Black"/>
+                <Setter Property="Opacity" Value="0.7"/>
+                <Setter Property="FontSize" Value="18"/>
+            </Style>
+            <helpers:RelativeDateTimeConvertor x:Key="RelativeDateTime"/>
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <ContentView.Content>
       <pancakeview:PancakeView BackgroundColor="Transparent"
                                CornerRadius="15">
             <Grid VerticalOptions="Center">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="180" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="30" />
                 </Grid.RowDefinitions>
                 <ff:CachedImage  Grid.Column="0"
                        Grid.Row="0"
                        HeightRequest="100"
                        WidthRequest="100"
                        Aspect="AspectFill"
-                       Grid.RowSpan="2"
-                       Grid.ColumnSpan="2"
-                       Source="{Binding Image.MediumUrl}"/>
-                <Frame Grid.Column="1" 
-                       Padding="5"
-                       Grid.Row="1"
-                       CornerRadius="5"
-                       BackgroundColor="Black">
-                    <Label TextColor="White"
-
-                       Text="{Binding Name}"
-                       FontSize="18"/>
-                </Frame>
+                       Source="{Binding Image.MediumUrl}"
+                                share:Transition.Name="image"/>
+                <Label TextColor="White"
+                       VerticalOptions="EndAndExpand"
+                       Margin="10,0,0,0"
+                       Text="{Binding Name,StringFormat='{0} '}"
+                       HorizontalOptions="StartAndExpand"
+                       share:Transition.Name="name"/>
+                <Label TextColor="White"
+                       Text="{Binding LastUpdate,StringFormat=' {0}', Converter={StaticResource RelativeDateTime}}"
+                       VerticalOptions="EndAndExpand"
+                       Margin="0,0,10,0"
+                       HorizontalOptions="EndAndExpand"/>
             </Grid>
         </pancakeview:PancakeView>
   </ContentView.Content>

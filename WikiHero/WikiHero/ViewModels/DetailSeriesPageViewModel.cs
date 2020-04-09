@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using WikiHero.Models;
 using WikiHero.Services;
+using Xamarin.Essentials;
 
 namespace WikiHero.ViewModels
 {
@@ -16,11 +17,14 @@ namespace WikiHero.ViewModels
         public ObservableCollection<Episode> Episodes { get; set; } 
         public DelegateCommand LoadCommand { get; set; }
         public Serie Serie { get; set; } = new Serie();
-
+        public DelegateCommand ShareCommand { get; set; }
         public DetailSeriesPageViewModel(INavigationService navigationService, IPageDialogService dialogService, IApiComicsVine apiComicsVine) : base(navigationService, dialogService, apiComicsVine)
         {
 
-           
+            ShareCommand = new DelegateCommand(async () =>
+            {
+                await SharedOpcion();
+            });
 
         }
         async Task LoadEpisode(int idSeries)
@@ -41,7 +45,16 @@ namespace WikiHero.ViewModels
         {
 
         }
+        async Task SharedOpcion()
+        {
+            await Share.RequestAsync(new ShareTextRequest
+            {
 
+                Text = $"{Serie.Name}\nCantidad de episodios:{Serie.CountOfEpisodes}",
+                Title = $"{Serie.Publisher.Name}",
+                Uri = $"{Serie.SiteDetailUrl}"
+            });
+        }
         public void OnNavigatedTo(INavigationParameters parameters)
         {
             var param = (Serie)parameters[nameof(Serie)];

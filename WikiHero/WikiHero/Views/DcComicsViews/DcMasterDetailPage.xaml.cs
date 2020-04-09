@@ -7,14 +7,15 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace WikiHero.Views
+namespace WikiHero.Views.DcComicsViews
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class MenuMasterDetailPage : MasterDetailPage    
+    public partial class DcMasterDetailPage : MasterDetailPage
     {
-        public MenuMasterDetailPage()
+        public DcMasterDetailPage()
         {
             InitializeComponent();
         }
+
     }
 }

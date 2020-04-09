@@ -2,23 +2,36 @@
 <MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" xmlns:ffTransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
-                  mc:Ignorable="d"
-             x:Class="WikiHero.Views.MenuMasterDetailPage"
-                  BackgroundColor="White"
-             NavigationPage.HasNavigationBar="True"
-                >
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="WikiHero.Views.DcComicsViews.DcMasterDetailPage"
+          
+                  xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" 
+                   xmlns:sharedTransitions="clr-namespace:Plugin.SharedTransitions;assembly=Plugin.SharedTransitions" 
+                 xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView">
+    <MasterDetailPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="sharedTransitions:SharedTransitionNavigationPage">
+                <Setter Property="NavigationPage.HasNavigationBar" Value="False"/>
+                <Setter Property="BarBackgroundColor" Value="{StaticResource DCPrincipalColor}"/>
+            </Style>
+        </ResourceDictionary>
+    </MasterDetailPage.Resources>
     <MasterDetailPage.Master>
+
         <ContentPage Title="Menu">
             <CollectionView ItemsSource="{Binding ItemPages}"
                             SelectedItem="{Binding SelectPage}"
                             SelectionMode="Single">
                 <CollectionView.Header>
-                    <StackLayout>
-                        <ff:CachedImage Source="MarvelLLL.png" BackgroundColor="{StaticResource MarvelPrincipalColor}" HeightRequest="200">
-                            
-                            </ff:CachedImage>
-                    </StackLayout>
+                    <pancakeView:PancakeView>
+                        <ff:CachedImage Source="DC_Comics_Logo" >
+
+                            <ff:CachedImage.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding  ChangePageCommand}" NumberOfTapsRequired="1"/>
+                            </ff:CachedImage.GestureRecognizers>
+                        </ff:CachedImage>
+                    </pancakeView:PancakeView>
                 </CollectionView.Header>
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
@@ -29,6 +42,7 @@
                             </Grid.ColumnDefinitions>
                             <ff:CachedImage Source="{Binding Image}" />
                             <Label Text="{Binding Title}" 
+                                   Style="{StaticResource MasterMenuLabel}"
                                    Grid.Column="1"
                                    HorizontalOptions="CenterAndExpand"/>
                         </Grid>
@@ -41,11 +55,8 @@
                                         HeightRequest="100"
                                         VerticalOptions="End"
                                         Margin="20,170"
-                                        HorizontalOptions="EndAndExpand">
-                            <ff:CachedImage.Transformations>
-                                <ffTransformations:CircleTransformation/>
-                            </ff:CachedImage.Transformations>
-                        </ff:CachedImage>
+                                        HorizontalOptions="EndAndExpand"/>
+
                     </StackLayout>
                 </CollectionView.Footer>
             </CollectionView>

@@ -38,6 +38,9 @@ namespace WikiHero.Models
 
         [JsonProperty("start_year")]
         public string StartYear { get; set; }
+
+        [JsonProperty("site_detail_url")]
+        public string SiteDetailUrl { get; set; }
     }
 
     public class ResultSeries

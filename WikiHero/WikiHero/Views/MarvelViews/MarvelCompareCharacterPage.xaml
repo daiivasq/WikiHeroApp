@@ -10,10 +10,9 @@
              xmlns:sharedTransitions="clr-namespace:Plugin.SharedTransitions;assembly=Plugin.SharedTransitions" 
              xmlns:helpers="clr-namespace:WikiHero.Helpers"
              sharedTransitions:SharedTransitionNavigationPage.BackgroundAnimation="Fade"
-             sharedTransitions:SharedTransitionNavigationPage.TransitionDuration="3"
+             sharedTransitions:SharedTransitionNavigationPage.TransitionDuration="500"
                Title="Vs"
     >
-
     <ContentPage.Resources>
         <Style TargetType="Button">
             <Setter Property="FontFamily" Value="40"/>
@@ -71,6 +70,11 @@
                     <ColumnDefinition Width="100"/>
                     <ColumnDefinition Width="1*"/>
                 </Grid.ColumnDefinitions>
+                <controlsviews:ConnectivityView BackgroundColor="{StaticResource MarvelPrincipalColor}" 
+                                            TextView="OOH NO !! Hydra has taken away the Internet, look for a fast connection"
+                                            ImageView="InternetCapitainAmerica"
+                                            HorizontalOptions="CenterAndExpand"
+                                            VerticalOptions="CenterAndExpand"/>
                 <controlsviews:CollectionStats ItemsSource="{Binding HeroesCharacters}"
                                                     VerticalOptions="StartAndExpand"
                                                     SelectItem="{Binding SelectHeroes,Mode=TwoWay}"

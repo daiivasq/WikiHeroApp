@@ -7,6 +7,7 @@
              x:Class="WikiHero.Views.NextPage"
               xmlns:sharedTransitions="clr-namespace:Plugin.SharedTransitions;assembly=Plugin.SharedTransitions"
              NavigationPage.HasNavigationBar="False"
+             BackgroundColor="Transparent"
              >
     <ContentPage.Content>
         <Grid >
@@ -16,13 +17,6 @@
             <ff:CachedImage Source="{Binding ImagePublisher}" 
                             Aspect="AspectFill"
                         />
-
-            <Button Text="Continue"
-                    VerticalOptions="End"
-                    TranslationY="-50"
-                    BackgroundColor="Transparent"
-                    TextColor="White"
-                    Command="{Binding GoToMarvelOrDc}"/>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

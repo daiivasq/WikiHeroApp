@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+                  xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" xmlns:ffTransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+                  mc:Ignorable="d"
+                  xmlns:sharedTransitions="clr-namespace:Plugin.SharedTransitions;assembly=Plugin.SharedTransitions"
+                  sharedTransitions:SharedTransitionNavigationPage.BackgroundAnimation="Flip"
+             x:Class="WikiHero.Views.MarvelViews.MarvelMasterDetailPage">
+    <MasterDetailPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="sharedTransitions:SharedTransitionNavigationPage">
+                <Setter Property="NavigationPage.HasNavigationBar" Value="False"/>
+                <Setter Property="BarBackgroundColor" Value="{StaticResource MarvelPrincipalColor}"/>
+            </Style>
+
+        </ResourceDictionary>
+    </MasterDetailPage.Resources>
+    <MasterDetailPage.Master>
+        <ContentPage Title="Menu">
+            <CollectionView ItemsSource="{Binding ItemPages}"
+                            SelectedItem="{Binding SelectPage}"
+                            SelectionMode="Single"
+                            BackgroundColor="White"
+                            >
+                <CollectionView.Header>
+                    <pancakeView:PancakeView Padding="10" BackgroundColor="{StaticResource MarvelPrincipalColor}">
+                        <ff:CachedImage Source="marvelLLL.png" 
+                                        HeightRequest="200"
+                                        >
+
+                            <ff:CachedImage.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding  ChangePageCommand}" NumberOfTapsRequired="1"/>
+                            </ff:CachedImage.GestureRecognizers>
+                        </ff:CachedImage>
+                    </pancakeView:PancakeView>
+                </CollectionView.Header>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Margin="10" Padding="0,10,0,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="60"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <ff:CachedImage Source="{Binding Image}" />
+                            <Label Text="{Binding Title}" 
+                                   Style="{StaticResource MasterMenuLabel}"
+                                Grid.Column="1"
+                                   HorizontalOptions="CenterAndExpand"/>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+                <CollectionView.Footer>
+                    <StackLayout>
+                        <ff:CachedImage 
+                                        BackgroundColor="White"
+                                        HeightRequest="100"
+                                        VerticalOptions="End"
+                                        Margin="20,170"
+                                        HorizontalOptions="EndAndExpand">
+                            <ff:CachedImage.Transformations>
+                                <ffTransformations:CircleTransformation/>
+                            </ff:CachedImage.Transformations>
+                        </ff:CachedImage>
+                    </StackLayout>
+                </CollectionView.Footer>
+            </CollectionView>
+        </ContentPage>
+    </MasterDetailPage.Master>
+    </MasterDetailPage>

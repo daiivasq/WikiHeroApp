@@ -27,7 +27,6 @@
     </NavigationPage.TitleView>
     <ContentPage.Resources>
         <Style TargetType="Button">
-            <Setter Property="FontFamily" Value="40"/>
             <Setter Property="BackgroundColor" Value="{StaticResource DCPrincipalColor}"/>
             <Setter Property="TextColor" Value="White"/>
         </Style>
@@ -82,6 +81,10 @@
                     <ColumnDefinition Width="100"/>
                     <ColumnDefinition Width="1*"/>
                 </Grid.ColumnDefinitions>
+                <controlsviews:ConnectivityView BackgroundColor="{StaticResource DCPrincipalColor}" 
+                                            ImageView="ComicsBatmanJokericon"
+                                            TextView="This is not a joke of mine you don't have internet"
+                                                VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"/>
                 <controlsviews:CollectionStats ItemsSource="{Binding HeroesCharacters}"
                                                     VerticalOptions="StartAndExpand"
                                                     SelectItem="{Binding SelectHeroes,Mode=TwoWay}"

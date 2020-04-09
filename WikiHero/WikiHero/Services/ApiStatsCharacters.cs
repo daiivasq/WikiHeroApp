@@ -15,7 +15,6 @@ namespace WikiHero.Services
         public ApiStatsCharacters()
         {
             Barrel.ApplicationId = Config.CacheKey;
-            Barrel.Current.EmptyAll();
         }
         private bool NetworkAvalible(string key)
         {
@@ -31,14 +30,13 @@ namespace WikiHero.Services
         {
             if (!NetworkAvalible($"{nameof(CharacterStats)}/{publisher}"))
             {
-                await Task.Yield();
                 return Barrel.Current.Get<List<CharacterStats>>(key: $"{nameof(CharacterStats)}/{publisher}");
             }
 
             var getRequest = RestService.For<IApiCharacterStats>(Config.UrlApiCharactersStats);
             var stats = await getRequest.CharacterStats(publisher);
             var characters = stats.Where(e => e.Biography.Publisher != null).ToList();
-            Barrel.Current.Add(key: $"{nameof(CharacterStats)}/{publisher}", characters, expireIn: TimeSpan.FromDays(1));
+            Barrel.Current.Add(key: $"{nameof(CharacterStats)}/{publisher}", characters, expireIn: TimeSpan.FromDays(3));
             return characters;
         }
     }

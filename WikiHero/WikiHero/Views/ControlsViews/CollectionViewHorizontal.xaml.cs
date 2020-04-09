@@ -19,11 +19,19 @@ namespace WikiHero.Views.ControlsViews
           typeof(CollectionViewHorizontal),
           propertyChanged: ColletionViewChanged);
         public static readonly BindableProperty ColorProperty = BindableProperty.Create(nameof(ColorFrame), typeof(Color), typeof(CardView));
+
+        public static readonly BindableProperty SpanCollectionProperty = BindableProperty.Create(nameof(SpanCollection), typeof(int), typeof(CollectionViewHorizontal),1, propertyChanged:SpanColletionChanged);
+
         public static readonly BindableProperty SelectItemProperty = BindableProperty.Create(
         nameof(SelectItem),
         typeof(object),
-        typeof(CollectionStats),
+        typeof(CollectionViewHorizontal),
         propertyChanged: SelectItemChanged);
+        public int SpanCollection
+        {
+            get => (int)GetValue(SpanCollectionProperty);
+            set => SetValue(SpanCollectionProperty, value);
+        }
         public object SelectItem
         {
             get => GetValue(SelectItemProperty);
@@ -52,9 +60,16 @@ namespace WikiHero.Views.ControlsViews
             var items = (IList)newValue;
             control.publisherList.ItemsSource = items;
         }
+        private static void SpanColletionChanged(BindableObject bindable, object oldValue, object newValue)
+        {
+            if (!(bindable is CollectionViewHorizontal control)) return;
+            var items = (int)newValue;
+            control.gridLayout.Span = items;
+        }
         public CollectionViewHorizontal()
         {
             InitializeComponent();
+
         }
     }
 }

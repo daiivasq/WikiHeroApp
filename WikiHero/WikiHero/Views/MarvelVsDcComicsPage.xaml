@@ -10,7 +10,7 @@
              BackgroundImageSource="versusPrincipal"
              xmlns:sharedTransitions="clr-namespace:Plugin.SharedTransitions;assembly=Plugin.SharedTransitions" xmlns:controlsviews="clr-namespace:WikiHero.Views.ControlsViews"
              sharedTransitions:SharedTransitionNavigationPage.TransitionDuration="500"
-             sharedTransitions:SharedTransitionNavigationPage.BackgroundAnimation="SlideFromBottom"
+             sharedTransitions:SharedTransitionNavigationPage.BackgroundAnimation="Fade"
              NavigationPage.HasNavigationBar="False"
              >
     

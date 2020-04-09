@@ -37,9 +37,6 @@
     <Compile Update="Views\ControlsViews\CollectionStats.xaml.cs">
       <DependentUpon>CollectionStats.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\ControlsViews\CollectionHomeView.xaml.cs">
-      <DependentUpon>CollectionHomeView.xaml</DependentUpon>
-    </Compile>
     <Compile Update="Views\DcComicsViews\DcVolumePage.xaml.cs">
       <DependentUpon>DcVolumePage.xaml</DependentUpon>
     </Compile>
@@ -58,6 +55,9 @@
     <EmbeddedResource Update="Views\ControlsViews\CollectionStats.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Views\ControlsViews\ConnectivityView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Views\ControlsViews\ControlListView.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
@@ -68,6 +68,9 @@
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\DcComicsViews\DcFavoritesPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\DcComicsViews\DcMasterDetailPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\DcComicsViews\DcVolumePage.xaml">
@@ -100,6 +103,9 @@
     <EmbeddedResource Update="Views\MarvelViews\MarvelFavoritesPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Views\MarvelViews\MarvelMasterDetailPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Views\MarvelViews\MarvelVolumePage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
@@ -114,9 +120,6 @@
     </EmbeddedResource>
     <EmbeddedResource Update="Views\MarvelVsDcComicsPage.xaml">
       <Generator>MSBuild:Compile</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\MenuMasterDetailPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\NextPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>

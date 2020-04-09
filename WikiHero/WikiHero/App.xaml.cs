@@ -48,7 +48,7 @@ namespace WikiHero
             containerRegistry.RegisterForNavigation<MarvelVolumePage, MarvelVolumePageViewModel>();
             containerRegistry.RegisterForNavigation<MarvelHomePage, MarvelHomePageViewModel>();
             containerRegistry.RegisterForNavigation<MarvelSeriesPage, MarvelSeriesPageViewModel>();
-            containerRegistry.RegisterForNavigation<MenuMasterDetailPage, MenuMasterDetailPageViewModel>();
+            containerRegistry.RegisterForNavigation<MarvelMasterDetailPage, MarvelMasterDetailPageViewModel>();
             containerRegistry.RegisterForNavigation<MarvelCompareCharacterPage, MarvelCompareCharacterPageViewModel>();
             
             
@@ -56,6 +56,7 @@ namespace WikiHero
             containerRegistry.RegisterForNavigation<DcCharactersPage, DCCharactersPageViewModel>();
             containerRegistry.RegisterForNavigation<DcVolumePage, DcVolumePageViewModel>();
             containerRegistry.RegisterForNavigation<DcHomePage, DcHomePageViewModel>();
+            containerRegistry.RegisterForNavigation<DcMasterDetailPage, DcMasterDetailPageViewModel>();
             containerRegistry.RegisterForNavigation<DcSeriesPage, DcSeriesPageViewModel>(); 
             containerRegistry.RegisterForNavigation<DcCompareCharacterPage, DcCompareCharacterPageViewModel>();
         }

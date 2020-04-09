@@ -11,73 +11,70 @@ using WikiHero.Services;
 
 namespace WikiHero.ViewModels
 {
-    public class MenuMasterDetailPageViewModel : BaseViewModel,INavigatedAware
+    public abstract class MenuMasterDetailPageViewModel : BaseViewModel
     {
         public List<ItemPage> ItemPages { get; set; }
         public string MarvelOrDc { get; set; }
-        public DelegateCommand GoToPage{ get; set; }
+        public DelegateCommand GoToPage { get; set; }
         private ItemPage selectPage;
+        public DelegateCommand ChangePageCommand { get; set; }
 
         public ItemPage SelectPage
         {
             get { return selectPage; }
-            set { 
+            set
+            {
                 selectPage = value;
-                if (selectPage!= null) {
-                    GoToPage = new DelegateCommand(async()=>await GoToNavigation(SelectPage.Url));
+                if (selectPage != null)
+                {
+                    GoToPage = new DelegateCommand(async () => await GoToNavigation(SelectPage.Url));
                     GoToPage.Execute();
 
                 }
             }
         }
-
-        public MenuMasterDetailPageViewModel(INavigationService navigationService, IPageDialogService dialogService, IApiComicsVine apiComicsVine) : base(navigationService, dialogService, apiComicsVine)
+        public MenuMasterDetailPageViewModel(INavigationService navigationService, IPageDialogService dialogService, IApiComicsVine apiComicsVine, string pubisher) : base(navigationService, dialogService, apiComicsVine)
         {
-
-
-           
+            this.MarvelOrDc = pubisher;
+            SelectMasterDetail();
         }
-        async Task GoToNavigation(string page)
+        void SelectMasterDetail()
         {
-            await navigationService.NavigateAsync(new Uri($"{ConfigPageUri.SharedTransitionNavigationPage}{page}",UriKind.Relative));
-        }
-
-        public void OnNavigatedFrom(INavigationParameters parameters)
-        {
-           
-        }
-
-        public void OnNavigatedTo(INavigationParameters parameters)
-        {
-            const string marvel = "ironman.gif";
-            const string dc = "batman.gif";
-            MarvelOrDc = (string)parameters[ConfigPageUri.MenuMasterDetailPage];
             switch (MarvelOrDc)
             {
-                case marvel:
+                case Marvel:
                     ItemPages = new List<ItemPage>() {
                     new ItemPage("marvelhome","Home",ConfigPageUri.MarvelHomePage),
-                    new ItemPage("monitor","Series",ConfigPageUri.MarvelSeriesPage),
+                    new ItemPage("ic_action_live_tv.png","Series",ConfigPageUri.MarvelSeriesPage),
                     new ItemPage("comic","Volumes",ConfigPageUri.MarvelVolumePage),
                     new ItemPage("MarvelCharacter","Characters",ConfigPageUri.MarvelCharactersPage),
                     new ItemPage("sword","Vs",ConfigPageUri.MarvelCompareCharacterPage),
-                     new ItemPage("star","favorites",ConfigPageUri.MarvelFavoritesPage),
-            };
+                     new ItemPage("ic_action_playlist_add.png","favorites",ConfigPageUri.MarvelFavoritesPage),
+                    };
                     break;
-                case dc:
+                case Dc:
                     ItemPages = new List<ItemPage>() {
                  new ItemPage("dchome","Home",ConfigPageUri.DcHomePage),
-                 new ItemPage("monitor","Series",ConfigPageUri.DcSeriesPage),
+                 new ItemPage("ic_action_live_tv","Series",ConfigPageUri.DcSeriesPage),
                  new ItemPage("comic","Volumes",ConfigPageUri.DcVolumePage),
                  new ItemPage("DcCharacter","Characters",ConfigPageUri.DcComicsCharactersPage),
                  new ItemPage("sword","Vs",ConfigPageUri.MarvelCompareCharacterPage),
-                 new ItemPage("star","favorites",ConfigPageUri.DcFavoritesPage),
-              };
+                 new ItemPage("ic_action_playlist_add","favorites",ConfigPageUri.DcFavoritesPage),
+                     };
                     break;
 
                 default:
                     break;
             }
         }
+        async Task GoToNavigation(string page)
+        {
+            await navigationService.NavigateAsync(new Uri($"{ConfigPageUri.SharedTransitionNavigationPage}{page}", UriKind.Relative));
+        }
+
+        protected const string Marvel = "Marvel";
+        protected const string Dc = "Dc";
+
     }
+
 }

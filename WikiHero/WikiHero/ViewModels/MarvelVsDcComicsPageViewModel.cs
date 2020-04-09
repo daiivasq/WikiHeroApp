@@ -10,7 +10,7 @@ using WikiHero.Views.DcComicsViews;
 
 namespace WikiHero.ViewModels
 {
-   public class MarvelVsDcComicsPageViewModel:BaseViewModel
+   public  class MarvelVsDcComicsPageViewModel:BaseViewModel
     {
         public DelegateCommand<string> GoToNextPage { get; set; }
         public MarvelVsDcComicsPageViewModel(INavigationService navigationService, IPageDialogService dialogService, IApiComicsVine apiComicsVine) :base(navigationService, dialogService, apiComicsVine)
@@ -18,7 +18,7 @@ namespace WikiHero.ViewModels
                 GoToNextPage = new DelegateCommand<string>(async (image) =>
                 {
                     var param = new NavigationParameters();
-                    param.Add($"{nameof(ConfigPageUri.MenuMasterDetailPage)}", image);
+                    param.Add($"{ConfigPageUri.NextPage}", image);
                     await navigationService.NavigateAsync(new Uri($"{ConfigPageUri.NextPage}", UriKind.Relative),param);
                 });
        

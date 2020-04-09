@@ -99,7 +99,7 @@ namespace WikiHero.ViewModels
             }
             finally
             {
-                IsBusy = false;
+                CurrentState = State.None;
             }
 
         }
@@ -138,12 +138,17 @@ namespace WikiHero.ViewModels
                 var notNull = from item in volumes.Volumes where item.Publisher != null select item;
                 var marvelOrDc = notNull.Where(e => e.Publisher.Name.Contains(PublisherPrincipal) || e.Publisher.Name.Contains(PublisherSecond) || e.Publisher.Name.Contains(PublisherThird));
                 Volumes = new ObservableCollection<Volume>(marvelOrDc);
+                CurrentState = State.None;
             }
             catch (Exception ex)
             {
                 CurrentState = State.Error;
-                await dialogService.DisplayAlertAsync("Volume", $"{ex.Message}", "Ok");
+                CurrentState = State.None;
 
+            }
+            finally
+            {
+                CurrentState = State.None;
             }
         }
   }

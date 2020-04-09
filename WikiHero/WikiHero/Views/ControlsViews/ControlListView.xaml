@@ -3,10 +3,80 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:controlsviews="clr-namespace:WikiHero.Views.ControlsViews" xmlns:state="clr-namespace:Xamarin.Forms.StateSquid;assembly=Xamarin.Forms.StateSquid"
+             xmlns:controlsviews="clr-namespace:WikiHero.Views.ControlsViews" 
+             xmlns:state="clr-namespace:Xamarin.Forms.StateSquid;assembly=Xamarin.Forms.StateSquid" 
+             xmlns:pancakeview="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:sharedTransitions ="clr-namespace:Plugin.SharedTransitions;assembly=Plugin.SharedTransitions"
              mc:Ignorable="d"   
+            
              x:Class="WikiHero.Views.ControlsViews.ControlListView">
-  <ContentView.Content>
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <Style TargetType="CollectionView">
+                <Setter Property="ItemTemplate">
+                    <Setter.Value>
+                        <DataTemplate>
+                            <controlsviews:CardView/>
+                        </DataTemplate>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="ItemsLayout">
+                    <Setter.Value>
+                        <LinearItemsLayout Orientation="Vertical"
+                                   ItemSpacing="20"/>
+                    </Setter.Value>
+                </Setter>
+                <Style.Triggers>
+                    <DataTrigger TargetType="CollectionView"
+                             Binding="{Binding IsChangedView}"
+                               Value="True">
+                        <Setter Property="ItemTemplate">
+                            <Setter.Value>
+                                <DataTemplate>
+                                    <pancakeview:PancakeView Padding="10"
+                                                     Style="{StaticResource PancakeViewCornerRadiusKey}"
+                                                     BackgroundColor="Transparent"
+                                                          sharedTransitions:Transition.Name="CardVillain">
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="*"/>
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="150"/>
+                                            </Grid.ColumnDefinitions>
+                                            <ff:CachedImage  
+                                        Source="{Binding Image.MediumUrl}"
+                                        HeightRequest="200"
+                                   Aspect="AspectFill"
+                                             sharedTransitions:Transition.Name="image"
+                                                sharedTransitions:Transition.Group="{Binding Id}"/>
+                                            <Label Text="{Binding Name}"
+                                     TextColor="White"
+                                   BackgroundColor="Black"
+                                   VerticalOptions="EndAndExpand"
+                                        Opacity="0.8"
+                                       HeightRequest="30"
+                                              sharedTransitions:Transition.Name="name"
+                                               sharedTransitions:Transition.Group="{Binding Id}"/>
+                                        </Grid>
+                                    </pancakeview:PancakeView>
+                                </DataTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Setter Property="ItemsLayout">
+                            <Setter.Value>
+                                <GridItemsLayout Span="2"
+                                 Orientation="Vertical"/>
+                            </Setter.Value>
+                        </Setter>
+                    </DataTrigger>
+
+                </Style.Triggers>
+            </Style>
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <ContentView.Content>
         <RefreshView Command="{Binding RefreshCommand}" IsRefreshing="{Binding IsBusy}" >
             <StackLayout state:StateLayout.CurrentState="{Binding CurrentState}" Grid.Row="0">
                 <state:StateLayout.StateViews>
@@ -35,15 +105,6 @@
                         RemainingItemsThreshold="{Binding ItemTreshold}"
                         RemainingItemsThresholdReachedCommand="{Binding ItemTresholdReachedCommand}"
                         ItemSizingStrategy="MeasureAllItems">
-                    <CollectionView.ItemsLayout>
-                        <LinearItemsLayout Orientation="Vertical"
-                                   ItemSpacing="20"/>
-                    </CollectionView.ItemsLayout>
-                    <CollectionView.ItemTemplate>
-                        <DataTemplate>
-                            <controlsviews:CardView/>
-                        </DataTemplate>
-                    </CollectionView.ItemTemplate>
                 </CollectionView>
             </StackLayout>
         </RefreshView>

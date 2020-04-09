@@ -2,32 +2,33 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using WikiHero.Models;
 
 namespace WikiHero.Services
 {
     public class DBFavorites : IDBFavorites
     {
-        public Task GetCharacter()
+        public Task<List<Character>> GetCharacter()
         {
             throw new NotImplementedException();
         }
 
-        public Task GetComic()
+        public Task<List<Comic>> GetComic()
         {
             throw new NotImplementedException();
         }
 
-        public Task GetMovies()
+        public Task<List<Movie>> GetMovies()
         {
             throw new NotImplementedException();
         }
 
-        public Task GetSeries()
+        public Task<List<Serie>> GetSeries()
         {
             throw new NotImplementedException();
         }
 
-        public Task GetVolume()
+        public Task<List<Volume>> GetVolume()
         {
             throw new NotImplementedException();
         }

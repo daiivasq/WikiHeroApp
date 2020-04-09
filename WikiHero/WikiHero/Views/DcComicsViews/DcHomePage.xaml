@@ -43,25 +43,23 @@
                                 </Grid.ColumnDefinitions>
                                 <state:SkeletonView BackgroundColor="#cccc" HeightRequest="250" Grid.ColumnSpan="3" >
                                 </state:SkeletonView>
-                                <Image BackgroundColor="Red" Grid.Column="1"/>
-                                <Label Text="Recent series" FontSize="25" Grid.Row="1" />
+                                <Image Source="ic_HulkLoading.png" Grid.Column="1"/>
+
                                 <state:SkeletonView CornerRadius="6" HeightRequest="160" BackgroundColor="#cccc" Grid.Row="2" Grid.Column="0">
                                 </state:SkeletonView>
                                 <state:SkeletonView CornerRadius="6" HeightRequest="160" BackgroundColor="#cccc" Grid.Row="2" Grid.Column="1"/>
                                 <state:SkeletonView CornerRadius="6" HeightRequest="6" BackgroundColor="#cccc" Grid.Row="2" Grid.Column="2"/>
-                                <Label FontSize="25" Grid.Row="3" />
                                 <state:SkeletonView CornerRadius="6" HeightRequest="160" BackgroundColor="#cccc" Grid.Row="4" Grid.Column="0"/>
                                 <state:SkeletonView CornerRadius="6" HeightRequest="160" BackgroundColor="#cccc" Grid.Row="4" Grid.Column="1"/>
                                 <state:SkeletonView CornerRadius="6" HeightRequest="160" BackgroundColor="#cccc" Grid.Row="4" Grid.Column="2"/>
-                                <Label />
                                 <state:SkeletonView CornerRadius="6" HeightRequest="160" BackgroundColor="#cccc" Grid.Row="6" Grid.Column="0"/>
                                 <state:SkeletonView CornerRadius="6" HeightRequest="160" BackgroundColor="#cccc" Grid.Row="6" Grid.Column="1"/>
                                 <state:SkeletonView CornerRadius="6" HeightRequest="160" BackgroundColor="#cccc" Grid.Row="6" Grid.Column="2"/>
-
                             </Grid>
                         </state:StateView>
                     </state:StateLayout.StateViews>
-                    <CarouselView ItemsSource="{Binding  Teams}" WidthRequest="500" HeightRequest="230"
+                 
+                    <CarouselView ItemsSource="{Binding Path=ItemSelected.Teams, Source={x:Reference segment}}" WidthRequest="500" HeightRequest="230"
                               HorizontalScrollBarVisibility="Always"
                               >
                         <CarouselView.ItemTemplate>
@@ -89,24 +87,28 @@
                            FontSize="22" 
                            Style="{StaticResource LabelKeY}"
                        />
-                    <controlsviews:CollectionHomeView   HeightRequest="200" 
+                    <controlsviews:CollectionViewHorizontal   HeightRequest="200" 
                                                         WidthRequest="200" 
                                                         ItemsSource="{Binding Path=ItemSelected.ListSeries, Source={x:Reference segment}}"
+                                                          SpanCollection="1"
                                                             />
                     <Label Text="{Binding Path=ItemSelected.TitleSeries,Source={x:Reference segment}}" 
                            FontSize="22" 
                            HorizontalTextAlignment="Center"  
                            Style="{StaticResource LabelKeY}" />
-                    <controlsviews:CollectionHomeView   HeightRequest="200"
+                    <controlsviews:CollectionViewHorizontal   HeightRequest="200"
                                                             WidthRequest="200" 
                                                             ItemsSource="{Binding Path=ItemSelected.ListCharacters, Source={x:Reference segment}}"
-                                                            />
+                                                             SpanCollection="1"
+                                                              />
                     <Label Text="{Binding Path=ItemSelected.TitleVolume,Source={x:Reference segment}}" TextColor="Black" FontSize="22" HorizontalTextAlignment="Center"
                            Grid.Row="7"
                            Style="{StaticResource LabelKeY}" />
-                    <controlsviews:CollectionHomeView  HeightRequest="200"
+                    <controlsviews:CollectionViewHorizontal  HeightRequest="200"
                                                            WidthRequest="200" 
-                                                         ItemsSource="{Binding Path=ItemSelected.ListVolumes, Source={x:Reference segment}}"/>
+                                                         ItemsSource="{Binding Path=ItemSelected.ListVolumes, Source={x:Reference segment}}"
+                                                           SpanCollection="1"/>
+
 
                 </StackLayout>
             </ScrollView>
@@ -139,7 +141,6 @@
                                     </DataTrigger>
                                 </Label.Triggers>
                             </Label>
-
                             <BoxView HeightRequest="5" 
                                              BackgroundColor="Blue"
                                              HorizontalOptions="FillAndExpand">

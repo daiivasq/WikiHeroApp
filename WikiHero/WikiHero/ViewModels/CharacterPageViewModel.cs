@@ -16,9 +16,11 @@ using Xamarin.Forms.StateSquid;
 
 namespace WikiHero.ViewModels
 {
-    public class CharacterPageViewModel : BaseViewModel
+    public abstract class CharacterPageViewModel : BaseViewModel
     {
         public ObservableCollection<Character> Characters { get; set; } = new ObservableCollection<Character>();
+        public bool IsChangedView { get; set; } = false;
+        public DelegateCommand ChangedViewCommand { get; set; }
         private Character selectCharacter;
 
         public Character SelectCharacter
@@ -40,6 +42,9 @@ namespace WikiHero.ViewModels
         public CharacterPageViewModel(INavigationService navigationService, IPageDialogService dialogService, IApiComicsVine apiComicsVine,string publisherName,int offeset) : base(navigationService, dialogService, apiComicsVine)
         {
             this.PublisherName = publisherName;
+            ChangedViewCommand = new DelegateCommand(()=>{
+                IsChangedView = !IsChangedView;
+            });
             ItemTresholdReachedCommand = new DelegateCommand(async () =>
             {
                 offeset += 100;
@@ -71,9 +76,20 @@ namespace WikiHero.ViewModels
 
         async Task NavigationToDetail(Character character)
         {
-            var param = new NavigationParameters();
-            param.Add(nameof(Character), character.Id);
-            await navigationService.NavigateAsync(new Uri(ConfigPageUri.DetailCharactersPage,UriKind.Relative), param);
+            try
+            {
+                var param = new NavigationParameters
+            {
+                { nameof(Character), character.Id }
+            };
+                await navigationService.NavigateAsync(new Uri($"{ConfigPageUri.DetailCharactersPage}",UriKind.Relative), param,true);
+            }
+            catch (Exception err)
+            {
+
+                await dialogService.DisplayAlertAsync("",$"{err}","ok");
+            }
+
         }
         protected async Task ScrollLoadCharacters(int offset)
         {
@@ -114,26 +130,24 @@ namespace WikiHero.ViewModels
         }
       protected async Task LoadCharacters()
         {
-            if (Connectivity.NetworkAccess == NetworkAccess.Internet)
+            try
             {
-                try
-                {
-                    CurrentState = State.Loading;
-                    var characters = await apiComicsVine.GetCharacter(Config.Apikey,PublisherName);
-                    var notNull = from item in characters.Characters where item.Publisher != null select item;
-                    var marvelOrDc = notNull.Where(e => e.Publisher.Name.Contains(PublisherName));
-                    Characters = new ObservableCollection<Character>(marvelOrDc);
-                    CurrentState = State.None;
-                }
-                catch (Exception ex)
-                {
-                    CurrentState = State.Error;
-                    await dialogService.DisplayAlertAsync("Error", $"{ex.Message}", "Ok");
-
-                }
+                CurrentState = State.Loading;
+                var characters = await apiComicsVine.GetCharacter(Config.Apikey, PublisherName);
+                var notNull = from item in characters.Characters where item.Publisher != null select item;
+                var marvelOrDc = notNull.Where(e => e.Publisher.Name.Contains(PublisherName));
+                Characters = new ObservableCollection<Character>(marvelOrDc);
+                CurrentState = State.None;
             }
-            else
-                await dialogService.DisplayAlertAsync("Connection error ", Connectivity.NetworkAccess.ToString(), "Ok");
+            catch (Exception ex)
+            {
+                CurrentState = State.Error;
+            }
+            finally {
+                CurrentState = State.None;
+            }
+
+
 
         }
 

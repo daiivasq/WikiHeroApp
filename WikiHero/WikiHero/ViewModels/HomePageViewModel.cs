@@ -48,8 +48,6 @@ namespace WikiHero.ViewModels
         }
         protected async Task LoadCharacters()
         {
-            if (Connectivity.NetworkAccess == NetworkAccess.Internet)
-            {
                 try
                 {
                     var characters = await apiComicsVine.GetRecentCharacters(Config.Apikey,PublisherPrincipal);
@@ -60,18 +58,17 @@ namespace WikiHero.ViewModels
                 catch (Exception ex)
                 {
 
-                    await dialogService.DisplayAlertAsync("Error", $"{ex.Message}", "Ok");
+                CurrentState = State.None;
 
-                }
+                 }
+                finally
+                {
+                CurrentState = State.None;
+                 }
+
             }
-            else
-                await dialogService.DisplayAlertAsync("Connection error ", Connectivity.NetworkAccess.ToString(), "Ok");
-
-        }
         protected async Task LoadRecentSeries()
         {
-            if (Connectivity.NetworkAccess == NetworkAccess.Internet)
-            {
                 try
                 {
                     var recentSeries = await apiComicsVine.GetRecentSeries(Config.Apikey,0, PublisherPrincipal);
@@ -85,14 +82,13 @@ namespace WikiHero.ViewModels
                     await dialogService.DisplayAlertAsync("Error", $"{ex.Message}", "Ok");
 
                 }
+                finally
+                {
+                    CurrentState = State.None;
+                }
             }
-            else
-                await dialogService.DisplayAlertAsync("Connection error ", Connectivity.NetworkAccess.ToString(), "Ok");
-        }
         protected async Task LoadRecentVolumes()
         {
-            if (Connectivity.NetworkAccess == NetworkAccess.Internet)
-            {
                 try
                 {
                     var recentVolumes = await apiComicsVine.GetRecentVolumes(1, Config.Apikey, PublisherPrincipal);
@@ -106,14 +102,13 @@ namespace WikiHero.ViewModels
                     await dialogService.DisplayAlertAsync("Error", $"{ex.Message}", "Ok");
 
                 }
+                finally
+                {
+                    CurrentState = State.None;
+                }
             }
-            else
-                await dialogService.DisplayAlertAsync("Connection error ", Connectivity.NetworkAccess.ToString(), "Ok");
-        }
         protected async Task LoadTeams()
         {
-            if (Connectivity.NetworkAccess == NetworkAccess.Internet)
-            {
                 try
                 {
                     var team = await apiComicsVine.GetTeams(Config.Apikey, PublisherPrincipal);
@@ -123,14 +118,14 @@ namespace WikiHero.ViewModels
                 }
                 catch (Exception ex)
                 {
-
-                    await dialogService.DisplayAlertAsync("Error", $"{ex.Message}", "Ok");
+                CurrentState = State.None;
 
                 }
+                finally
+                {
+                    CurrentState = State.None;
+                }
             }
-            else
-                await dialogService.DisplayAlertAsync("Connection error ", Connectivity.NetworkAccess.ToString(), "Ok");
-        }
     }
 
 

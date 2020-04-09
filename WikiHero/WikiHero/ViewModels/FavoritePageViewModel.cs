@@ -6,7 +6,7 @@ using WikiHero.Models;
 
 namespace WikiHero.ViewModels
 {
-    public class FavoritePageViewModel
+    public abstract class FavoritePageViewModel
     {
         public ObservableCollection<Serie> Series { get; set; } = new ObservableCollection<Serie>();
         public ObservableCollection<Character> Characters { get; set; } = new ObservableCollection<Character>();

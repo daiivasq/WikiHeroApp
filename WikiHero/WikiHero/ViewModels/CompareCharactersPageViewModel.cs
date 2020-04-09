@@ -13,14 +13,13 @@ using WikiHero.Services;
 
 namespace WikiHero.ViewModels
 {
-    public class CompareCharactersPageViewModel:BaseViewModel
+    public abstract class  CompareCharactersPageViewModel:BaseViewModel
     {
         protected IApiCharacterStats apiStatsCharacters;
         public ObservableCollection<CharacterStats> HeroesCharacters { get; set; }
         public ObservableCollection<CharacterStats> VillainCharacters { get; set; }
         private CharacterStats selectHeroes;
 
-        public bool IsBusy { get; set; }
         public bool IsHeroesEnabled { get; set; } = false;
         public bool IsVillainEnabled { get; set; } = false;
         public CharacterStats SelectHeroes
@@ -61,14 +60,17 @@ namespace WikiHero.ViewModels
         }
         async Task LoadCharacters(string publisher)
         {
-            IsBusy = true;
-            const string bad = "bad";
-            const string good = "good";
-            var stats = await apiStatsCharacters.CharacterStats(publisher);
-            var publishers = stats.Where(e=> e.Biography.Publisher.Contains(publisher));
-            HeroesCharacters = new ObservableCollection<CharacterStats>(publishers.Where(e=>e.Biography.Alignment!= bad));
-            VillainCharacters = new ObservableCollection<CharacterStats>(publishers.Where(e => e.Biography.Alignment != good));
-            IsBusy = false;
+            if (!IsConnected)
+            {
+                IsBusy = true;
+                const string bad = "bad";
+                const string good = "good";
+                var stats = await apiStatsCharacters.CharacterStats(publisher);
+                var publishers = stats.Where(e => e.Biography.Publisher.Contains(publisher));
+                HeroesCharacters = new ObservableCollection<CharacterStats>(publishers.Where(e => e.Biography.Alignment != bad));
+                VillainCharacters = new ObservableCollection<CharacterStats>(publishers.Where(e => e.Biography.Alignment != good));
+                IsBusy = false;
+            }
         }
     }
 }

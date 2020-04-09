@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using WikiHero.Models;
 using WikiHero.Services;
+using Xamarin.Essentials;
 
 namespace WikiHero.ViewModels
 {
@@ -16,10 +17,14 @@ namespace WikiHero.ViewModels
         public ObservableCollection<Comic> Comics { get; set; }
         public Comic Comic { get; set; }
         public DelegateCommand LoadCommand { get; set; }
+        public DelegateCommand ShareCommand { get; set; }
         public DetailComicPageViewModel(INavigationService navigationService, IPageDialogService dialogService, IApiComicsVine apiComicsVine) : base(navigationService, dialogService, apiComicsVine)
         {
 
-
+            ShareCommand = new DelegateCommand(async () =>
+            {
+                await SharedOpcion();
+            });
 
         }
 
@@ -37,7 +42,16 @@ namespace WikiHero.ViewModels
             }
 
         }
+        async Task SharedOpcion()
+        {
+            await Share.RequestAsync(new ShareTextRequest
+            {
 
+                Text = $"{Comic.Name}\nRating: {Comic.Rating}",
+                Title = $"{Comic.Name}",
+                Uri = $"{Comic.SiteDetailUrl}"
+            });
+        }
 
 
         public void OnNavigatedFrom(INavigationParameters parameters)

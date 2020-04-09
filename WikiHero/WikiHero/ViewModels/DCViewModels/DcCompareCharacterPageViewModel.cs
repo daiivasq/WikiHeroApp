@@ -9,8 +9,8 @@ namespace WikiHero.ViewModels.DCViewModels
 {
     public class DcCompareCharacterPageViewModel:CompareCharactersPageViewModel
     {
-        protected const string MarvelComics = "DC Comics";
-        public DcCompareCharacterPageViewModel(INavigationService navigationService, IPageDialogService dialogService, IApiComicsVine apiComicsVine, ApiStatsCharacters apiStatsCharacters) : base(navigationService, dialogService, apiComicsVine, apiStatsCharacters, MarvelComics)
+        protected const string Dc = "DC Comics";
+        public DcCompareCharacterPageViewModel(INavigationService navigationService, IPageDialogService dialogService, IApiComicsVine apiComicsVine, ApiStatsCharacters apiStatsCharacters) : base(navigationService, dialogService, apiComicsVine, apiStatsCharacters, Dc)
         {
 
         }

@@ -18,22 +18,46 @@
                        RemainingItemsThreshold="{Binding ItemTreshold}"
                        RemainingItemsThresholdReachedCommand="{Binding ItemTresholdReachedCommand}">
                     <CollectionView.ItemsLayout>
-                        <GridItemsLayout Span="2"
+                        <GridItemsLayout x:Name="gridLayout" Span="{Binding SpanCollection}"
                                  Orientation="Vertical"
-                                 VerticalItemSpacing="20"
-                                 HorizontalItemSpacing="20"/>
+                                 VerticalItemSpacing="10">
+                        </GridItemsLayout>
                     </CollectionView.ItemsLayout>
+                    <CollectionView.Triggers>
+                        <DataTrigger  TargetType="CollectionView"
+                                 Binding="{Binding SpanCollection}"
+                                 Value="1">
+                            <Setter Property="ItemsLayout">
+                                <GridItemsLayout Span="{Binding SpanCollection}"
+                                 Orientation="Horizontal"
+                                 VerticalItemSpacing="10" />
+
+                            </Setter>
+                        </DataTrigger>
+                    </CollectionView.Triggers>
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <pancakeview:PancakeView Style="{StaticResource PancakeViewCornerRadiusKey}"
-                                             BackgroundColor="White"
-                                             Padding="10">
-                                <StackLayout>
-                                    <ff:CachedImage  Source="{Binding Image.MediumUrl}"
-                                   HeightRequest="200" WidthRequest="150"
+                            <pancakeview:PancakeView Padding="10"
+                                                     Style="{StaticResource PancakeViewCornerRadiusKey}"
+                                                     BackgroundColor="Transparent">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="150"/>
+                                    </Grid.ColumnDefinitions>
+                                    <ff:CachedImage  
+                                        Source="{Binding Image.MediumUrl}"
+                                        HeightRequest="200"
                                    Aspect="AspectFill"/>
-                                    <Label Text="{Binding Name}"/>
-                                </StackLayout>
+                                    <Label Text="{Binding Name}"
+                                     TextColor="White"
+                                   BackgroundColor="Black"
+                                   VerticalOptions="EndAndExpand"
+                                        Opacity="0.8"
+                                       HeightRequest="30"/>
+                                </Grid>
                             </pancakeview:PancakeView>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>

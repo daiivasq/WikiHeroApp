@@ -111,11 +111,8 @@ namespace WikiHero.ViewModels
         }
         protected async Task LoadSeries()
         {
-            
-              
-                try
-                {
-                if (Connectivity.NetworkAccess == NetworkAccess.Internet)
+
+                try 
                 {
                     CurrentState = State.Loading;
                     var series = await apiComicsVine.GetSeries(StudioName,ExtraStudioName);
@@ -124,21 +121,18 @@ namespace WikiHero.ViewModels
                     Series = new ObservableCollection<Serie>(marvelOrDc);
                     CurrentState = State.None;
                 }
-                else
-                    await dialogService.DisplayAlertAsync("Connection error ", Connectivity.NetworkAccess.ToString(), "Ok");
-                 }
                 catch (Exception ex)
                 {
                     CurrentState = State.Error;
                     await dialogService.DisplayAlertAsync("Serie", $"{ex.Message}", "Ok");
 
                 }
-                 finally
-                 {
-             
-                 }
+            finally
+            {
+                CurrentState = State.None;
+            }
 
-            
+
 
         }
 
@@ -148,7 +142,7 @@ namespace WikiHero.ViewModels
             var series = await apiComicsVine.SearchSeries(name, Config.Apikey, offset,StudioName);
             var notNull = from item in series.Series where item.Publisher != null select item;
             var marvelOrDc = notNull.Where(e => e.Publisher.Name.Contains(StudioName) || e.Publisher.Name.Contains(ExtraStudioName));
-            if (string.IsNullOrEmpty(name))
+            if (string.IsNullOrEmpty(name)&&IsConnected)
             {
                 await LoadSeries();
             }

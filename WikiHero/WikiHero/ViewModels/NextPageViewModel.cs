@@ -4,6 +4,7 @@ using Prism.Services;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 using WikiHero.Helpers;
 using WikiHero.Services;
 
@@ -14,19 +15,18 @@ namespace WikiHero.ViewModels
         {
         public string ImagePublisher { get; set; }
         public DelegateCommand GoToMarvelOrDc { get; set; }
-
-            public NextPageViewModel(INavigationService navigationService, IPageDialogService dialogService, IApiComicsVine apiComicsVine) : base(navigationService, dialogService, apiComicsVine)
+        const string marvel = "ironman.gif";
+        public NextPageViewModel(INavigationService navigationService, IPageDialogService dialogService, IApiComicsVine apiComicsVine) : base(navigationService, dialogService, apiComicsVine)
             {
             
 
                 GoToMarvelOrDc = new DelegateCommand(async () =>
                 {
-                    var param = new NavigationParameters
-                    {
-                        { $"{ConfigPageUri.MenuMasterDetailPage}", ImagePublisher }
-                    };
-                    await navigationService.NavigateAsync(new Uri($"{ConfigPageUri.MenuMasterDetailPage}{ConfigPageUri.SharedTransitionNavigationPage}{ConfigPageUri.MarvelHomePage}", UriKind.Absolute),param);
+                    await Task.Delay(3000);
+                    var page = ImagePublisher == marvel ? $"{ConfigPageUri.MarvelMasterDetailPage}{ConfigPageUri.SharedTransitionNavigationPage}{ConfigPageUri.MarvelHomePage}": $"{ConfigPageUri.DcMasterDetailPage}{ConfigPageUri.SharedTransitionNavigationPage}{ConfigPageUri.DcHomePage}";
+                    await navigationService.NavigateAsync(new Uri($"{page}", UriKind.Absolute));
                 });
+          
 
             }
 
@@ -36,7 +36,8 @@ namespace WikiHero.ViewModels
 
         public void OnNavigatedTo(INavigationParameters parameters)
         {
-            ImagePublisher = (string)parameters[$"{nameof(ConfigPageUri.MenuMasterDetailPage)}"];
+            ImagePublisher = parameters[$"{ConfigPageUri.NextPage}"] as string;
+            GoToMarvelOrDc.Execute();
         }
     }
     

@@ -9,10 +9,11 @@ using System.Text;
 using System.Threading.Tasks;
 using WikiHero.Models;
 using WikiHero.Services;
+using Xamarin.Essentials;
 
 namespace WikiHero.ViewModels
 {
-    public class DetailCharactersPageViewModel : BaseViewModel, INavigationAware
+    public class DetailCharactersPageViewModel : BaseViewModel,INavigationAware
     {
         public ObservableCollection<Character> Characters { get; set; }
         public ObservableCollection<Character> CharactersEnemys { get; set; }
@@ -22,11 +23,15 @@ namespace WikiHero.ViewModels
         public ObservableCollection<Team> Teams { get; set; }
 
         public Character Character { get; set; }
-        public List<Task> LoadTask { get; set; } 
+        public List<Task> LoadTask { get; set; }
         public DelegateCommand LoadCommand { get; set; }
+        public DelegateCommand ShareCommand { get; set; }
         public DetailCharactersPageViewModel(INavigationService navigationService, IPageDialogService dialogService, IApiComicsVine apiComicsVine) : base(navigationService, dialogService, apiComicsVine)
         {
-
+            ShareCommand = new DelegateCommand(async () =>
+            {
+                await SharedOpcion();
+            });
 
         }
 
@@ -34,7 +39,7 @@ namespace WikiHero.ViewModels
         {
             try
             {
-                var character = await apiComicsVine.FindCharacter(id, Config.Apikey,  null);
+                var character = await apiComicsVine.FindCharacter(id, Config.Apikey, null);
                 Character = character.Character;
             }
             catch (Exception err)
@@ -55,7 +60,7 @@ namespace WikiHero.ViewModels
                 }
                 var movies = await apiComicsVine.FindCharactersMovies(Config.Apikey, movie);
                 Movies = new ObservableCollection<Movie>(movies.Results.Take(30));
-                
+
             }
             catch (Exception err)
             {
@@ -66,12 +71,12 @@ namespace WikiHero.ViewModels
         {
             try
             {
-                string volume= null;
+                string volume = null;
                 foreach (var item in character.VolumeCredits.Take(30))
                 {
                     volume += $"{item.Id}|";
                 }
-               
+
                 var volumes = await apiComicsVine.FindCharactersVolumes(Config.Apikey, volume);
                 Volumes = new ObservableCollection<Volume>(volumes.Volumes);
             }
@@ -107,13 +112,13 @@ namespace WikiHero.ViewModels
             try
             {
                 string comic = null;
-               foreach (var item in character.Issues.Take(30))
+                foreach (var item in character.Issues.Take(30))
                 {
                     comic += $"{item.Id}|";
                 }
 
                 var comics = await apiComicsVine.FindCharacterComics(Config.Apikey, comic);
-                Comics = new ObservableCollection<Comic   >(comics.Results);
+                Comics = new ObservableCollection<Comic>(comics.Results);
             }
             catch (Exception err)
             {
@@ -121,6 +126,16 @@ namespace WikiHero.ViewModels
                 await dialogService.DisplayAlertAsync("Error", $"{err}", "ok");
             }
 
+        }
+        async Task SharedOpcion()
+        {
+            await Share.RequestAsync(new ShareTextRequest
+            {
+
+                Text = $"{Character.Name}\n{Character.Publisher.Name}\n{Character.Deck}",
+                Title = $"{Character.Publisher.Name}\n{Character.Deck}",
+                Uri = $"{Character.SiteDetailUrl}"
+            });
         }
         async Task LoadTeams(Character character)
         {
@@ -157,7 +172,6 @@ namespace WikiHero.ViewModels
                 LoadTask = new List<Task>() { LoadCharacterEnemyy(Character), LoadCVolumes(Character), LoadMovies(Character), LoadComics(Character), LoadTeams(Character)
                  };
                 await Task.WhenAll(LoadTask);
-
             });
             LoadListCommand.Execute();
         }

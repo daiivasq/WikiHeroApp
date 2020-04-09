@@ -22,6 +22,10 @@
                 <Setter Property="CornerRadius" Value="60,0,0,60"/>
                 <Setter Property="BackgroundColor" Value="White"/>
             </Style>
+            <Style TargetType="Label" x:Key="MasterMenuLabel">
+                <Setter Property="VerticalOptions" Value="CenterAndExpand"/>
+                <Setter Property="FontSize" Value="20"/>
+            </Style>
         </ResourceDictionary>
     </Application.Resources>
 </prims:PrismApplication>

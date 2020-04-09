@@ -5,16 +5,24 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:controlsviews="clr-namespace:WikiHero.Views.ControlsViews"
              mc:Ignorable="d"
-             x:Class="WikiHero.Views.MarvelViews.MarvelCharactersPage">
+             x:Class="WikiHero.Views.MarvelViews.MarvelCharactersPage"
+            >
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Changed"
+                     Command="{Binding ChangedViewCommand}"/>
+    </ContentPage.ToolbarItems>
     <ContentPage.Content>
-        <StackLayout Padding="10,0,10,10">
+        <StackLayout>
+            <controlsviews:ConnectivityView
+                                            TextView="OOH NO !! Hydra has taken away the Internet, look for a fast connection"
+                                            ImageView="InternetFailVision"
+                                            HorizontalOptions="CenterAndExpand"
+                                            VerticalOptions="CenterAndExpand"/>
             <Frame CornerRadius="20" HeightRequest="20" Opacity="0.5" HasShadow="True" >
-                <SearchBar HeightRequest="50" 
-                           x:Name="search"
+                <SearchBar HeightRequest="50"
                            SearchCommand="{Binding SearchCommand}"
                            Text="{Binding Text}"/>
             </Frame>
-
             <controlsviews:ControlListView ItemsSource="{Binding Characters}"/>
         </StackLayout>
     </ContentPage.Content>

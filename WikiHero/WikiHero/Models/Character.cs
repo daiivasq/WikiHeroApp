@@ -7,9 +7,11 @@ namespace WikiHero.Models
 {
    public class Character
     {
- 
 
-   
+
+        [JsonProperty("site_detail_url")]
+        public string SiteDetailUrl { get; set; }
+
         [JsonProperty("character_enemies")]
         public IList<Character> CharacterEnemies { get; set; }
 
@@ -21,6 +23,7 @@ namespace WikiHero.Models
 
         [JsonProperty("date_last_updated")]
         public string DateLastUpdated { get; set; }
+        public DateTime LastUpdate { get=>DateTime.Parse(DateLastUpdated);}
 
         [JsonProperty("deck")]
         public string Deck { get; set; }
