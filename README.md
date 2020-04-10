@@ -9,10 +9,7 @@
   </p>
   
  # Option Shared
-
- <img src="Images/DetailSeries.jpeg"  width="200" height:"200/>
- <img src="Images/ShareOption.jpeg" width="200" height:"200/>
-
+![Sharee](https://user-images.githubusercontent.com/60607967/78950648-6c152280-7a9d-11ea-9f3e-9aa9afce2cdf.PNG)
 
 # Main page
 ![Presentation](https://user-images.githubusercontent.com/60607967/78948869-c4e1bc80-7a97-11ea-8abb-64fad8301281.gif)
@@ -24,11 +21,9 @@
 ![HomePage](https://user-images.githubusercontent.com/60607967/78948928-f78bb500-7a97-11ea-9957-53d654fa3642.gif)
 
 # Series Page
-
-  
+ 
 ![SeriesDc](https://user-images.githubusercontent.com/60607967/78949392-687f9c80-7a99-11ea-9d62-995b1a899fb1.gif)
 ![SeriesMarvel](https://user-images.githubusercontent.com/60607967/78949436-8cdb7900-7a99-11ea-96c6-a4a1cde344fe.gif)
-
 
 # DetailSeries Page
 ![SeriesDetail](https://user-images.githubusercontent.com/60607967/78950057-91089600-7a9b-11ea-9be2-461ef6cdb306.PNG)
@@ -46,3 +41,5 @@
 ![CharacterMarvel](https://user-images.githubusercontent.com/60607967/78949868-fb6d0680-7a9a-11ea-818a-32e1bd72b7fb.gif)
 ![CharacterDc](https://user-images.githubusercontent.com/60607967/78949826-d4163980-7a9a-11ea-9bab-73ca94941491.gif)
 
+# Character DetailPage
+![CharactersDetail](https://user-images.githubusercontent.com/60607967/78950565-25bfc380-7a9d-11ea-9d6a-f96f4a8c5635.PNG)
