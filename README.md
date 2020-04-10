@@ -1,4 +1,9 @@
 # WikiHeroApp
+
+## Collaborators
+- [Daihiana Vasquez](https://github.com/daiivasq).
+-  [Daihiana Vasquez](https://github.com/RafaelFernandez0512).
+-  [Daihiana Vasquez](https://github.com/RandyGrullon).
 # Platforms
 | iOS / Android| Xamarin.Forms |
 <img src="Images/logo_de_lado_gris.png"  alt="Full Example"/>
