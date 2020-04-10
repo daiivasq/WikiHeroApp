@@ -4,6 +4,8 @@
 - [Daihiana Vasquez](https://github.com/daiivasq).
 -  [Rafael Fernandez](https://github.com/RafaelFernandez0512).
 -  [Randy Grullon](https://github.com/RandyGrullon).
+## API
+- [ComicVine](https://comicvine.gamespot.com/api).
 # Platforms
 | iOS / Android| Xamarin.Forms |
 <img src="Images/logo_de_lado_gris.png"  alt="Full Example"/>
