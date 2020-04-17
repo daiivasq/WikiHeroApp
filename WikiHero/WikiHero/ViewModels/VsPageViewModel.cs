@@ -8,12 +8,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WikiHero.Helpers;
+using WikiHero.Models;
 using WikiHero.Models.CharacterStatModel;
 using WikiHero.Services;
 
 namespace WikiHero.ViewModels
 {
-    public abstract class  CompareCharactersPageViewModel:BaseViewModel
+    public class VsPageViewModel : BaseViewModel, INavigationAware
     {
         public bool IsHeroesEnabled { get; set; } = false;
         public bool IsVillainEnabled { get; set; } = false;
@@ -48,19 +49,13 @@ namespace WikiHero.ViewModels
         public ObservableCollection<CharacterStats> VillainCharacters { get; set; }
         private CharacterStats selectHeroes;
         public DelegateCommand CompareCharacter { get; set; }
-        public CompareCharactersPageViewModel(INavigationService navigationService, IPageDialogService dialogService, IApiComicsVine apiComicsVine, IApiCharacterStats apiStatsCharacters,string publisher) : base(navigationService, dialogService, apiComicsVine)
+        public VsPageViewModel(INavigationService navigationService, IPageDialogService dialogService, IApiComicsVine apiComicsVine, IApiCharacterStats apiStatsCharacters) : base(navigationService, dialogService, apiComicsVine)
         {
             this.apiStatsCharacters = apiStatsCharacters;
-            LoadListCommand = new DelegateCommand(async () =>
-            {
-                await LoadCharacters(publisher);
-            });
-            LoadListCommand.Execute();
+
         }
         async Task LoadCharacters(string publisher)
         {
-            if (!IsConnected)
-            {
                 IsBusy = true;
                 const string bad = "bad";
                 const string good = "good";
@@ -69,7 +64,21 @@ namespace WikiHero.ViewModels
                 HeroesCharacters = new ObservableCollection<CharacterStats>(publishers.Where(e => e.Biography.Alignment != bad));
                 VillainCharacters = new ObservableCollection<CharacterStats>(publishers.Where(e => e.Biography.Alignment != good));
                 IsBusy = false;
-            }
+        }
+
+        public void OnNavigatedFrom(INavigationParameters parameters)
+        {
+        }
+
+        public void OnNavigatedTo(INavigationParameters parameters)
+        {
+            var param = (ETypeApplication)parameters[$"{ConfigPageUri.NextPage}"];
+            Publisher = param.ToString();
+            LoadListCommand = new DelegateCommand(async () =>
+            {
+                await LoadCharacters(Publisher);
+            });
+            LoadListCommand.Execute();
         }
     }
 }

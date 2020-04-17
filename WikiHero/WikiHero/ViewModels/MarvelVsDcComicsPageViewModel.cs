@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Text;
 using WikiHero.Helpers;
 using WikiHero.Services;
-using WikiHero.Views.DcComicsViews;
 
 namespace WikiHero.ViewModels
 {
@@ -21,8 +20,7 @@ namespace WikiHero.ViewModels
                     param.Add($"{ConfigPageUri.NextPage}", image);
                     await navigationService.NavigateAsync(new Uri($"{ConfigPageUri.NextPage}", UriKind.Relative),param);
                 });
-       
-          
         }
+
     }
 }

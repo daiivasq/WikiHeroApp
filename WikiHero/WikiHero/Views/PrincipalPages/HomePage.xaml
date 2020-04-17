@@ -1,0 +1,134 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:controlsviews="clr-namespace:WikiHero.Views.ControlsViews"
+             xmlns:state="clr-namespace:Xamarin.Forms.StateSquid;assembly=Xamarin.Forms.StateSquid"
+             xmlns:pancakeview="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             mc:Ignorable="d"
+             x:Class="WikiHero.Views.PrincipalPages.HomePage"
+             Title="Home">
+    <ContentPage.Resources>
+            <ResourceDictionary>
+                <Style TargetType="Label" x:Key="LabelKeY">
+                    <Setter Property="FontSize" Value="20" />
+                    <Setter Property="HorizontalOptions" Value="CenterAndExpand"/>
+                </Style>
+            </ResourceDictionary>
+   </ContentPage.Resources>
+    <ContentPage.Content>
+        <Grid RowSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <ScrollView Grid.Row="1">
+                <StackLayout state:StateLayout.CurrentState="{Binding CurrentState}">
+
+                    <state:StateLayout.StateViews>
+                        <state:StateView StateKey="Loading">
+                            <Grid BackgroundColor="Transparent">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="40"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="40"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="40"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <state:SkeletonView BackgroundColor="#cccc" HeightRequest="250" Grid.ColumnSpan="3" >
+                                </state:SkeletonView>
+                                <Image Source="ic_HulkLoading.png" Grid.Column="1"/>
+
+                                <state:SkeletonView CornerRadius="6" HeightRequest="160" BackgroundColor="#cccc" Grid.Row="2" Grid.Column="0">
+                                </state:SkeletonView>
+                                <state:SkeletonView CornerRadius="6" HeightRequest="160" BackgroundColor="#cccc" Grid.Row="2" Grid.Column="1"/>
+                                <state:SkeletonView CornerRadius="6" HeightRequest="6" BackgroundColor="#cccc" Grid.Row="2" Grid.Column="2"/>
+                                <state:SkeletonView CornerRadius="6" HeightRequest="160" BackgroundColor="#cccc" Grid.Row="4" Grid.Column="0"/>
+                                <state:SkeletonView CornerRadius="6" HeightRequest="160" BackgroundColor="#cccc" Grid.Row="4" Grid.Column="1"/>
+                                <state:SkeletonView CornerRadius="6" HeightRequest="160" BackgroundColor="#cccc" Grid.Row="4" Grid.Column="2"/>
+                                <state:SkeletonView CornerRadius="6" HeightRequest="160" BackgroundColor="#cccc" Grid.Row="6" Grid.Column="0"/>
+                                <state:SkeletonView CornerRadius="6" HeightRequest="160" BackgroundColor="#cccc" Grid.Row="6" Grid.Column="1"/>
+                                <state:SkeletonView CornerRadius="6" HeightRequest="160" BackgroundColor="#cccc" Grid.Row="6" Grid.Column="2"/>
+                            </Grid>
+                        </state:StateView>
+                    </state:StateLayout.StateViews>
+                    <CarouselView ItemsSource="{Binding Teams}" WidthRequest="500" HeightRequest="230"
+                              HorizontalScrollBarVisibility="Always"
+                              >
+                        <CarouselView.ItemTemplate>
+                            <DataTemplate>
+                                <pancakeview:PancakeView  
+                                             >
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="40"/>
+                                        </Grid.RowDefinitions>
+                                        <Image Aspect="AspectFill"
+                                               Source="{Binding Image.ScreenUrl}"/>
+                                        <Label Text="{Binding Name}"
+                                           FontSize="20"
+                                           HorizontalOptions="CenterAndExpand"
+                                           Grid.Row="1"/>
+                                    </Grid>
+                                </pancakeview:PancakeView>
+
+                            </DataTemplate>
+                        </CarouselView.ItemTemplate>
+                    </CarouselView>
+                    <Label HeightRequest="1" BackgroundColor="Black"/>
+                    <Label Text="Series"
+                           FontSize="22" 
+                           Style="{StaticResource LabelKeY}"
+                       />
+                    <controlsviews:CollectionViewHorizontal   HeightRequest="200" 
+                                                              WidthRequest="200" 
+                                                              ItemsSource="{Binding ListSeries}"
+                                                                SpanCollection="1"
+                                                          SelectItem="{Binding SelectSerie,Mode=TwoWay}"
+                                                            />
+                    <Label Text="Characters" 
+                           FontSize="22" 
+                           HorizontalTextAlignment="Center"  
+                           Style="{StaticResource LabelKeY}" />
+                    <controlsviews:CollectionViewHorizontal   HeightRequest="200"
+                                                            WidthRequest="200" 
+                                                            ItemsSource="{Binding ListCharacters}"
+                                                             SpanCollection="1"
+                                                          SelectItem="{Binding SelectCharacter,Mode=TwoWay}"
+                                                              />
+                    <Label Text="Volumes" TextColor="Black" FontSize="22" HorizontalTextAlignment="Center"
+                           Grid.Row="7"
+                           Style="{StaticResource LabelKeY}" />
+                    <controlsviews:CollectionViewHorizontal  HeightRequest="200"
+                                                             WidthRequest="200" 
+                                                         SelectItem="{Binding SelectVolumes,Mode=TwoWay}"
+                                                             ItemsSource="{Binding ListVolumes}"
+                                                             SpanCollection="1"/>
+
+                </StackLayout>
+            </ScrollView>
+            <controlsviews:ConnectivityView TextView="OOH NO !! Hydra has taken away the Internet, look for a fast connection"
+                                            BackgroundColor="{StaticResource MarvelPrincipalColor}"
+                                            HeightRequest="5">
+                <controlsviews:ConnectivityView.Triggers>
+                    <DataTrigger TargetType="controlsviews:ConnectivityView"
+                                 Binding="{Binding Publisher}"
+                                 Value="DC">
+                        <Setter Property="TextView" Value="This is not a joke of mine you don't have internet"/>
+                        <Setter Property="BackgroundColor" Value="{StaticResource DCPrincipalColor}"/>
+                    </DataTrigger>
+                </controlsviews:ConnectivityView.Triggers>
+            </controlsviews:ConnectivityView>
+        </Grid>
+       
+    </ContentPage.Content>
+</ContentPage>

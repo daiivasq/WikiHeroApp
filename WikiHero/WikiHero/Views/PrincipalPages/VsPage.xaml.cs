@@ -7,12 +7,12 @@ using WikiHero.Views.ControlsViews;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace WikiHero.Views.DcComicsViews
+namespace WikiHero.Views.PrincipalPages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class DcCompareCharacterPage : ContentPage
+    public partial class VsPage : ContentPage
     {
-        public DcCompareCharacterPage()
+        public VsPage()
         {
             InitializeComponent();
         }

@@ -7,8 +7,14 @@
              x:Class="WikiHero.Views.NextPage"
               xmlns:sharedTransitions="clr-namespace:Plugin.SharedTransitions;assembly=Plugin.SharedTransitions"
              NavigationPage.HasNavigationBar="False"
+            
              BackgroundColor="Transparent"
              >
+    <ContentPage.Resources>
+        <Style TargetType="sharedTransitions:SharedTransitionNavigationPage">
+            <Setter Property="BarBackgroundColor" Value="Transparent"/>
+        </Style>
+    </ContentPage.Resources>
     <ContentPage.Content>
         <Grid >
             <Grid.RowDefinitions>

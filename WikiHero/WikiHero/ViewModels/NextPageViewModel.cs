@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using WikiHero.Helpers;
+using WikiHero.Models;
 using WikiHero.Services;
 
 namespace WikiHero.ViewModels
@@ -22,9 +23,13 @@ namespace WikiHero.ViewModels
 
                 GoToMarvelOrDc = new DelegateCommand(async () =>
                 {
+                    ETypeApplication editor = ImagePublisher == marvel ? ETypeApplication.Marvel : ETypeApplication.DC;
+                    var param = new NavigationParameters
+                    {
+                        { $"{ConfigPageUri.NextPage}", editor }
+                    };
                     await Task.Delay(3000);
-                    var page = ImagePublisher == marvel ? $"{ConfigPageUri.MarvelMasterDetailPage}{ConfigPageUri.SharedTransitionNavigationPage}{ConfigPageUri.MarvelHomePage}": $"{ConfigPageUri.DcMasterDetailPage}{ConfigPageUri.SharedTransitionNavigationPage}{ConfigPageUri.DcHomePage}";
-                    await navigationService.NavigateAsync(new Uri($"{page}", UriKind.Absolute));
+                    await navigationService.NavigateAsync(new Uri($"/MenuPage/{ConfigPageUri.SharedTransitionNavigationPage}/HomePage", UriKind.Absolute), param);
                 });
           
 

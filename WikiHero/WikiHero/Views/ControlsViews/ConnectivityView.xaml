@@ -4,16 +4,14 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             IsVisible="{Binding IsConnected}" 
+             IsVisible="{Binding IsNotConnected}" 
              x:Class="WikiHero.Views.ControlsViews.ConnectivityView"
              x:Name="this">
 
-    <StackLayout BindingContext="{x:Reference this}" Padding="10">
-        <Image Source="{Binding ImageView}"/>
-        <Label Text="{Binding TextView}"
-               TextColor ="Black"
+    <Label Text="{Binding TextView}"
+               TextColor ="White"
+               BindingContext="{x:Reference this}"
                FontAttributes="Bold"
                HorizontalOptions="CenterAndExpand"
                FontSize="20"/>
-    </StackLayout>
 </ContentView>

@@ -17,7 +17,6 @@ namespace WikiHero.Services
         public ApiComicsVine()
         {
             Barrel.ApplicationId = Config.CacheKey;
-            Barrel.Current.EmptyAll();
         }
 
 
@@ -46,7 +45,7 @@ namespace WikiHero.Services
 
         public async Task<ResultCharacters> GetCharacter(string api_key, string publisher)
         {
-            if (Connectivity.NetworkAccess != NetworkAccess.Internet || !Barrel.Current.IsExpired(key: $"{nameof(GetCharacter)}/{publisher}"))
+            if (Connectivity.NetworkAccess != NetworkAccess.Internet && !Barrel.Current.IsExpired($"{nameof(GetCharacter)}/{publisher}"))
             {
                 return Barrel.Current.Get<ResultCharacters>(key: $"{nameof(GetCharacter)}/{publisher}");
             }
@@ -58,10 +57,11 @@ namespace WikiHero.Services
 
         public async Task<ResultSeries> GetSeries(string api_key, string publisher)
         {
-            if (Connectivity.NetworkAccess != NetworkAccess.Internet && !Barrel.Current.IsExpired(key: $"{nameof(GetSeries)}/{publisher}"))
+            if (Connectivity.NetworkAccess != NetworkAccess.Internet && !Barrel.Current.IsExpired($"{nameof(GetSeries)}/{publisher}"))
             {
                 return Barrel.Current.Get<ResultSeries>(key: $"{nameof(GetSeries)}/{publisher}");
             }
+
             var getRequest = RestService.For<IApiComicsVine>(Config.UrlApiComicsVine);
             var series = await getRequest.GetSeries(Config.Apikey, publisher);
             Barrel.Current.Add(key: $"{nameof(GetSeries)}/{publisher}", series, expireIn: TimeSpan.FromDays(1));
@@ -70,7 +70,7 @@ namespace WikiHero.Services
 
         public async Task<ResultVolume> GetMVolumes(string api_key, string publisher)
         {
-            if (Connectivity.NetworkAccess != NetworkAccess.Internet && !Barrel.Current.IsExpired(key: $"{nameof(GetMVolumes)}/{publisher}"))
+            if (Connectivity.NetworkAccess != NetworkAccess.Internet && !Barrel.Current.IsExpired($"{nameof(GetMVolumes)}/{publisher}"))
             {
                 return Barrel.Current.Get<ResultVolume>(key: $"{nameof(GetMVolumes)}/{publisher}");
             }
@@ -127,9 +127,9 @@ namespace WikiHero.Services
 
         public async Task<ResultSeries> GetRecentSeries(string api_key, int offset, string publisher)
         {
-            if (Connectivity.NetworkAccess != NetworkAccess.Internet && !Barrel.Current.IsExpired(key: $"{nameof(GetRecentSeries)}/{publisher}"))
+            if (Connectivity.NetworkAccess != NetworkAccess.Internet && !Barrel.Current.IsExpired($"{nameof(GetRecentSeries)}/{publisher}"))
             {
-               return Barrel.Current.Get<ResultSeries>(key: $"{nameof(GetRecentSeries)}/{publisher}");
+                return Barrel.Current.Get<ResultSeries>(key: $"{nameof(GetRecentSeries)}/{publisher}");
             }
             var getRequest = RestService.For<IApiComicsVine>(Config.UrlApiComicsVine);
             var recentSeries = await getRequest.GetRecentSeries(Config.Apikey, 1, publisher);
@@ -139,11 +139,10 @@ namespace WikiHero.Services
 
         public async Task<ResultVolume> GetRecentVolumes(int offset, string api_key, string publisher)
         {
-            if (Connectivity.NetworkAccess != NetworkAccess.Internet && !Barrel.Current.IsExpired(key: $"{nameof(GetRecentVolumes)}/{publisher}"))
+            if (Connectivity.NetworkAccess != NetworkAccess.Internet && !Barrel.Current.IsExpired($"{nameof(GetRecentVolumes)}/{publisher}"))
             {
                 return Barrel.Current.Get<ResultVolume>(key: $"{nameof(GetRecentVolumes)}/{publisher}");
             }
-
             var getRequest = RestService.For<IApiComicsVine>(Config.UrlApiComicsVine);
             var recentVolumes = await getRequest.GetRecentVolumes(1, Config.Apikey, publisher);
             Barrel.Current.Add(key: $"{nameof(GetRecentVolumes)}/{publisher}", recentVolumes, expireIn: TimeSpan.FromDays(1));
@@ -152,7 +151,7 @@ namespace WikiHero.Services
 
         public async Task<ResultCharacters> GetRecentCharacters(string api_key, string publisher)
         {
-            if (Connectivity.NetworkAccess != NetworkAccess.Internet && !Barrel.Current.IsExpired(key: $"{nameof(GetRecentCharacters)}/{publisher}"))
+            if (Connectivity.NetworkAccess != NetworkAccess.Internet && !Barrel.Current.IsExpired($"{nameof(GetRecentCharacters)}/{publisher}"))
             {
                 return Barrel.Current.Get<ResultCharacters>(key: $"{nameof(GetRecentCharacters)}/{publisher}");
             }
@@ -164,13 +163,13 @@ namespace WikiHero.Services
 
         public async Task<ResultTeam> GetTeams(string api_key, string publisher)
         {
-            if (Connectivity.NetworkAccess != NetworkAccess.Internet && !Barrel.Current.IsExpired(key: $"{nameof(GetTeams)}/{publisher}"))
+            if (Connectivity.NetworkAccess != NetworkAccess.Internet && !Barrel.Current.IsExpired($"{nameof(GetTeams)}/{publisher}"))
             {
                 return Barrel.Current.Get<ResultTeam>(key: $"{nameof(GetTeams)}/{publisher}");
             }
             var getRequest = RestService.For<IApiComicsVine>(Config.UrlApiComicsVine);
             var team = await getRequest.GetTeams(Config.Apikey, publisher);
-            Barrel.Current.Add(key: $"{nameof(GetTeams)}/{publisher}", team,expireIn: TimeSpan.FromDays(1));
+            Barrel.Current.Add(key: $"{nameof(GetTeams)}/{publisher}", team, expireIn: TimeSpan.FromDays(1));
             return team;
         }   
 

@@ -3,16 +3,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:controlsviews="clr-namespace:WikiHero.Views.ControlsViews"
-             xmlns:pancakeview="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
-             mc:Ignorable="d"
-             x:Class="WikiHero.Views.MarvelViews.MarvelCompareCharacterPage"
+             xmlns:controlsviews="clr-namespace:WikiHero.Views.ControlsViews" 
              xmlns:sharedTransitions="clr-namespace:Plugin.SharedTransitions;assembly=Plugin.SharedTransitions" 
              xmlns:helpers="clr-namespace:WikiHero.Helpers"
              sharedTransitions:SharedTransitionNavigationPage.BackgroundAnimation="Fade"
              sharedTransitions:SharedTransitionNavigationPage.TransitionDuration="500"
-               Title="Vs"
-    >
+             mc:Ignorable="d"
+             x:Class="WikiHero.Views.PrincipalPages.VsPage"
+             Title="Vs">
     <ContentPage.Resources>
         <Style TargetType="Button">
             <Setter Property="FontFamily" Value="40"/>

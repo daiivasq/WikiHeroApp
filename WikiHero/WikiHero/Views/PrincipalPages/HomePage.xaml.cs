@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace WikiHero.Views.MarvelViews
+namespace WikiHero.Views.PrincipalPages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class MarvelVolumePage : ContentPage
+    public partial class HomePage : ContentPage
     {
-        public MarvelVolumePage()
+        public HomePage()
         {
             InitializeComponent();
         }

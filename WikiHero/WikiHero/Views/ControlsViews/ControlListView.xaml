@@ -9,7 +9,6 @@
              xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              xmlns:sharedTransitions ="clr-namespace:Plugin.SharedTransitions;assembly=Plugin.SharedTransitions"
              mc:Ignorable="d"   
-            
              x:Class="WikiHero.Views.ControlsViews.ControlListView">
     <ContentView.Resources>
         <ResourceDictionary>
@@ -37,7 +36,7 @@
                                     <pancakeview:PancakeView Padding="10"
                                                      Style="{StaticResource PancakeViewCornerRadiusKey}"
                                                      BackgroundColor="Transparent"
-                                                          sharedTransitions:Transition.Name="CardVillain">
+                                                        >
                                         <Grid>
                                             <Grid.RowDefinitions>
                                                 <RowDefinition Height="*"/>
@@ -48,17 +47,13 @@
                                             <ff:CachedImage  
                                         Source="{Binding Image.MediumUrl}"
                                         HeightRequest="200"
-                                   Aspect="AspectFill"
-                                             sharedTransitions:Transition.Name="image"
-                                                sharedTransitions:Transition.Group="{Binding Id}"/>
+                                   Aspect="AspectFill"/>
                                             <Label Text="{Binding Name}"
                                      TextColor="White"
                                    BackgroundColor="Black"
                                    VerticalOptions="EndAndExpand"
                                         Opacity="0.8"
-                                       HeightRequest="30"
-                                              sharedTransitions:Transition.Name="name"
-                                               sharedTransitions:Transition.Group="{Binding Id}"/>
+                                       HeightRequest="30"/>
                                         </Grid>
                                     </pancakeview:PancakeView>
                                 </DataTemplate>

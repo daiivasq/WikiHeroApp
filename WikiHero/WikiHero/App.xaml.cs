@@ -7,13 +7,11 @@ using Prism.Unity;
 using System;
 using System.Linq;
 using WikiHero.Helpers;
+using WikiHero.Models;
 using WikiHero.Services;
 using WikiHero.ViewModels;
-using WikiHero.ViewModels.DCViewModels;
-using WikiHero.ViewModels.MarvelViewModels;
 using WikiHero.Views;
-using WikiHero.Views.DcComicsViews;
-using WikiHero.Views.MarvelViews;
+using WikiHero.Views.PrincipalPages;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 namespace WikiHero
@@ -47,22 +45,12 @@ namespace WikiHero
             containerRegistry.RegisterForNavigation<VideoPage, VideoPageViewModel>();
             containerRegistry.RegisterForNavigation<DetailVolumePage,DetailVolumePageViewModel>();
             containerRegistry.RegisterForNavigation<DetailComicPage,DetailComicPageViewModel>();
-
-            containerRegistry.RegisterForNavigation<MarvelCharactersPage, MarvelCharacterPageViewModel>();
-            containerRegistry.RegisterForNavigation<MarvelVolumePage, MarvelVolumePageViewModel>();
-            containerRegistry.RegisterForNavigation<MarvelHomePage, MarvelHomePageViewModel>();
-            containerRegistry.RegisterForNavigation<MarvelSeriesPage, MarvelSeriesPageViewModel>();
-            containerRegistry.RegisterForNavigation<MarvelMasterDetailPage, MarvelMasterDetailPageViewModel>();
-            containerRegistry.RegisterForNavigation<MarvelCompareCharacterPage, MarvelCompareCharacterPageViewModel>();
-            
-            
-
-            containerRegistry.RegisterForNavigation<DcCharactersPage, DCCharactersPageViewModel>();
-            containerRegistry.RegisterForNavigation<DcVolumePage, DcVolumePageViewModel>();
-            containerRegistry.RegisterForNavigation<DcHomePage, DcHomePageViewModel>();
-            containerRegistry.RegisterForNavigation<DcMasterDetailPage, DcMasterDetailPageViewModel>();
-            containerRegistry.RegisterForNavigation<DcSeriesPage, DcSeriesPageViewModel>();
-            containerRegistry.RegisterForNavigation<DcCompareCharacterPage, DcCompareCharacterPageViewModel>();
+            containerRegistry.RegisterForNavigation<CharacterPage, CharacterPageViewModel>();
+            containerRegistry.RegisterForNavigation<MenuPage, MenuPageViewModel>();
+            containerRegistry.RegisterForNavigation<HomePage,HomePageViewModel>();
+            containerRegistry.RegisterForNavigation<SeriePage, SeriePageViewModel>();
+            containerRegistry.RegisterForNavigation<VolumePage, VolumePageViewModel>();
+            containerRegistry.RegisterForNavigation<VsPage, VsPageViewModel>(); 
         }
 
         async void AddShortcuts()
@@ -107,11 +95,9 @@ namespace WikiHero
                 switch (option)
                 {
                     case ShortcutOption1:
-                        NavigationService.NavigateAsync(new Uri($"{ConfigPageUri.SharedTransitionNavigationPage}{ConfigPageUri.MarvelHomePage}", UriKind.Absolute));
+                        NavigationService.NavigateAsync(new Uri($"{ConfigPageUri.SharedTransitionNavigationPage}{ConfigPageUri.HomePage}", UriKind.Absolute));
                         break;
-                    case ShortcutOption2:
-                        NavigationService.NavigateAsync(new Uri($"{ConfigPageUri.SharedTransitionNavigationPage}{ConfigPageUri.DcHomePage}", UriKind.Absolute));
-                        break;
+                  
                 }
             }
             else

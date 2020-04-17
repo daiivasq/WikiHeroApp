@@ -3,16 +3,33 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-                  xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" xmlns:ffTransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+                  xmlns:pancakeView="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+                  xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+                   xmlns:sharedTransitions="clr-namespace:Plugin.SharedTransitions;assembly=Plugin.SharedTransitions" 
                   mc:Ignorable="d"
-                  xmlns:sharedTransitions="clr-namespace:Plugin.SharedTransitions;assembly=Plugin.SharedTransitions"
-                  sharedTransitions:SharedTransitionNavigationPage.BackgroundAnimation="Flip"
-             x:Class="WikiHero.Views.MarvelViews.MarvelMasterDetailPage">
+             x:Class="WikiHero.Views.MenuPage">
     <MasterDetailPage.Resources>
         <ResourceDictionary>
             <Style TargetType="sharedTransitions:SharedTransitionNavigationPage">
                 <Setter Property="NavigationPage.HasNavigationBar" Value="False"/>
                 <Setter Property="BarBackgroundColor" Value="{StaticResource MarvelPrincipalColor}"/>
+                <Style.Triggers>
+                    <DataTrigger TargetType="sharedTransitions:SharedTransitionNavigationPage"
+                                 Binding="{Binding Publisher}"
+                                 Value="DC">
+                        <Setter Property="BarBackgroundColor" Value="{StaticResource DCPrincipalColor}"/>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+            <Style TargetType="pancakeView:PancakeView" x:Key="MenuPancake">
+                <Setter Property="BackgroundColor" Value="{StaticResource MarvelPrincipalColor}"/>
+                <Style.Triggers>
+                    <DataTrigger TargetType="pancakeView:PancakeView"
+                                 Binding="{Binding Publisher}"
+                                 Value="DC">
+                        <Setter Property="BackgroundColor" Value="White"/>
+                    </DataTrigger>
+                </Style.Triggers>
             </Style>
 
         </ResourceDictionary>
@@ -21,11 +38,12 @@
         <ContentPage Title="Menu">
             <CollectionView ItemsSource="{Binding ItemPages}"
                             SelectedItem="{Binding SelectPage}"
-                            SelectionMode="Single"
+                            SelectionMode="Single"  
                             BackgroundColor="White"
                             >
                 <CollectionView.Header>
-                    <pancakeView:PancakeView Padding="5" BackgroundColor="{StaticResource MarvelPrincipalColor}">
+                    <pancakeView:PancakeView Padding="5" BackgroundColor="{StaticResource MarvelPrincipalColor}"
+                                             Style="{StaticResource MenuPancake}">
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"/>
@@ -44,16 +62,24 @@
                                             
                                             HorizontalOptions="StartAndExpand"
                                             VerticalOptions="EndAndExpand"
-                                        />
+                                        >
+                                <ff:CachedImage.Triggers>
+                                    <DataTrigger TargetType="ff:CachedImage"
+                                                 Binding="{Binding Publisher}"
+                                               Value="DC">
+                                        <Setter Property="Source" Value="DC_Comics_Logo.png"/>
+                                    </DataTrigger>
+                                </ff:CachedImage.Triggers>
+                            </ff:CachedImage>
                         </Grid>
                         <pancakeView:PancakeView.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding  ChangePageCommand}" NumberOfTapsRequired="1"/>
+                            <TapGestureRecognizer Command="{Binding ChangePageCommand}"/>
                         </pancakeView:PancakeView.GestureRecognizers>
                     </pancakeView:PancakeView>
                 </CollectionView.Header>
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <Grid Margin="10" Padding="0,10,0,0" BackgroundColor="White">
+                        <Grid Margin="10" Padding="0,10,0,0" >
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="60"/>
                                 <ColumnDefinition Width="*"/>
@@ -67,21 +93,8 @@
                         </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
-                <CollectionView.Footer>
-                    <StackLayout>
-                        <ff:CachedImage 
-                                        BackgroundColor="White"
-                                        HeightRequest="100"
-                                        VerticalOptions="End"
-                                        Margin="20,170"
-                                        HorizontalOptions="EndAndExpand">
-                            <ff:CachedImage.Transformations>
-                                <ffTransformations:CircleTransformation/>
-                            </ff:CachedImage.Transformations>
-                        </ff:CachedImage>
-                    </StackLayout>
-                </CollectionView.Footer>
+
             </CollectionView>
         </ContentPage>
     </MasterDetailPage.Master>
-    </MasterDetailPage>
+</MasterDetailPage>

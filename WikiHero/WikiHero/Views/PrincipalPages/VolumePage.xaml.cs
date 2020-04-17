@@ -7,15 +7,14 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace WikiHero.Views.DcComicsViews
+namespace WikiHero.Views.PrincipalPages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class DcMasterDetailPage : MasterDetailPage
+    public partial class VolumePage : ContentPage
     {
-        public DcMasterDetailPage()
+        public VolumePage()
         {
             InitializeComponent();
         }
-
     }
 }
