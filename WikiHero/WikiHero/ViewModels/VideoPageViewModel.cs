@@ -18,7 +18,6 @@ namespace WikiHero.ViewModels
 
         public void OnNavigatedFrom(INavigationParameters parameters)
         {
-            throw new NotImplementedException();
         }
 
         public void OnNavigatedTo(INavigationParameters parameters)

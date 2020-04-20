@@ -1,4 +1,5 @@
-﻿using Prism.Commands;
+﻿using Plugin.AppShortcuts.Icons;
+using Prism.Commands;
 using Prism.Navigation;
 using Prism.Services;
 using System;
@@ -51,10 +52,8 @@ namespace WikiHero.ViewModels
             try
             {
                 string comic=null;
-                foreach (var item in Comic.CharacterCredits.Take(20))
-                {
-                    comic += $"{item.Id}|";
-                }
+               var take = Comic.CharacterCredits.Take(30).Select(e => e.Id).ToArray();
+                comic = string.Join("|", take);
                 var characters = await apiComicsVine.FindEnenmyCharacter(Config.Apikey,comic);
                 Characters = new ObservableCollection<Character>(characters.Characters);
             }
@@ -71,10 +70,8 @@ namespace WikiHero.ViewModels
             {
                 string locations = null;
                 if (Comic.LocationCredits.Count>0) {
-                    foreach (var item in Comic.LocationCredits.Take(20))
-                    {
-                        locations += $"{item.Id}|";
-                    }
+                    var take = Comic.LocationCredits.Take(20).Select(e=>e.Id).ToArray();
+                    locations = string.Join("|", take);
                     var location = await apiComicsVine.FindLocation(Config.Apikey, locations);
                     LocationCs = new ObservableCollection<LocationC>(location.Locations);
                 }
@@ -114,7 +111,7 @@ namespace WikiHero.ViewModels
                     loadTask = new List<Task> {
                     LoadCharacterComics(), LoadLocationComic()
                 };
-                    Task.WhenAll(loadTask);
+                   await Task.WhenAll(loadTask);
                 });
                 LoadCommand.Execute();
 

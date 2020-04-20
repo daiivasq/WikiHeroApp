@@ -82,10 +82,8 @@ namespace WikiHero.ViewModels
             try
             {
                 string movie = null;
-                foreach (var item in character.Movies)
-                {
-                    movie += $"{item.Id}|";
-                }
+                var take = Character.Movies.Take(20).Select(e => e.Id);
+                movie = string.Join("|", take);
                 var movies = await apiComicsVine.FindCharactersMovies(Config.Apikey, movie);
                 Movies = new ObservableCollection<Movie>(movies.Results.Take(30));
 
@@ -100,11 +98,8 @@ namespace WikiHero.ViewModels
             try
             {
                 string volume = null;
-                foreach (var item in character.VolumeCredits.Take(30))
-                {
-                    volume += $"{item.Id}|";
-                }
-
+              var take = character.VolumeCredits.Take(30).Select(e=>e.Id);
+                volume = string.Join("|", take);
                 var volumes = await apiComicsVine.FindCharactersVolumes(Config.Apikey, volume);
                 Volumes = new ObservableCollection<Volume>(volumes.Volumes);
             }
@@ -120,11 +115,8 @@ namespace WikiHero.ViewModels
             try
             {
                 string volume = null;
-                foreach (var item in character.CharacterEnemies.Take(30))
-                {
-                    volume += $"{item.Id}|";
-                }
-
+                var take = character.CharacterEnemies.Take(30).Select(e=>e.Id).ToArray();
+                volume = string.Join("|", take);
                 var characters = await apiComicsVine.FindEnenmyCharacter(Config.Apikey, volume);
                 CharactersEnemys = new ObservableCollection<Character>(characters.Characters);
             }
@@ -140,11 +132,8 @@ namespace WikiHero.ViewModels
             try
             {
                 string comic = null;
-                foreach (var item in character.Issues.Take(30))
-                {
-                    comic += $"{item.Id}|";
-                }
-
+                var take = character.Issues.Take(30).Select(e => e.Id);
+                comic = string.Join("|", take.ToArray());
                 var comics = await apiComicsVine.FindCharacterComics(Config.Apikey, comic);
                 Comics = new ObservableCollection<Comic>(comics.Results);
             }
@@ -171,11 +160,8 @@ namespace WikiHero.ViewModels
             try
             {
                 string comic = null;
-                foreach (var item in character.Teams.Take(30))
-                {
-                    comic += $"{item.Id}|";
-                }
-
+               var c = character.Teams.Take(30).Select(x=> x.Id);
+                comic = string.Join("|", c.ToArray());
                 var team = await apiComicsVine.FindTeamsCharacter(Config.Apikey, comic);
                 Teams = new ObservableCollection<Team>(team.Results);
             }
